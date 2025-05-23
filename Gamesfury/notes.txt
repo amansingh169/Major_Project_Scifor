@@ -1,0 +1,12 @@
+for this project i installed.
+
+vite (npm install vite)
+bootstrap using (npm install bootstrap)
+sass using (npm install -D sass)
+
+import both bootstrap and sass in the main.jsx file:
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./SASS/main.scss";
+
+use component scoped css for individual modules using - (drawer.module.css)
