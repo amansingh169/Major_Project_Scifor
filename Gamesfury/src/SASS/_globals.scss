@@ -6,6 +6,19 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+* {
+  outline: none;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+button {
+  font-weight: 500 !important;
+}
+
 select {
   background-color: var(--bg-color) !important;
   color: var(--text-color) !important;
@@ -40,6 +53,12 @@ h6 {
     color: var(--text-color-2);
     filter: brightness(1.1);
   }
+
+  &:active {
+    background-color: var(--accent-color) !important;
+    color: var(--text-color-2) !important;
+    filter: brightness(0.7);
+  }
 }
 
 .btn-secondary {
@@ -51,5 +70,11 @@ h6 {
     background-color: var(--accent-color-2);
     color: var(--text-color-accent);
     filter: brightness(1.1);
+  }
+
+  &:active {
+    background-color: var(--accent-color-2) !important;
+    color: var(--text-color-accent) !important;
+    filter: brightness(0.7);
   }
 }

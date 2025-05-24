@@ -6,11 +6,12 @@ const ThemeSelector = () => {
 
   return (
     <select
-      className="form-select"
+      className="form-select mt-4"
       value={theme}
       onChange={(e) => {
         setTheme(e.target.value);
       }}
+      style={{ width: "300px" }}
     >
       {availableThemes.map((theme) => (
         <option value={theme} key={theme}>
