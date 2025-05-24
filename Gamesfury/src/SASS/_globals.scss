@@ -1,10 +1,55 @@
-@import "variables";
+// @use "variables";
 
 body {
-  background-color: grey;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.a {
-  // color: greenyellow;
-  color: red;
+select {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+
+  option:checked {
+    color: var(--text-color-accent);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-color-accent) !important;
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--text-color-2);
+  border: none;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--text-color-2);
+    filter: brightness(1.1);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--accent-color-2);
+  color: var(--text-color-accent);
+  border: none;
+
+  &:hover {
+    background-color: var(--accent-color-2);
+    color: var(--text-color-accent);
+    filter: brightness(1.1);
+  }
 }

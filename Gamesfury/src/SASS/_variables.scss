@@ -1,0 +1,102 @@
+// :root {
+//   --bg-color: #ffffff;
+//   --text-color: #000000;
+//   --accent-color: #007bff;
+//   --accent-color-2: #6c757d;
+//   --card-bg: #f8f9fa;
+//   --border-color: #dee2e6;
+//   --link-color: #007bff;
+
+//   --black: #000;
+//   --white: #fff;
+// }
+
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #76777e;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #111111;
+  --accent-color: #0d6efd;
+  --accent-color-2: #6c757d;
+  --card-bg: #f8f9fa;
+  --border-color: #dee2e6;
+  --link-color: #0d6efd;
+
+  --black: #000;
+  --white: #fff;
+}
+
+[data-theme="ash"] {
+  --bg-color: #2c2d32;
+  --text-color: #76777e;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #c6ced4;
+  --accent-color: #0daccc;
+  --accent-color-2: #414249;
+  --card-bg: #36373e;
+  --border-color: #ced4da;
+  --link-color: #0daccc;
+
+  --black: #000;
+  --white: #fff;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1e;
+  --text-color: #76777e;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #f1f1f1;
+  --accent-color: #0daccc;
+  --accent-color-2: #343536;
+  --card-bg: #202024;
+  --border-color: #343a40;
+  --link-color: #0daccc;
+
+  --black: #000;
+  --white: #fff;
+}
+
+[data-theme="onyx"] {
+  --bg-color: #000000;
+  --text-color: #76777e;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #e0e0e0;
+  --accent-color: #ff6f00;
+  --accent-color-2: #212121;
+  --card-bg: #121212;
+  --border-color: #333333;
+  --link-color: #ff6f00;
+
+  --black: #000;
+  --white: #fff;
+}
+
+[data-theme="neon"] {
+  --bg-color: #0f0f1a;
+  --text-color: #705470;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #39ff14;
+  --accent-color: #00ffff;
+  --accent-color-2: #ff00ff;
+  --card-bg: #1a1a2e;
+  --border-color: #2f2f5f;
+  --link-color: #39ff14;
+
+  --black: #000;
+  --white: #fff;
+}
+
+[data-theme="fire"] {
+  --bg-color: #1a0000;
+  --text-color: #816554;
+  --text-color-2: #1a1a1e;
+  --text-color-accent: #ffcccb;
+  --accent-color: #ff4500;
+  --accent-color-2: #ff6347;
+  --card-bg: #330000;
+  --border-color: #662222;
+  --link-color: #ff4500;
+
+  --black: #000;
+  --white: #fff;
+}

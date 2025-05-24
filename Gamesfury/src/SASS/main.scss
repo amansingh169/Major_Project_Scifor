@@ -1,6 +1,6 @@
-@import "globals";
-@import "variables";
-@import "utils";
-@import "layout";
+@forward "globals";
+@forward "variables";
+@forward "utils";
+@forward "layout";
 
 // Final SCSS file that is compiled.
