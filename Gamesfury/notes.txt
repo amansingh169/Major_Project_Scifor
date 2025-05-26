@@ -10,3 +10,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./SASS/main.scss";
 
 use component scoped css for individual modules using - (drawer.module.css)
+
+useLocaiton():
+gives an obj with current path of the window.
+is react-aware, updates when the route changes.
+triggers re-renders of components unlike window.location.pathname.

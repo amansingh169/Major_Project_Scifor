@@ -1,3 +1,32 @@
 @forward "globals";
 @forward "variables";
 @forward "utils";
+
+@use "utils" as u;
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  padding-inline: 20px 32px;
+}
+
+.main {
+  height: 1500px;
+  border-left: 1px solid var(--card-bg);
+
+  padding-inline: 32px 20px;
+
+  transition: 0.3s border;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  height: u.rem(100);
+  z-index: 100;
+
+  transition: 0.3s all;
+}

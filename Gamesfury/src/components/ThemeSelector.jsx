@@ -6,7 +6,7 @@ const ThemeSelector = () => {
 
   return (
     <select
-      className="form-select mt-4"
+      className="select-menu mt-4"
       value={theme}
       onChange={(e) => {
         setTheme(e.target.value);

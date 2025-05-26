@@ -1,27 +1,50 @@
 // @use "variables";
+@use "utils" as u;
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
 * {
-  outline: none;
+  outline: none !important;
+  box-shadow: none !important;
 
   &:focus {
     outline: none !important;
     box-shadow: none !important;
   }
+
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.container-fluid {
+  margin-inline: auto;
 }
 
 button {
   font-weight: 500 !important;
 }
 
-select {
-  background-color: var(--bg-color) !important;
+.select-menu {
+  background-color: var(--card-bg) !important;
   color: var(--text-color) !important;
+  border: none !important;
+  border-radius: 6px;
+  padding: 10px;
+
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(45deg, transparent 50%, var(--text-color) 50%),
+    linear-gradient(-45deg, transparent 50%, var(--text-color) 50%);
+  background-position: calc(100% - 15px) calc(50% - 3px), calc(100% - 10px) calc(50% - 3px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
 
   option:checked {
     color: var(--text-color-accent);
@@ -41,6 +64,38 @@ h6 {
   background-color: var(--card-bg);
   color: var(--text-color);
   border: none;
+  transition: 0.3s;
+
+  &.img-card {
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+}
+
+// [data-theme="light"] {
+//   .card:hover {
+//     filter: brightness(0.95);
+//   }
+// }
+
+.profile-icon {
+  aspect-ratio: 1;
+  width: u.rem(50);
+}
+
+.btn {
+  border: none !important;
+  outline: none !important;
+
+  &:hover {
+    background-color: var(--accent-color-2);
+  }
+
+  &:active {
+    border: none !important;
+    outline: none !important;
+  }
 }
 
 .btn-primary {
@@ -76,5 +131,48 @@ h6 {
     background-color: var(--accent-color-2) !important;
     color: var(--text-color-accent) !important;
     filter: brightness(0.7);
+  }
+}
+
+.brand {
+  font-size: 4rem;
+  line-height: 1;
+  height: u.rem(100);
+  place-content: center;
+
+  & * {
+    color: var(--text-color-accent);
+    text-decoration: none;
+  }
+}
+
+.side-navlink {
+  text-decoration: none;
+
+  & * {
+    color: var(--text-color) !important;
+  }
+
+  &.active {
+    & * {
+      color: var(--text-color-accent) !important;
+    }
+
+    button {
+      background-color: var(--accent-color-2);
+    }
+  }
+}
+
+.nav-link {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding-inline: 0 !important;
+
+  &.active {
+    color: var(--text-color-accent) !important;
+    text-decoration: underline !important;
+    text-underline-offset: u.rem(10);
   }
 }
