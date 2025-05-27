@@ -22,6 +22,10 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 .container-fluid {
   margin-inline: auto;
 }
@@ -174,5 +178,13 @@ h6 {
     color: var(--text-color-accent) !important;
     text-decoration: underline !important;
     text-underline-offset: u.rem(10);
+  }
+}
+
+.dropdown-link {
+  color: var(--text-color-accent);
+
+  &:hover {
+    background-color: rgba(rgb(216, 216, 216), 0.2);
   }
 }

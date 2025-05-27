@@ -1,8 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const storePages = ["/browse", "/news", "/wishlist", "/cart"];
   const location = useLocation();
-  const isStoreActive = location.pathname.startsWith("/store");
+  const isStoreActive = storePages.some((page) => location.pathname.includes(page));
 
   return (
     <div className="sidebar d-flex flex-column col-2">
@@ -15,7 +16,7 @@ const Sidebar = () => {
       <div className="d-flex flex-column gap-2">
         <NavLink
           className={isStoreActive ? "side-navlink active" : "side-navlink"} // this logic is needed because this link needs to be active for the sibling paths (/store/discover, /store/news etc.)
-          to="/store/discover"
+          to="/"
         >
           <button className="btn w-100 py-4 px-4 text-start d-flex align-items-center gap-3">
             <i className="bx bxs-price-tag-alt fs-4"></i>
@@ -37,10 +38,6 @@ const Sidebar = () => {
           </button>
         </NavLink>
       </div>
-
-      {/* <button className="btn">
-        <h4>Store</h4>
-      </button> */}
     </div>
   );
 };

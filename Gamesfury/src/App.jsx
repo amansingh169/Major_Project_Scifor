@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
-import Discover from "./pages/store/Discover";
-import Browse from "./pages/store/Browse";
-import News from "./pages/store/News";
-import Wishlist from "./pages/store/Wishlist";
-import Cart from "./pages/store/Cart";
+import Discover from "./pages/Discover";
+import Browse from "./pages/Browse";
+import News from "./pages/News";
+import Wishlist from "./pages/Wishlist";
+import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Library from "./pages/Library";
@@ -22,11 +22,11 @@ function App() {
         <div className="main col-10">
           <Navbar />
           <Routes>
-            <Route path="/store/discover" element={<Discover />} />
-            <Route path="/store/browse" element={<Browse />} />
-            <Route path="/store/news" element={<News />} />
-            <Route path="/store/wishlist" element={<Wishlist />} />
-            <Route path="/store/cart" element={<Cart />} />
+            <Route path="/" element={<Discover />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/library" element={<Library />} />

@@ -3,4 +3,29 @@
 @forward "utils";
 @forward "layout";
 
+@use "utils" as u;
+
 // Final SCSS file that is compiled.
+
+#profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(rgb(88, 88, 88), 0.2);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--border-color);
+
+  &.show {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+
+    a {
+      width: u.rem(150);
+      padding: u.rem(10);
+    }
+  }
+}

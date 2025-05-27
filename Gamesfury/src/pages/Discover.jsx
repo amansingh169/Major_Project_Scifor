@@ -1,5 +1,5 @@
-import Card from "../../components/Card";
-import ThemeSelector from "../../components/ThemeSelector";
+import Card from "../components/Card";
+import ThemeSelector from "../components/ThemeSelector";
 
 const Discover = () => {
   return (

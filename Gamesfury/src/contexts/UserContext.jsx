@@ -25,6 +25,7 @@ export const UserProvider = ({ children }) => {
 
     if (foundUser) {
       setUser(foundUser);
+      console.log(`User ${foundUser.name} successfully logged in!`);
       return true;
     } else {
       return false;
