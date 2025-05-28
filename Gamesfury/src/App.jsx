@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Library from "./pages/Library";
 import Unity from "./pages/Unity";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/library" element={<Library />} />
               <Route path="/unity" element={<Unity />} />
+              <Route path="/settings" element={<Settings />} />
             </Route>
 
             <Route path="/profile" element={<Profile />} />

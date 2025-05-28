@@ -1,6 +1,7 @@
 .banner-wrapper {
   position: relative;
   flex: 1;
+  /* width: 200px; */
 }
 
 .banner-wrapper:hover .add-to-wlist {

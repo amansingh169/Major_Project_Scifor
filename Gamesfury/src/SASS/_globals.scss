@@ -20,11 +20,11 @@ body {
 }
 
 .text-full {
-  color: var(--contrast-full);
+  color: var(--contrast-full) !important;
 }
 
 .text-zero {
-  color: var(--contrast-zero);
+  color: var(--contrast-zero) !important;
 }
 
 * {
@@ -166,7 +166,7 @@ h6 {
   height: u.rem(100);
   place-content: center;
 
-  & * {
+  & a {
     color: var(--text-color-accent);
     text-decoration: none;
   }
@@ -196,6 +196,19 @@ h6 {
   font-size: 1.1rem;
   padding-inline: 0 !important;
 
+  &:hover {
+    color: var(--text-color-accent);
+  }
+
+  & i {
+    color: var(--text-color);
+    transition: 0.2s color;
+
+    &:hover {
+      color: var(--text-color-accent);
+    }
+  }
+
   &.active {
     color: var(--text-color-accent) !important;
     text-decoration: underline !important;
@@ -203,15 +216,15 @@ h6 {
   }
 }
 
-.dropdown-link {
-  color: var(--text-color-accent);
-
-  &:hover {
-    background-color: rgba(rgb(216, 216, 216), 0.2);
-  }
+.dropdown-link:hover {
+  background-color: rgba(rgb(216, 216, 216), 0.2);
 }
 
 .img-thumbnail {
   border: none;
   padding: 0;
+}
+
+.back-arrow {
+  line-height: 0;
 }

@@ -7,8 +7,8 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar d-flex flex-column col-2">
-      <div className="brand text-center mt-1">
-        <NavLink to="/store/discover">
+      <div className="brand text-center mt-2">
+        <NavLink to="/">
           <i className="bxl bx-steam"></i>
         </NavLink>
       </div>

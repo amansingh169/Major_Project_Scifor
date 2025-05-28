@@ -12,5 +12,9 @@
     <div id="root"></div>
 
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const theme = localStorage.getItem("theme");
+      document.documentElement.setAttribute("data-theme", theme);
+    </script>
   </body>
 </html>

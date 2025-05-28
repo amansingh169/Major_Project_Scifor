@@ -1,12 +1,13 @@
 import { NavLink, Link } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
-
   const dropdownRef = useRef();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
@@ -28,6 +29,12 @@ const Navbar = () => {
     <nav className="header navbar navbar-expand-lg navbar-dark">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto gap-3">
+          <li className="nav-item">
+            <NavLink className="back-arrow nav-link fs-3" onClick={() => navigate(-1)}>
+              <i className="bx bx-chevron-left"></i>
+            </NavLink>
+          </li>
+
           <li className="nav-item">
             <NavLink className="nav-link" to="/">
               Discover
@@ -81,16 +88,16 @@ const Navbar = () => {
 
               <div id="profile-dropdown" className={`p-2 rounded-4 ${showDropdown ? "show" : ""}`}>
                 <ul className="d-flex flex-column p-0">
-                  <Link className="dropdown-link rounded-3" to="/profile">
+                  <Link className="dropdown-link rounded-3 text-white" to="/profile">
                     View Profile
                   </Link>
-                  <Link className="dropdown-link rounded-3" to="/library">
+                  <Link className="dropdown-link rounded-3 text-white" to="/library">
                     My Library
                   </Link>
-                  <Link className="dropdown-link rounded-3" to="/settings">
+                  <Link className="dropdown-link rounded-3 text-white" to="/settings">
                     Settings
                   </Link>
-                  <Link onClick={handleLogout} className="dropdown-link rounded-3">
+                  <Link className="dropdown-link rounded-3 text-white" onClick={handleLogout}>
                     Logout
                   </Link>
                 </ul>
