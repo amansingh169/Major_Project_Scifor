@@ -7,6 +7,26 @@ body {
   transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
+.text-primary {
+  color: var(--text-color-accent) !important;
+}
+
+.text-secondary {
+  color: var(--text-color-2) !important;
+}
+
+.text-muted {
+  color: var(--text-color) !important;
+}
+
+.text-full {
+  color: var(--contrast-full);
+}
+
+.text-zero {
+  color: var(--contrast-zero);
+}
+
 * {
   outline: none !important;
   box-shadow: none !important;
@@ -27,10 +47,12 @@ a {
 }
 
 .container-fluid {
+  max-width: 1900px;
   margin-inline: auto;
 }
 
 button {
+  border: none;
   font-weight: 500 !important;
 }
 
@@ -187,4 +209,9 @@ h6 {
   &:hover {
     background-color: rgba(rgb(216, 216, 216), 0.2);
   }
+}
+
+.img-thumbnail {
+  border: none;
+  padding: 0;
 }

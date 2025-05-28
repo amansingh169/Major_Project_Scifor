@@ -15,3 +15,7 @@ useLocaiton():
 gives an obj with current path of the window.
 is react-aware, updates when the route changes.
 triggers re-renders of components unlike window.location.pathname.
+
+useRef():
+it points to a specific dom object, stores the data about the obj in a current obj, which does not cause the component to re-render.
+can also work in place of useState, but it won't re-render the component, while useState does.

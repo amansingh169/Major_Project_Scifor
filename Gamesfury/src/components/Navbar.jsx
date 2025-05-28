@@ -1,16 +1,28 @@
 import { NavLink, Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
-
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const dropdownRef = useRef();
 
   const handleLogout = () => {
     logout();
     setShowDropdown((prev) => !prev);
   };
+
+  useEffect(() => {
+    let handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setShowDropdown(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="header navbar navbar-expand-lg navbar-dark">
@@ -51,7 +63,7 @@ const Navbar = () => {
           <div className="vr my-2 mx-1 bg-light"></div>
 
           {user ? (
-            <li className="nav-item">
+            <li className="nav-item" ref={dropdownRef}>
               <button
                 id="avatar"
                 onClick={() => {
@@ -68,21 +80,6 @@ const Navbar = () => {
               </button>
 
               <div id="profile-dropdown" className={`p-2 rounded-4 ${showDropdown ? "show" : ""}`}>
-                {/* <ul className="d-flex flex-column p-0">
-                  <li className="dropdown-link rounded-3">
-                    <Link to="/profile">View Profile</Link>
-                  </li>
-                  <li className="dropdown-link rounded-3">
-                    <Link to="/library">My Library</Link>
-                  </li>
-                  <li className="dropdown-link rounded-3">
-                    <Link to="/settings">Settings</Link>
-                  </li>
-                  <li className="dropdown-link rounded-3">
-                    <Link>Logout</Link>
-                  </li>
-                </ul> */}
-
                 <ul className="d-flex flex-column p-0">
                   <Link className="dropdown-link rounded-3" to="/profile">
                     View Profile
@@ -108,9 +105,6 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-
-      {/* {showDropdown && (
-        )} */}
     </nav>
   );
 };
