@@ -13,6 +13,16 @@
 //   --contrast-zero: #fff;
 // }
 
+:root {
+  --fs-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 1vw, 1rem);
+  --fs-base: clamp(1rem, 1.5vw, 1.125rem);
+  --fs-md: clamp(1.125rem, 2vw, 1.5rem);
+  --fs-lg: clamp(1.25rem, 2.5vw, 2rem);
+  --fs-xl: clamp(1.5rem, 3vw, 2.5rem);
+  --fs-xxl: clamp(2rem, 4vw, 3.5rem);
+}
+
 [data-theme="light"] {
   --bg-color: #ffffff;
   --text-color: #76777e;

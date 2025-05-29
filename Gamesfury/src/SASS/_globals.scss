@@ -1,9 +1,51 @@
-// @use "variables";
 @use "utils" as u;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
+h1 {
+  font-size: var(--fs-xxl);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h2 {
+  font-size: var(--fs-xl);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h3 {
+  font-size: var(--fs-lg);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h4 {
+  font-size: var(--fs-md);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h5 {
+  font-size: var(--fs-base);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+h6 {
+  font-size: var(--fs-sm);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+p,
+span,
+a,
+li {
+  font-size: var(--fs-sm);
+}
+
+a {
+  font-family: "Space Grotesk", sans-serif;
+}
 
 body {
-  background-color: var(--bg-color);
   color: var(--text-color);
+  font-size: var(--fs-base);
+  background-color: var(--bg-color);
   transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
@@ -160,18 +202,6 @@ h6 {
   }
 }
 
-.brand {
-  font-size: 4rem;
-  line-height: 1;
-  height: u.rem(100);
-  place-content: center;
-
-  & a {
-    color: var(--text-color-accent);
-    text-decoration: none;
-  }
-}
-
 .side-navlink {
   text-decoration: none;
 
@@ -193,7 +223,7 @@ h6 {
 .nav-link {
   color: var(--text-color);
   font-weight: 600;
-  font-size: 1.1rem;
+  // font-size: 1.1rem;
   padding-inline: 0 !important;
 
   &:hover {
@@ -216,15 +246,11 @@ h6 {
   }
 }
 
-.dropdown-link:hover {
-  background-color: rgba(rgb(216, 216, 216), 0.2);
-}
-
 .img-thumbnail {
   border: none;
   padding: 0;
 }
 
-.back-arrow {
-  line-height: 0;
+.dropdown-link:hover {
+  background-color: rgba(rgb(216, 216, 216), 0.2);
 }

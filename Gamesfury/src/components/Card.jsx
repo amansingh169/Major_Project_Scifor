@@ -1,20 +1,23 @@
-import cardImage from "../assets/neon.jpg";
-
-const Card = () => {
+const Card = ({ img, gameInfo }) => {
   return (
-    <div className="card" style={{ width: "18rem", marginTop: "2rem" }}>
-      <img src={cardImage} className="card-img-top" />
-      <div className="card-body">
-        <h5 className="card-title">Lorem ipsum dolor sit amet.</h5>
-        <p className="card-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea tempora temporibus beatae ab.
-          Facere enim modi provident nostrum dolore placeat.
-        </p>
-        <div className="d-flex justify-content-between">
-          <button className="btn btn-primary">Buy Now</button>
-          <button className="btn btn-secondary">Add to cart</button>
-        </div>
-      </div>
+    <div className={`card-wrapper  ${gameInfo ? "game-card" : ""}`}>
+      <a href="#">
+        <img className={`thumbnail  ${gameInfo ? "" : "img-thumbnail"}`} src={img} alt="Card" />
+
+        {gameInfo && (
+          <div>
+            <button className="add-to-wlist place-content-center p-2">
+              <i className="bx bx-bookmark-plus"></i>
+            </button>
+
+            <div className="card-content">
+              <p className="product-type fw-semibold text-muted mt-2 m-0">Base Game</p>
+              <h5 className="game-title fw-bold text-primary m-0">SILENT HILL 2</h5>
+              <h6 className="price text-full m-0 mt-2">$29.99</h6>
+            </div>
+          </div>
+        )}
+      </a>
     </div>
   );
 };

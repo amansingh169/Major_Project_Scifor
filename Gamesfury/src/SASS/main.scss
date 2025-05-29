@@ -7,6 +7,19 @@
 
 // Final SCSS file that is compiled.
 
+.brand {
+  font-size: 4rem;
+  line-height: 1;
+  height: u.rem(100);
+  place-content: center;
+
+  & a {
+    color: var(--text-color-accent);
+    text-decoration: none;
+    font-size: clamp(2.6rem, calc(2.6rem + 3vw), 4.5rem);
+  }
+}
+
 #profile-dropdown {
   display: none;
   position: absolute;
@@ -27,5 +40,78 @@
       width: u.rem(150);
       padding: u.rem(10);
     }
+  }
+}
+
+.card-wrapper {
+  position: relative;
+  flex: 1 1 0;
+  // aspect-ratio: 2;
+
+  .thumbnail {
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+  &.game-card {
+    .thumbnail {
+      width: clamp(140px, calc(140px + 7vw), 250px);
+      aspect-ratio: 2/3;
+    }
+  }
+
+  &:hover .add-to-wlist {
+    opacity: 1;
+  }
+}
+
+.slider-container {
+  scrollbar-width: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.back-arrow {
+  line-height: 0;
+}
+
+.thumbnail:hover {
+  filter: brightness(1.2);
+}
+
+.add-to-wlist {
+  opacity: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 100px;
+  background-color: black;
+  backdrop-filter: blur(5px);
+
+  transition: 0.2s opacity;
+
+  i {
+    font-size: 1.2rem;
+    display: block;
+  }
+}
+
+.slider-header {
+  i {
+    font-weight: 200;
+    transition: 0.2s ease-out translate;
+  }
+
+  a:hover i {
+    translate: 5px;
+  }
+}
+
+.slider-nav {
+  @media (max-width: 1024px) {
+    display: none;
   }
 }

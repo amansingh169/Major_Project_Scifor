@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="header navbar navbar-expand-lg navbar-dark">
+    <nav className="header navbar navbar-expand-lg">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto gap-3">
           <li className="nav-item">
