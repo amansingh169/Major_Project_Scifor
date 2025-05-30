@@ -28,10 +28,10 @@ const Navbar = () => {
   return (
     <nav className="header navbar navbar-expand-lg">
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto gap-3">
+        <ul className="navbar-nav me-auto gap-3 align-items-center">
           <li className="nav-item">
             <NavLink className="back-arrow nav-link fs-3" onClick={() => navigate(-1)}>
-              <i className="bx bx-chevron-left"></i>
+              <i className="bi bi-chevron-left fs-5"></i>
             </NavLink>
           </li>
 

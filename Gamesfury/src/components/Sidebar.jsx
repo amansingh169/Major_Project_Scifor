@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="sidebar d-flex flex-column col-2">
       <div className="brand text-center mt-2">
         <NavLink to="/">
-          <i className="bxl bx-steam"></i>
+          <i class="bi bi-steam"></i>
         </NavLink>
       </div>
 

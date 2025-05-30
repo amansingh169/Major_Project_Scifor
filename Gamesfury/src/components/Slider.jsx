@@ -10,19 +10,19 @@ const Slider = () => {
 
   return (
     <div className="game-slider">
-      <div className="slider-header d-flex justify-content-between align-items-center">
-        <a href="#" className="d-flex align-items-center">
+      <div className="slider-header d-flex align-items-center my-4">
+        <a href="#" className="d-flex">
           <h3>Discover Something New</h3>
-          <i className="bx bx-chevron-right fs-2 text-primary"></i>
+          <i className="bi bi-chevron-right fs-4 text-primary ms-2"></i>
         </a>
 
-        <div className="slider-nav">
-          <button onClick={() => scroll(-1500)}>
-            <i className="bx bx-chevron-left"></i>
+        <div className="slider-nav d-flex gap-2 ms-auto">
+          <button onClick={() => scroll(-1500)} className="text-primary">
+            <i className="bi bi-chevron-left fs-6 text-primary"></i>
           </button>
 
-          <button onClick={() => scroll(1500)}>
-            <i className="bx bx-chevron-right"></i>
+          <button onClick={() => scroll(1500)} className="text-primary">
+            <i className="bi bi-chevron-right fs-6 text-primary"></i>
           </button>
         </div>
       </div>
