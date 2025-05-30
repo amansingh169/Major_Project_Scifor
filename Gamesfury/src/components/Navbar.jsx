@@ -30,10 +30,20 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto gap-3 align-items-center">
           <li className="nav-item">
-            <NavLink className="back-arrow nav-link fs-3" onClick={() => navigate(-1)}>
-              <i className="bi bi-chevron-left fs-5"></i>
+            <NavLink className="back-arrow nav-link fs-6" onClick={() => navigate(-1)}>
+              <i className="bi bi-chevron-left p-2"></i>
             </NavLink>
           </li>
+
+          <form className="search-bar form-inline">
+            <i class="bi bi-search fs-6"></i>
+
+            <input
+              className="form-control text-primary fs-6 px-3 py-2 text-primary"
+              type="search"
+              placeholder="Search Store"
+            />
+          </form>
 
           <li className="nav-item">
             <NavLink className="nav-link" to="/">
@@ -54,7 +64,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <ul className="navbar-nav d-flex align-items-center gap-3">
+        <ul className="navbar-nav d-flex align-items-center gap-4">
           <li className="nav-item">
             <NavLink className="nav-link" to="/wishlist">
               Wishlist

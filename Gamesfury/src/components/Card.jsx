@@ -6,8 +6,8 @@ const Card = ({ img, gameInfo }) => {
 
         {gameInfo && (
           <div>
-            <button className="add-to-wlist place-content-center p-2">
-              <i className="bx bx-bookmark-plus"></i>
+            <button className="add-to-wlist place-content-center">
+              <i class="bi bi-plus fs-4"></i>
             </button>
 
             <div className="card-content">

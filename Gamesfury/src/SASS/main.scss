@@ -8,10 +8,13 @@
 // Final SCSS file that is compiled.
 
 .brand {
-  font-size: 4rem;
   line-height: 1;
   height: u.rem(100);
   place-content: center;
+
+  a {
+    font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
+  }
 
   & a {
     color: var(--text-color-accent);
@@ -36,9 +39,15 @@
   ul {
     list-style: none;
 
-    a {
+    .dropdown-link {
       width: u.rem(150);
       padding: u.rem(10);
+
+      transition: 0.2s background;
+
+      &:hover {
+        background-color: rgba(rgb(216, 216, 216), 0.2);
+      }
     }
   }
 }
@@ -51,6 +60,11 @@
   .thumbnail {
     object-fit: cover;
     border-radius: 7px;
+    transition: 0.2s filter;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
   }
 
   &.game-card {
@@ -76,16 +90,13 @@
   line-height: 0;
 }
 
-.thumbnail:hover {
-  filter: brightness(1.2);
-}
-
 .add-to-wlist {
   opacity: 0;
   position: absolute;
   top: 10px;
   right: 10px;
   color: white;
+  padding: 0px;
   border: 2px solid white;
   border-radius: 100px;
   background-color: black;
@@ -95,6 +106,7 @@
 
   i {
     font-size: 1.2rem;
+    line-height: 0;
     display: block;
   }
 }
@@ -122,8 +134,10 @@
     line-height: 0;
     padding: 10px;
 
+    transition: 0.2s background;
+
     &:hover {
-      filter: brightness(1.7);
+      background-color: var(--accent-color-2);
     }
   }
 
