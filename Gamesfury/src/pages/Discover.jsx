@@ -1,7 +1,37 @@
 import Card from "../components/Card";
 import Slider from "../components/Slider";
 
+import { fetchPopularGames, fetchNewGames } from "../api/rawg";
+import { useEffect, useState } from "react";
+
 const Discover = () => {
+  const [games, setGames] = useState();
+
+  useEffect(() => {
+    const getGames = async () => {
+      const storedData = localStorage.getItem("popularGamesData") || "";
+
+      if (storedData) {
+        setGames(JSON.parse(storedData));
+        console.log("Stored Data Fetched!");
+      } else {
+        const data = await fetchNewGames();
+
+        const gamesWithPrices = data.map((game) => ({
+          ...game,
+          price: (Math.random() * 50 + 10).toFixed(2),
+        }));
+
+        setGames(gamesWithPrices);
+        console.log("API Fetched!");
+
+        localStorage.setItem("popularGamesData", JSON.stringify(gamesWithPrices));
+      }
+    };
+
+    getGames();
+  }, []);
+
   return (
     <div className="d-flex flex-column gap-3">
       <div className="d-flex gap-3">
@@ -10,7 +40,7 @@ const Discover = () => {
         <Card img="https://cdn2.unrealengine.com/en-mega-sale-3up-fg-banner-asset-1920x1080-615c6807a1ad.jpg?resize=1&w=854&h=480&quality=medium" />
       </div>
 
-      <Slider />
+      <Slider games={games || []} />
     </div>
   );
 };

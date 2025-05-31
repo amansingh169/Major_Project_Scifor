@@ -36,7 +36,7 @@ const Navbar = () => {
           </li>
 
           <form className="search-bar form-inline">
-            <i class="bi bi-search fs-6"></i>
+            <i className="bi bi-search fs-6"></i>
 
             <input
               className="form-control text-primary fs-6 px-3 py-2 text-primary"

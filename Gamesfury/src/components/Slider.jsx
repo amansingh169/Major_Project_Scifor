@@ -1,7 +1,9 @@
 import Card from "./Card";
 import { useRef } from "react";
 
-const Slider = () => {
+// edit this comp to make it show the game cards correctly
+
+const Slider = ({ games }) => {
   const sliderRef = useRef();
 
   const scroll = (offset) => {
@@ -28,54 +30,9 @@ const Slider = () => {
       </div>
 
       <div className="slider-container d-flex gap-3" ref={sliderRef}>
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-fg-banner-asset-1920x1080-615c6807a1ad.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-fg-banner-asset-1920x1080-615c6807a1ad.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
-        <Card
-          img="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
-          gameInfo="a"
-        />
+        {games.map((game) => (
+          <Card key={game.id} gameInfo={game} />
+        ))}
       </div>
     </div>
   );

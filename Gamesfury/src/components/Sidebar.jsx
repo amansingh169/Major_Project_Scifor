@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="sidebar d-flex flex-column col-2">
       <div className="brand text-center mt-2">
         <NavLink to="/">
-          <i class="bi bi-steam"></i>
+          <i className="bi bi-steam"></i>
         </NavLink>
       </div>
 
@@ -19,21 +19,21 @@ const Sidebar = () => {
           to="/"
         >
           <button className="btn w-100 py-4 px-4 text-start d-flex align-items-center gap-3">
-            <i class="bi bi-tag-fill fs-4"></i>
+            <i className="bi bi-tag-fill fs-4"></i>
             <h5 className="m-0">Store</h5>
           </button>
         </NavLink>
 
         <NavLink className="side-navlink" to="/library">
           <button className="btn w-100 py-4 px-4 text-start d-flex align-items-center gap-3">
-            <i class="bi bi-grid-fill fs-4"></i>
+            <i className="bi bi-grid-fill fs-4"></i>
             <h5 className="m-0">Library</h5>
           </button>
         </NavLink>
 
         <NavLink className="side-navlink" to="/unity">
           <button className="btn w-100 py-4 px-4 text-start d-flex align-items-center gap-3">
-            <i class="bi bi-unity fs-4"></i>
+            <i className="bi bi-unity fs-4"></i>
             <h5 className="m-0">Unity</h5>
           </button>
         </NavLink>
