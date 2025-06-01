@@ -9,14 +9,20 @@ export const fetchPopularGames = async () => {
 
 export const fetchNewGames = async () => {
   const today = new Date().toISOString().split("T")[0];
-  const lastMonth = new Date();
-  lastMonth.setMonth(lastMonth.getMonth() - 1);
-  const lastMonthDate = lastMonth.toISOString().split("T")[0];
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  const sixMonthsAgoDate = sixMonthsAgo.toISOString().split("T")[0];
 
   const res = await fetch(
-    `${BASE_URL}/games?key=${API_KEY}&dates=${lastMonthDate},${today}&ordering=-added&page_size=25`
+    `${BASE_URL}/games?key=${API_KEY}&dates=${sixMonthsAgoDate},${today}&ordering=-added&page_size=25`
   );
 
   const data = await res.json();
   return data.results;
+};
+
+export const fetchGameData = async (id) => {
+  const response = await fetch(`${BASE_URL}/games/${id}?key=${API_KEY}`);
+  const data = await response.json();
+  return data;
 };

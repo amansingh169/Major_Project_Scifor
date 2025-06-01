@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 const Card = ({ img, gameInfo }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={`card-wrapper  ${gameInfo ? "game-card" : ""}`}>
-      <a href="#">
+      <a onClick={() => navigate(`/game/${gameInfo.id}`)}>
         <img
           className={`thumbnail  ${gameInfo ? "" : "img-thumbnail"}`}
           src={`${gameInfo ? gameInfo.background_image : img}`}
@@ -17,7 +21,7 @@ const Card = ({ img, gameInfo }) => {
             <div className="card-content">
               <p className="product-type fw-semibold text-muted mt-2 m-0">Base Game</p>
               <h5 className="game-title fw-bold text-primary m-0">{gameInfo.name}</h5>
-              <h6 className="price text-full m-0 mt-2">$29.99</h6>
+              <h6 className="price text-full m-0 mt-2">{`$${gameInfo.price}`}</h6>
             </div>
           </div>
         )}

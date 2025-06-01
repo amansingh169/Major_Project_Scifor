@@ -9,28 +9,23 @@ const Discover = () => {
 
   useEffect(() => {
     const getGames = async () => {
-      const storedData = localStorage.getItem("popularGamesData") || "";
+      const storedData = localStorage.getItem("newGamesData") || "";
 
       if (storedData) {
         setGames(JSON.parse(storedData));
         console.log("Stored Data Fetched!");
       } else {
         const data = await fetchNewGames();
-
-        const gamesWithPrices = data.map((game) => ({
-          ...game,
-          price: (Math.random() * 50 + 10).toFixed(2),
-        }));
-
-        setGames(gamesWithPrices);
+        setGames(data);
         console.log("API Fetched!");
-
-        localStorage.setItem("popularGamesData", JSON.stringify(gamesWithPrices));
+        localStorage.setItem("newGamesData", JSON.stringify(gamesWithPrices));
       }
     };
 
     getGames();
   }, []);
+
+  console.log(games);
 
   return (
     <div className="d-flex flex-column gap-3">
