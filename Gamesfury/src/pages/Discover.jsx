@@ -25,8 +25,6 @@ const Discover = () => {
     getGames();
   }, []);
 
-  console.log(games);
-
   return (
     <div className="d-flex flex-column gap-3">
       <div className="d-flex gap-3">
