@@ -26,3 +26,9 @@ export const fetchGameData = async (id) => {
   const data = await response.json();
   return data;
 };
+
+export const fetchGameScreenshots = async (id) => {
+  const response = await fetch(`${BASE_URL}/games/${id}/screenshots?key=${API_KEY}`);
+  const data = await response.json();
+  return data.results;
+};

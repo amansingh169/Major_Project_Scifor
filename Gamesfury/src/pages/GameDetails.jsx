@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchGameData } from "../api/rawg";
+import { fetchGameData, fetchGameScreenshots } from "../api/rawg";
 
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
   const [gameData, setGameData] = useState();
+  const [gameScreenshots, setGameScreenshots] = useState([]);
   const { id } = useParams();
 
   const getRatingBadgeClass = (rating) => {
@@ -42,7 +43,7 @@ const GameDetails = () => {
 
   useEffect(() => {
     const getGameData = async () => {
-      const storedData = localStorage.getItem(`storedGame_${id}`);
+      const storedData = localStorage.getItem(`game_${id}`);
 
       if (storedData) {
         setGameData(JSON.parse(storedData));
@@ -51,45 +52,66 @@ const GameDetails = () => {
         const data = await fetchGameData(id);
         setGameData(data);
         console.log("Game Data Fetched from API!");
-        localStorage.setItem(`storedGame_${id}`, JSON.stringify(data));
+        localStorage.setItem(`game_${id}`, JSON.stringify(data));
+      }
+
+      const storedScreens = localStorage.getItem(`screenshots_${id}`);
+
+      if (storedScreens) {
+        setGameScreenshots(JSON.parse(storedScreens));
+        console.log("Stored Screenshots Fetched!");
+      } else {
+        const data = await fetchGameScreenshots(id);
+        setGameScreenshots(data);
+        localStorage.setItem(`screenshots_${id}`, JSON.stringify(data));
+        console.log("Screenshots Fetched from API!");
       }
     };
 
     getGameData();
-  }, []);
+  }, [id]);
 
-  console.log(gameData);
+  // console.log(gameData);
 
   if (!gameData) return <h2>Loading...</h2>;
 
   return (
-    <div className="game-details-wrapper d-flex flex-column">
-      <h1>{`${gameData.name}`}</h1>
+    <div className="game-details-wrapper d-flex flex-column gap-4">
+      <h1 className="my-0 lh-1">{`${gameData.name}`}</h1>
 
-      <div className="rating d-flex gap-3">
+      <div className="rating d-flex gap-2">
         <div className="rating-stars d-flex align-items-center">
           <div className={`badge d-flex gap-2 ${getRatingBadgeClass(gameData.rating)}`}>
             <i className="bi bi-star-fill"></i>
             {gameData.rating}
           </div>
         </div>
+
         <div className="feedback">{formatFeedback(getFeedback(gameData.ratings))}</div>
       </div>
 
-      <div className="game-details d-flex flex-column">
-        <div className="details-main">
+      <div className="game-details row">
+        <div className="details-main col-9">
           <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
-            {gameData.thumbnmails}
-            <SplideSlide>
-              <img
-                className="splide-img"
-                src="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
-                alt="Image 1"
-              />
-            </SplideSlide>
+            {gameScreenshots.map((ss) => (
+              <SplideSlide key={ss.id}>
+                <img className="splide-img" src={ss.image} alt="Image 1" />
+              </SplideSlide>
+            ))}
           </Splide>
         </div>
-        <div className="details-aside"></div>
+
+        <div className="details-aside col-3 d-flex flex-column gap-2">
+          <div className="d-flex">
+            <div className="badge bg-secondary text-primary fw-bold">Base Game</div>
+          </div>
+
+          <div className="price d-flex align-items-baseline gap-2">
+            <div className="discount badge">-33%</div>
+            <div className="cut-price text-decoration-line-through">$23.99</div>
+            <div className="final-price text-primary fw-bold fs-5">$16.49</div>
+          </div>
+        </div>
       </div>
     </div>
   );

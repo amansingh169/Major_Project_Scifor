@@ -3,4 +3,12 @@
 .splide-img {
   width: 100%;
   height: auto;
+  border-radius: u.rem(10);
+}
+
+.price {
+  .discount {
+    background-color: var(--accent-color);
+    border-radius: 100px;
+  }
 }
