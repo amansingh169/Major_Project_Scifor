@@ -79,6 +79,10 @@ body {
   font-size: var(--fs-xs);
 }
 
+.rounded-10 {
+  border-radius: 10px !important;
+}
+
 * {
   outline: none !important;
   box-shadow: none !important;
@@ -169,6 +173,12 @@ h6 {
   width: u.rem(50);
 }
 
+.placeholder-text {
+  width: 50px;
+  height: 20px;
+  // background-color: var();
+}
+
 .btn {
   border: none !important;
   outline: none !important;
@@ -186,6 +196,7 @@ h6 {
 .btn-primary {
   background-color: var(--accent-color);
   color: var(--text-color-2);
+  padding: u.rem(12) u.rem(35);
   border: none;
 
   &:hover {
@@ -204,6 +215,7 @@ h6 {
 .btn-secondary {
   background-color: var(--accent-color-2);
   color: var(--text-color-accent);
+  padding: u.rem(12) u.rem(35);
   border: none;
 
   &:hover {

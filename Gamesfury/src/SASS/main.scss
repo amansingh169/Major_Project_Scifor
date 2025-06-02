@@ -78,6 +78,24 @@
   &:hover .add-to-wlist {
     opacity: 1;
   }
+
+  .ph {
+    background-color: var(--accent-color-2) !important;
+  }
+  .product-type-ph,
+  .game-title-ph,
+  .price-ph {
+    height: 25px;
+  }
+  .product-type-ph {
+    width: 150px;
+  }
+  .game-title-ph {
+    width: 300px;
+  }
+  .price-ph {
+    width: 100px;
+  }
 }
 
 .slider-container {
