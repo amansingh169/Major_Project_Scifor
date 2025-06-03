@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { fetchGameData, fetchGameScreenshots } from "../api/rawg";
+import { useParams, useLocation } from "react-router-dom";
+import { fetchGameData } from "../api/rawg";
 
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
+  const { state } = useLocation();
+  const passedGameData = state?.game;
+
   const [gameData, setGameData] = useState();
-  const [gameScreenshots, setGameScreenshots] = useState([]);
   const { slugId } = useParams();
   const id = slugId.split("-").pop();
 
@@ -70,25 +72,10 @@ const GameDetails = () => {
         console.log("Game Data Fetched from API!");
         localStorage.setItem(`game_${id}`, JSON.stringify(data));
       }
-
-      const storedScreens = localStorage.getItem(`screenshots_${id}`);
-
-      if (storedScreens) {
-        setGameScreenshots(JSON.parse(storedScreens));
-        console.log("Stored Screenshots Fetched!");
-      } else {
-        const data = await fetchGameScreenshots(id);
-        setGameScreenshots(data);
-        localStorage.setItem(`screenshots_${id}`, JSON.stringify(data));
-        console.log("Screenshots Fetched from API!");
-      }
     };
 
     getGameData();
   }, [id]);
-
-  console.log(gameData);
-  // console.log(document.querySelector(".header").clientHeight);
 
   if (!gameData) return <h2>Loading...</h2>;
 
@@ -110,7 +97,7 @@ const GameDetails = () => {
       <div className="game-details row">
         <div className="details-main col-9">
           <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
-            {gameScreenshots.map((ss) => (
+            {passedGameData.short_screenshots.map((ss) => (
               <SplideSlide key={ss.id}>
                 <div className="blur-bg">
                   <img src={ss.image} alt="Image 1" />

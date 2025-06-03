@@ -1,32 +1,7 @@
 import Card from "../components/Card";
 import Slider from "../components/Slider";
 
-import { fetchPopularGames, fetchNewGames } from "../api/rawg";
-import { useEffect, useState } from "react";
-
 const Discover = () => {
-  const [games, setGames] = useState();
-
-  useEffect(() => {
-    const getGames = async () => {
-      const storedData = localStorage.getItem("newGamesData") || "";
-
-      if (storedData) {
-        setGames(JSON.parse(storedData));
-        console.log("Stored Data Fetched!");
-      } else {
-        const data = await fetchNewGames();
-        setGames(data);
-        console.log("API Fetched!");
-        localStorage.setItem("newGamesData", JSON.stringify(data));
-      }
-    };
-
-    getGames();
-  }, []);
-
-  console.log(games);
-
   return (
     <div className="d-flex flex-column gap-3">
       <div className="d-flex gap-3">
@@ -44,7 +19,9 @@ const Discover = () => {
         />
       </div>
 
-      <Slider games={games || []} />
+      <Slider gameListType="new_games" />
+      <Slider gameListType="discounted_games" />
+      <Slider gameListType="popular_games" />
     </div>
   );
 };

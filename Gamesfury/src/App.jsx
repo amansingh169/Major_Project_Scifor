@@ -17,32 +17,15 @@ import Unity from "./pages/Unity";
 import Settings from "./pages/Settings";
 import GameDetails from "./pages/GameDetails";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
-    // <Router>
-    //   <div className="wrapper row container-fluid">
-    //     <Sidebar />
-    //     <div className="main col-10">
-    //       <Navbar />
-    //       <Routes>
-    //         <Route path="/" element={<Discover />} />
-    //         <Route path="/browse" element={<Browse />} />
-    //         <Route path="/news" element={<News />} />
-    //         <Route path="/wishlist" element={<Wishlist />} />
-    //         <Route path="/cart" element={<Cart />} />
-    //         <Route path="/login" element={<Login />} />
-    //         <Route path="/library" element={<Library />} />
-    //         <Route path="/unity" element={<Unity />} />
-    //         <Route path="/profile" element={<Profile />} />
-    //       </Routes>
-    //     </div>
-    //   </div>
-    // </Router>
-
     <Router>
       <div className="wrapper row container-fluid">
         <Sidebar />
         <div className="main col-10">
+          <ScrollToTop />
           <Routes>
             <Route element={<MainLayout />}>
               <Route path="/" element={<Discover />} />
