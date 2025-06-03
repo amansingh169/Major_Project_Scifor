@@ -72,7 +72,7 @@ const Slider = ({ gameListType }) => {
     }
   }, []);
 
-  // console.log(games);
+  console.log(games);
 
   return (
     <div className="game-slider">

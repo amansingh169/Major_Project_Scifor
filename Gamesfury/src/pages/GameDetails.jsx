@@ -75,6 +75,7 @@ const GameDetails = () => {
     };
 
     getGameData();
+    console.log(gameData);
   }, [id]);
 
   if (!gameData) return <h2>Loading...</h2>;
@@ -96,16 +97,20 @@ const GameDetails = () => {
 
       <div className="game-details row">
         <div className="details-main col-9">
-          <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
-            {passedGameData.short_screenshots.map((ss) => (
-              <SplideSlide key={ss.id}>
-                <div className="blur-bg">
-                  <img src={ss.image} alt="Image 1" />
-                </div>
-                <img className="splide-img" src={ss.image} alt="Image 1" />
-              </SplideSlide>
-            ))}
-          </Splide>
+          {passedGameData?.short_screenshots ? (
+            <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
+              {passedGameData.short_screenshots.map((ss) => (
+                <SplideSlide key={ss.id}>
+                  <div className="blur-bg">
+                    <img src={ss.image} alt="Screenshot" />
+                  </div>
+                  <img className="splide-img" src={ss.image} alt="Screenshot" />
+                </SplideSlide>
+              ))}
+            </Splide>
+          ) : (
+            <div className="no-screenshots text-muted">No screenshots available</div>
+          )}
 
           <div style={{ height: "500px" }}></div>
         </div>

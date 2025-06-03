@@ -5,8 +5,8 @@
     "name": "Aman Singh",
     "email": "as2211075@gmail.com",
     "password": "123456",
-    "ownedProducts": ["1", "3", "7"],
-    "cart": ["2", "4"]
+    "ownedProducts": ["51325", "427930", "840788", "326243", "58751"],
+    "cart": ["616697", "994603"]
   },
   {
     "id": "2",
@@ -14,6 +14,15 @@
     "name": "BeastBoyShub",
     "email": "beastboy@gmail.com",
     "password": "654321",
+    "ownedProducts": [],
+    "cart": []
+  },
+    {
+    "id": "3",
+    "username": "divyanshsharma69",
+    "name": "Divyansh Sharma",
+    "email": "divyansh123@gmail.com",
+    "password": "div123",
     "ownedProducts": [],
     "cart": []
   }
