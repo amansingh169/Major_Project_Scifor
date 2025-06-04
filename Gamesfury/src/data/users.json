@@ -5,8 +5,58 @@
     "name": "Aman Singh",
     "email": "as2211075@gmail.com",
     "password": "123456",
-    "ownedProducts": ["51325", "427930", "840788", "326243", "58751"],
-    "cart": ["616697", "994603"]
+    "collections": {
+      "ownedGames": [
+        {
+          "id": 41494,
+          "name": "Cyberpunk 2077",
+          "slug": "cyberpunk-2077",
+          "background_image": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg"
+        },
+        {
+          "id": 58751,
+          "name": "Halo Infinite",
+          "slug": "halo-infinite",
+          "background_image": "https://media.rawg.io/media/games/e1f/e1ffbeb1bac25b19749ad285ca29e158.jpg"
+        },
+        {
+          "id": 51325,
+          "name": "The Last of Us Part II",
+          "slug": "the-last-of-us-part-2",
+          "background_image": "https://media.rawg.io/media/games/909/909974d1c7863c2027241e265fe7011f.jpg"
+        },
+        {
+          "id": 427930,
+          "name": "Phasmophobia",
+          "slug": "phasmophobia",
+          "background_image": "https://media.rawg.io/media/screenshots/370/370895ff725d74e26b8d30389222b397.jpg"
+        },
+        {
+          "id": 840788,
+          "name": "The Finals",
+          "slug": "the-finals",
+          "background_image": "https://media.rawg.io/media/games/fa2/fa28280bb6f7bec50b94bc821d412795.jpg"
+        }
+      ],
+      "favorites": [
+        {
+          "id": 58550,
+          "name": "Ghost of Tsushima",
+          "slug": "ghost-of-tsushima",
+          "background_image": "https://media.rawg.io/media/games/f24/f2493ea338fe7bd3c7d73750a85a0959.jpeg"
+        },
+        {
+          "id": 616697,
+          "name": "A Plague Tale: Requiem",
+          "slug": "a-plague-tale-requiem",
+          "background_image": "https://media.rawg.io/media/games/cd0/cd074f3f6045297cda9ad077273c09b6.jpg"
+        }
+      ]
+    },
+    "cart": [
+      "616697",
+      "994603"
+    ]
   },
   {
     "id": "2",
@@ -14,16 +64,42 @@
     "name": "BeastBoyShub",
     "email": "beastboy@gmail.com",
     "password": "654321",
-    "ownedProducts": [],
+    "collections": {
+      "ownedGames": [
+        "51325",
+        "427930",
+        "840788",
+        "326243",
+        "58751"
+      ],
+      "favorites": [
+        "840788",
+        "427930",
+        "58751"
+      ]
+    },
     "cart": []
   },
-    {
+  {
     "id": "3",
     "username": "divyanshsharma69",
     "name": "Divyansh Sharma",
     "email": "divyansh123@gmail.com",
     "password": "div123",
-    "ownedProducts": [],
+    "collections": {
+      "ownedGames": [
+        "51325",
+        "427930",
+        "840788",
+        "326243",
+        "58751"
+      ],
+      "favorites": [
+        "840788",
+        "427930",
+        "58751"
+      ]
+    },
     "cart": []
   }
 ]
