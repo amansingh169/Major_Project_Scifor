@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { fetchGameData } from "../api/rawg";
-
+import { fetchSteamGameData } from "../api/games";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
   const { state } = useLocation();
-  const passedGameData = state?.game;
+  // const passedGameData = state?.game;
 
   const [gameData, setGameData] = useState();
-  const { slugId } = useParams();
-  const id = slugId.split("-").pop();
+  const { id } = useParams();
 
-  const getRatingBadgeClass = (rating) => {
-    if (rating >= 4.3) return "bg-success";
-    if (rating >= 3.7) return "bg-primary";
-    if (rating >= 2.8) return "bg-warning";
-    if (rating >= 0) return "bg-danger";
-    return "bg-secondary";
-  };
+  // const getRatingBadgeClass = (rating) => {
+  //   if (rating >= 4.3) return "bg-success";
+  //   if (rating >= 3.7) return "bg-primary";
+  //   if (rating >= 2.8) return "bg-warning";
+  //   if (rating >= 0) return "bg-danger";
+  //   return "bg-secondary";
+  // };
 
   function getFeedback(ratings) {
     if (!ratings || ratings.length === 0) return "No feedback";
@@ -57,25 +55,29 @@ const GameDetails = () => {
     if (slug == "mac") {
       return "bi-apple";
     }
+    if (slug == "linux") {
+      return "bi-tux";
+    }
   };
 
   useEffect(() => {
     const getGameData = async () => {
-      const storedData = localStorage.getItem(`game_${id}`);
+      // const storedData = localStorage.getItem(`game_${id}`);
 
-      if (storedData) {
-        setGameData(JSON.parse(storedData));
-        console.log("Stored Game Data Fetched!");
-      } else {
-        const data = await fetchGameData(id);
-        setGameData(data);
-        console.log("Game Data Fetched from API!");
-        localStorage.setItem(`game_${id}`, JSON.stringify(data));
-      }
+      // if (storedData) {
+      //   setGameData(JSON.parse(storedData));
+      //   console.log("Stored Game Data Fetched!");
+      //   console.log(gameData);
+      // } else {
+      const data = await fetchSteamGameData(id);
+      setGameData(data);
+      console.log("Game Data Fetched from API!");
+      console.log(data);
+      // localStorage.setItem(`game_${id}`, JSON.stringify(data));
+      // }
     };
 
     getGameData();
-    console.log(gameData);
   }, [id]);
 
   if (!gameData) return <h2>Loading...</h2>;
@@ -86,30 +88,32 @@ const GameDetails = () => {
 
       <div className="rating d-flex gap-2">
         <div className="rating-stars d-flex align-items-center">
-          <div className={`badge d-flex gap-2 ${getRatingBadgeClass(gameData.rating)}`}>
+          {/* <div className={`badge d-flex gap-2 ${getRatingBadgeClass(gameData.rating)}`}> */}
+          <div className={`badge d-flex gap-2 bg-success`}>
             <i className="bi bi-star-fill"></i>
-            {gameData.rating}
+            4.52
           </div>
         </div>
 
-        <div className="feedback">{formatFeedback(getFeedback(gameData.ratings))}</div>
+        {/* <div className="feedback">{formatFeedback(getFeedback(gameData.ratings))}</div> */}
+        <div className="feedback">Recommended</div>
       </div>
 
       <div className="game-details row">
         <div className="details-main col-9">
-          {passedGameData?.short_screenshots ? (
+          {gameData?.screenshots ? (
             <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
-              {passedGameData.short_screenshots.map((ss) => (
+              {gameData.screenshots.map((ss) => (
                 <SplideSlide key={ss.id}>
                   <div className="blur-bg">
-                    <img src={ss.image} alt="Screenshot" />
+                    <img src={ss.path_thumbnail} alt="Screenshot" />
                   </div>
-                  <img className="splide-img" src={ss.image} alt="Screenshot" />
+                  <img className="splide-img" src={ss.path_full} alt="Screenshot" />
                 </SplideSlide>
               ))}
             </Splide>
           ) : (
-            <div className="no-screenshots text-muted">No screenshots available</div>
+            <div className="no-screenshots">No screenshots available</div>
           )}
 
           <div style={{ height: "500px" }}></div>
@@ -124,14 +128,30 @@ const GameDetails = () => {
               <div className="badge bg-secondary text-primary fw-bold">Base Game</div>
             </div>
 
-            <div className="price d-flex align-items-baseline gap-2">
-              <div className="discount badge">-33%</div>
-              <div className="cut-price text-decoration-line-through">$23.99</div>
-              <div className="final-price text-primary fw-bold fs-5">$16.49</div>
-            </div>
+            {gameData.is_free ? (
+              <div className="final-price text-primary fw-bold fs-5">Free To Play</div>
+            ) : gameData.price_overview ? (
+              <div className="price d-flex align-items-baseline gap-2">
+                {gameData.price_overview.discount_percent > 0 ? (
+                  <>
+                    <div className="discount badge">{`-${gameData.price_overview.discount_percent}%`}</div>
+                    <div className="cut-price text-decoration-line-through">
+                      {`${gameData.price_overview.initial_formatted}`}
+                    </div>
+                    <div className="final-price text-primary fw-bold fs-5">{`${gameData.price_overview.final_formatted}`}</div>
+                  </>
+                ) : (
+                  <div className="final-price text-primary fw-bold fs-5">{`${gameData.price_overview.final_formatted}`}</div>
+                )}
+              </div>
+            ) : (
+              <div>Price Unavailable</div>
+            )}
 
             <div className="d-flex flex-column gap-2">
-              <button className="buy-btn btn btn-primary rounded-10 fw-semibold">Buy Now</button>
+              <button className="buy-btn btn btn-primary rounded-10 fw-semibold">
+                {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
+              </button>
               <button className="buy-btn btn btn-secondary rounded-10">Add to Cart</button>
               <button className="buy-btn btn btn-secondary rounded-10">Add to Wishlist</button>
             </div>
@@ -146,27 +166,24 @@ const GameDetails = () => {
                 <div className="text-primary">Self-Refundable</div>
               </li>
               <li className="list-group-item d-flex justify-content-between px-0 bg-transparent text-muted fw-semibold">
-                <div>Developer</div>
-                <div className="text-primary">{gameData.developers[0].name}</div>
+                <div className="col-6">Developer</div>
+                <div className="text-primary col-6 text-end">{gameData.developers.join(", ")}</div>
               </li>
               <li className="list-group-item d-flex justify-content-between px-0 bg-transparent text-muted fw-semibold">
-                <div>Publisher</div>
-                <div className="text-primary">{gameData.publishers[0].name}</div>
+                <div className="col-6">Publisher</div>
+                <div className="text-primary col-6 text-end">{gameData.publishers.join(", ")}</div>
               </li>
               <li className="list-group-item d-flex justify-content-between px-0 bg-transparent text-muted fw-semibold">
                 <div>Release Date</div>
-                <div className="text-primary">{gameData.released}</div>
+                <div className="text-primary">{gameData.release_date.date}</div>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent text-muted fw-semibold">
                 <div>Platform</div>
 
                 <div className="text-primary d-flex gap-2">
-                  {gameData.parent_platforms.map((p) => (
-                    <i
-                      key={p.platform.id}
-                      className={`bi ${getPlatformIconClass(p.platform.slug)}`}
-                    ></i>
-                  ))}
+                  <i className={`bi ${gameData.platforms.linux && "bi-tux"}`}></i>
+                  <i className={`bi ${gameData.platforms.mac && "bi-apple"}`}></i>
+                  <i className={`bi ${gameData.platforms.windows && "bi-windows"}`}></i>
                 </div>
               </li>
             </ul>

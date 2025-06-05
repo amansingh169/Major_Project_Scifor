@@ -40,7 +40,7 @@ const Card = ({ img, url, gameInfo, discountedGame }) => {
         <>
           <img
             className={`thumbnail  ${gameInfo ? "" : "img-thumbnail"}`}
-            src={`${gameInfo ? gameInfo.background_image : img}`}
+            src={`${gameInfo ? gameInfo.banner : img}`}
             alt="Card"
           />
 
@@ -56,16 +56,18 @@ const Card = ({ img, url, gameInfo, discountedGame }) => {
 
                 {discountedGame ? (
                   <div className="price d-flex align-items-center gap-2">
-                    <div className="discount badge">-{priceInfo.discountPercent}%</div>
+                    <div className="discount badge">-{gameInfo.price.discount_percent}%</div>
                     <div className="cut-price text-decoration-line-through text-muted">
-                      ${priceInfo.basePrice}
+                      {gameInfo.price.initial_formatted}
                     </div>
                     <div className="final-price text-primary fw-bold fs-5">
-                      ${priceInfo.finalPrice}
+                      {gameInfo.price.final_formatted}
                     </div>
                   </div>
                 ) : (
-                  <h6 className="price text-full m-0 mt-2">{`$${getFakePrice()}`}</h6>
+                  <h6 className="price text-full m-0 mt-2">
+                    {gameInfo.price?.final_formatted || "Free To Play"}
+                  </h6>
                 )}
               </div>
             </div>

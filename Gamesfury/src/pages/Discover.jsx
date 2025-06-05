@@ -1,7 +1,41 @@
 import Card from "../components/Card";
 import Slider from "../components/Slider";
+import { fetchGames } from "../api/games";
+import { useEffect, useState } from "react";
 
 const Discover = () => {
+  const [games, setGames] = useState([]);
+  const [discountedGames, setDiscountedGames] = useState([]);
+
+  useEffect(() => {
+    const getGames = async () => {
+      const storedData = localStorage.getItem("gamesData") || "";
+      const storedDiscountedGames = localStorage.getItem("discountedGamesData") || "";
+
+      if (storedData) {
+        setGames(JSON.parse(storedData));
+        setDiscountedGames(JSON.parse(storedDiscountedGames));
+        console.log("Stored Data Fetched!");
+      } else {
+        const data = await fetchGames();
+        console.log("API Fetched!");
+
+        setGames(data);
+        const discountedGames = games.filter((game) => game?.price?.discount_percent > 0);
+
+        localStorage.setItem("discountedGamesData", JSON.stringify(discountedGames));
+        localStorage.setItem("gamesData", JSON.stringify(data));
+      }
+    };
+
+    getGames();
+  }, []);
+
+  const third = Math.ceil(games.length / 3);
+  const games1 = games.slice(0, third);
+  const games2 = games.slice(third, 2 * third);
+  const games3 = games.slice(2 * third);
+
   return (
     <div className="d-flex flex-column gap-3">
       <div className="d-flex gap-3">
@@ -19,9 +53,11 @@ const Discover = () => {
         />
       </div>
 
-      <Slider gameListType="new_games" />
-      <Slider gameListType="discounted_games" />
-      <Slider gameListType="popular_games" />
+      <Slider gameList={games3.slice().reverse()} title="Popular Games" />
+      <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
+
+      {/* <Slider gameList={games2.slice().reverse()} title="Mega Sale Special" /> */}
+      <Slider gameList={games1} title="Old Is Gold" />
     </div>
   );
 };

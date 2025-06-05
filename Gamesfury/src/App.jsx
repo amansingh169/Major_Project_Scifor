@@ -37,7 +37,7 @@ function App() {
               <Route path="/library" element={<Library />} />
               <Route path="/unity" element={<Unity />} />
               <Route path="/settings" element={<Settings />} />
-              <Route path="/game/:slugId" element={<GameDetails />} />
+              <Route path="/game/:id" element={<GameDetails />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
