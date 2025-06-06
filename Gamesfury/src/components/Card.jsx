@@ -46,7 +46,7 @@ const Card = ({ img, url, gameInfo, discountedGame }) => {
 
           {gameInfo && (
             <div>
-              <button className="add-to-wlist place-content-center">
+              <button className="add-to place-content-center">
                 <i className="bi bi-plus fs-4"></i>
               </button>
 

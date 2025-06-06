@@ -2,7 +2,7 @@ import CollectionNav from "../components/CollectionNav";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { useState, useContext, useEffect } from "react";
-import Card from "../components/Card";
+import LibraryCard from "../components/LibraryCard";
 
 const Library = () => {
   const { user } = useContext(UserContext);
@@ -37,10 +37,13 @@ const Library = () => {
       </div>
       <CollectionNav />
 
-      {userCollections.ownedGames.map((game) => (
-        <Card key={game} gameInfo={game} />
-        // <h3 key={game.id}>{game.name}</h3>
-      ))}
+      <div className="lib-games d-flex flex-column gap-4 mt-4">
+        {userCollections.ownedGames.map((game) => (
+          <Link to={`/game/${game.appId}`}>
+            <LibraryCard key={game.appId} gameInfo={game} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

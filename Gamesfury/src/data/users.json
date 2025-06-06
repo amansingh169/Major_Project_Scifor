@@ -8,54 +8,76 @@
     "collections": {
       "ownedGames": [
         {
-          "id": 41494,
+          "appId": 1091500,
           "name": "Cyberpunk 2077",
-          "slug": "cyberpunk-2077",
-          "background_image": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg"
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header.jpg?t=1746519355",
+          "achievements": {
+            "completed": 7,
+            "total": 57
+          },
+          "isfavorite": false
         },
         {
-          "id": 58751,
+          "appId": 1240440,
           "name": "Halo Infinite",
-          "slug": "halo-infinite",
-          "background_image": "https://media.rawg.io/media/games/e1f/e1ffbeb1bac25b19749ad285ca29e158.jpg"
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1240440/081fa5dfa41a2c3334ec335fe0668b54bdf36ad7/header.jpg?t=1746550788",
+          "achievements": {
+            "completed": 19,
+            "total": 144
+          },
+          "isfavorite": false
         },
         {
-          "id": 51325,
-          "name": "The Last of Us Part II",
-          "slug": "the-last-of-us-part-2",
-          "background_image": "https://media.rawg.io/media/games/909/909974d1c7863c2027241e265fe7011f.jpg"
+          "appId": 2531310,
+          "name": "The Last of Us™ Part II Remastered",
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg?t=1746152571",
+          "achievements": {
+            "completed": 22,
+            "total": 44
+          },
+          "isfavorite": true
         },
         {
-          "id": 427930,
+          "appId": 739630,
           "name": "Phasmophobia",
-          "slug": "phasmophobia",
-          "background_image": "https://media.rawg.io/media/screenshots/370/370895ff725d74e26b8d30389222b397.jpg"
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/739630/header.jpg?t=1747947938",
+          "achievements": {
+            "completed": 38,
+            "total": 54
+          },
+          "isfavorite": false
         },
         {
-          "id": 840788,
-          "name": "The Finals",
-          "slug": "the-finals",
-          "background_image": "https://media.rawg.io/media/games/fa2/fa28280bb6f7bec50b94bc821d412795.jpg"
+          "appId": 2073850,
+          "name": "THE FINALS",
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/05c094dc480f5002adfb7c9076789260bf86faee/header.jpg?t=1743523996",
+          "achievements": {
+            "completed": 45,
+            "total": 50
+          },
+          "isfavorite": true
         }
       ],
       "favorites": [
-        {
-          "id": 58550,
-          "name": "Ghost of Tsushima",
-          "slug": "ghost-of-tsushima",
-          "background_image": "https://media.rawg.io/media/games/f24/f2493ea338fe7bd3c7d73750a85a0959.jpeg"
-        },
-        {
-          "id": 616697,
-          "name": "A Plague Tale: Requiem",
-          "slug": "a-plague-tale-requiem",
-          "background_image": "https://media.rawg.io/media/games/cd0/cd074f3f6045297cda9ad077273c09b6.jpg"
-        }
+        2073850,
+        2531310
       ]
     },
     "cart": [
-      "616697",
-      "994603"
+      {
+        "appId": 2215430,
+        "type": "game",
+        "name": "Ghost of Tsushima DIRECTOR'S CUT",
+        "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg?t=1737495883",
+        "price_overview": {
+          "currency": "USD",
+          "discount_percent": 0,
+          "final": 5999,
+          "final_formatted": "$59.99",
+          "initial": 5999,
+          "initial_formatted": "$59.99"
+        }
+      }
     ]
   },
   {
