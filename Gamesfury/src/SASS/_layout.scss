@@ -4,25 +4,27 @@
 
 @use "utils" as u;
 
+.wrapper {
+  display: flex;
+}
+
 .sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
+  width: 15%;
 
   padding-inline: 20px 32px;
-
-  // @media (max-width: 1200px) {
-  //   width: auto;
-  // }
 }
 
 .main {
   height: 1500px;
+  width: 85%;
   border-left: 1px solid var(--card-bg);
+  transition: 0.3s border;
+  flex-grow: 1;
 
   padding-inline: 32px 20px;
-
-  transition: 0.3s border;
 }
 
 .header {
@@ -33,4 +35,15 @@
   background-color: var(--bg-color);
 
   transition: 0.3s all;
+}
+
+@media (max-width: 1400px) {
+  .sidebar {
+    padding-inline: 10px 20px;
+    width: auto;
+  }
+
+  .main {
+    padding-inline: 20px 10px;
+  }
 }

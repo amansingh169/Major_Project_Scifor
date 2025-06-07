@@ -24,6 +24,8 @@ const fetchGameList = async (type) => {
       return {
         id: steamData.steam_appid,
         name: steamData.name,
+        positive: spyData.positive,
+        negative: spyData.negative,
         banner: steamData.header_image,
         price: steamData.price_overview || null,
       };
@@ -33,4 +35,4 @@ const fetchGameList = async (type) => {
   return games;
 };
 
-export const fetchGames = () => fetchGameList("top100in2weeks");
+export const fetchGames = () => fetchGameList("top100forever");

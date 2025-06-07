@@ -6,18 +6,13 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
   const { state } = useLocation();
-  // const passedGameData = state?.game;
+  const userReviews = {
+    positive: state?.positive,
+    negative: state?.negative,
+  };
 
   const [gameData, setGameData] = useState();
   const { id } = useParams();
-
-  // const getRatingBadgeClass = (rating) => {
-  //   if (rating >= 4.3) return "bg-success";
-  //   if (rating >= 3.7) return "bg-primary";
-  //   if (rating >= 2.8) return "bg-warning";
-  //   if (rating >= 0) return "bg-danger";
-  //   return "bg-secondary";
-  // };
 
   function getFeedback(ratings) {
     if (!ratings || ratings.length === 0) return "No feedback";
@@ -42,39 +37,21 @@ const GameDetails = () => {
     }
   };
 
-  const getPlatformIconClass = (slug) => {
-    if (slug == "pc") {
-      return "bi-windows";
-    }
-    if (slug == "playstation") {
-      return "bi-playstation";
-    }
-    if (slug == "xbox") {
-      return "bi-xbox";
-    }
-    if (slug == "mac") {
-      return "bi-apple";
-    }
-    if (slug == "linux") {
-      return "bi-tux";
-    }
-  };
-
   useEffect(() => {
     const getGameData = async () => {
-      // const storedData = localStorage.getItem(`game_${id}`);
+      const storedData = sessionStorage.getItem(`game_${id}`);
 
-      // if (storedData) {
-      //   setGameData(JSON.parse(storedData));
-      //   console.log("Stored Game Data Fetched!");
-      //   console.log(gameData);
-      // } else {
-      const data = await fetchSteamGameData(id);
-      setGameData(data);
-      console.log("Game Data Fetched from API!");
-      console.log(data);
-      // localStorage.setItem(`game_${id}`, JSON.stringify(data));
-      // }
+      if (storedData) {
+        setGameData(JSON.parse(storedData));
+        console.log("Stored Game Data Fetched!");
+        console.log(gameData);
+      } else {
+        const data = await fetchSteamGameData(id);
+        setGameData(data);
+        console.log("Game Data Fetched from API!");
+        console.log(data);
+        sessionStorage.setItem(`game_${id}`, JSON.stringify(data));
+      }
     };
 
     getGameData();
@@ -85,20 +62,19 @@ const GameDetails = () => {
   return (
     <div className="game-details-wrapper d-flex flex-column gap-4">
       <h1 className="my-0 lh-1">{`${gameData.name}`}</h1>
-
+      // put the reviews logic here
       <div className="rating d-flex gap-2">
         <div className="rating-stars d-flex align-items-center">
           {/* <div className={`badge d-flex gap-2 ${getRatingBadgeClass(gameData.rating)}`}> */}
           <div className={`badge d-flex gap-2 bg-success`}>
             <i className="bi bi-star-fill"></i>
-            4.52
+            {userReviews.positive}
           </div>
         </div>
 
         {/* <div className="feedback">{formatFeedback(getFeedback(gameData.ratings))}</div> */}
         <div className="feedback">Recommended</div>
       </div>
-
       <div className="game-details row">
         <div className="details-main col-9">
           {gameData?.screenshots ? (

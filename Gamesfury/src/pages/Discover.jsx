@@ -12,7 +12,7 @@ const Discover = () => {
       const storedData = localStorage.getItem("gamesData") || "";
       const storedDiscountedGames = localStorage.getItem("discountedGamesData") || "";
 
-      if (storedData) {
+      if (storedData && storedDiscountedGames) {
         setGames(JSON.parse(storedData));
         setDiscountedGames(JSON.parse(storedDiscountedGames));
         console.log("Stored Data Fetched!");
@@ -21,10 +21,11 @@ const Discover = () => {
         console.log("API Fetched!");
 
         setGames(data);
-        const discountedGames = games.filter((game) => game?.price?.discount_percent > 0);
+        const discountedGames = data.filter((game) => game?.price?.discount_percent > 0);
+        setDiscountedGames(discountedGames);
 
-        localStorage.setItem("discountedGamesData", JSON.stringify(discountedGames));
         localStorage.setItem("gamesData", JSON.stringify(data));
+        localStorage.setItem("discountedGamesData", JSON.stringify(discountedGames));
       }
     };
 
@@ -32,9 +33,9 @@ const Discover = () => {
   }, []);
 
   const third = Math.ceil(games.length / 3);
-  const games1 = games.slice(0, third);
-  const games2 = games.slice(third, 2 * third);
-  const games3 = games.slice(2 * third);
+  const games1 = games?.slice(0, third);
+  const games2 = games?.slice(third, 2 * third);
+  const games3 = games?.slice(2 * third);
 
   return (
     <div className="d-flex flex-column gap-3">
@@ -55,8 +56,6 @@ const Discover = () => {
 
       <Slider gameList={games3.slice().reverse()} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
-
-      {/* <Slider gameList={games2.slice().reverse()} title="Mega Sale Special" /> */}
       <Slider gameList={games1} title="Old Is Gold" />
     </div>
   );

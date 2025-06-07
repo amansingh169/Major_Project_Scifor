@@ -22,9 +22,9 @@ import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <Router>
-      <div className="wrapper row container-fluid">
+      <div className="wrapper container-fluid">
         <Sidebar />
-        <div className="main col-10">
+        <div className="main h-auto">
           <ScrollToTop />
           <Routes>
             <Route element={<MainLayout />}>
@@ -35,6 +35,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/library" element={<Library />} />
+              <Route path="/library/:collectionId" element={<Library />} />
               <Route path="/unity" element={<Unity />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/game/:id" element={<GameDetails />} />

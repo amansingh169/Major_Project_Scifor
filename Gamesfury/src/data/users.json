@@ -6,7 +6,18 @@
     "email": "as2211075@gmail.com",
     "password": "123456",
     "collections": {
-      "ownedGames": [
+      "all": [
+        {
+          "appId": 2073850,
+          "name": "THE FINALS",
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/05c094dc480f5002adfb7c9076789260bf86faee/header.jpg?t=1743523996",
+          "achievements": {
+            "completed": 45,
+            "total": 50
+          },
+          "isfavorite": true,
+          "totalplayed": 25687
+        },
         {
           "appId": 1091500,
           "name": "Cyberpunk 2077",
@@ -15,17 +26,8 @@
             "completed": 7,
             "total": 57
           },
-          "isfavorite": false
-        },
-        {
-          "appId": 1240440,
-          "name": "Halo Infinite",
-          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1240440/081fa5dfa41a2c3334ec335fe0668b54bdf36ad7/header.jpg?t=1746550788",
-          "achievements": {
-            "completed": 19,
-            "total": 144
-          },
-          "isfavorite": false
+          "isfavorite": false,
+          "totalplayed": 3283
         },
         {
           "appId": 2531310,
@@ -35,7 +37,19 @@
             "completed": 22,
             "total": 44
           },
-          "isfavorite": true
+          "isfavorite": true,
+          "totalplayed": 14837
+        },
+        {
+          "appId": 1240440,
+          "name": "Halo Infinite",
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1240440/081fa5dfa41a2c3334ec335fe0668b54bdf36ad7/header.jpg?t=1746550788",
+          "achievements": {
+            "completed": 19,
+            "total": 144
+          },
+          "isfavorite": false,
+          "totalplayed": 7893
         },
         {
           "appId": 739630,
@@ -45,8 +59,11 @@
             "completed": 38,
             "total": 54
           },
-          "isfavorite": false
-        },
+          "isfavorite": false,
+          "totalplayed": 9687
+        }
+      ],
+      "favorites": [
         {
           "appId": 2073850,
           "name": "THE FINALS",
@@ -55,12 +72,20 @@
             "completed": 45,
             "total": 50
           },
-          "isfavorite": true
+          "isfavorite": true,
+          "totalplayed": 25687
+        },
+        {
+          "appId": 2531310,
+          "name": "The Last of Us™ Part II Remastered",
+          "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg?t=1746152571",
+          "achievements": {
+            "completed": 22,
+            "total": 44
+          },
+          "isfavorite": true,
+          "totalplayed": 19837
         }
-      ],
-      "favorites": [
-        2073850,
-        2531310
       ]
     },
     "cart": [
@@ -78,7 +103,8 @@
           "initial_formatted": "$59.99"
         }
       }
-    ]
+    ],
+    "wishlist": []
   },
   {
     "id": "2",

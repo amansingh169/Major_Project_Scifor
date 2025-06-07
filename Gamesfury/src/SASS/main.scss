@@ -72,7 +72,7 @@
 
   &.game-card {
     .thumbnail {
-      width: clamp(140px, calc(140px + 14vw), 400px);
+      width: clamp(140px, calc(140px + 17vw), 450px);
       // aspect-ratio: 3/2;
     }
   }

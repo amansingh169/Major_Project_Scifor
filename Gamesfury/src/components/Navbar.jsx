@@ -6,12 +6,20 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [query, setQuery] = useState("");
   const dropdownRef = useRef();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     setShowDropdown((prev) => !prev);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+    }
   };
 
   useEffect(() => {
@@ -35,12 +43,14 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <form className="search-bar form-inline">
+          <form onSubmit={handleSearch} className="search-bar form-inline">
             <i className="bi bi-search fs-6"></i>
 
             <input
+              onChange={(e) => setQuery(e.target.value)}
               className="form-control text-primary fs-6 px-3 py-2 text-primary"
               type="search"
+              value={query}
               placeholder="Search Store"
             />
           </form>
@@ -92,7 +102,7 @@ const Navbar = () => {
                 <img
                   className="profile-icon rounded-circle"
                   src={`https://api.dicebear.com/7.x/initials/svg?seed=${user.username}`}
-                  alt="REACT"
+                  alt="Avatar"
                 />
               </button>
 

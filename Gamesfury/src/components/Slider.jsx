@@ -29,11 +29,21 @@ const Slider = ({ gameList, title }) => {
       </div>
 
       <div className="slider-container d-flex gap-3" ref={sliderRef}>
-        {gameList.map((game) => (
-          <Link to={`/game/${game.id}`} key={game.id} state={{ game }}>
-            <Card gameInfo={game} discountedGame={title === "Mega Sale Special" ? true : false} />
-          </Link>
-        ))}
+        {gameList.map(
+          (game) =>
+            game && (
+              <Link
+                to={`/game/${game.id}`}
+                key={game.id}
+                state={{ positive: game.positive, negative: game.negative }}
+              >
+                <Card
+                  gameInfo={game}
+                  discountedGame={title === "Mega Sale Special" ? true : false}
+                />
+              </Link>
+            )
+        )}
       </div>
     </div>
   );

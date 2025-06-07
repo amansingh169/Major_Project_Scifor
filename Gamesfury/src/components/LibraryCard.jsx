@@ -1,7 +1,9 @@
 import React from "react";
 
 const LibraryCard = ({ gameInfo }) => {
-  console.log(gameInfo.isfavorite);
+  const achievementPercent = Math.floor(
+    (gameInfo.achievements.completed / gameInfo.achievements.total) * 100
+  );
 
   return (
     <div className="lib-games-card row p-0 m-auto">
@@ -21,13 +23,31 @@ const LibraryCard = ({ gameInfo }) => {
         />
       </div>
 
-      <div className="info-div col-9">
+      <div className="info-div col-8 d-flex flex-column py-2 justify-content-between">
         <h3>{gameInfo.name}</h3>
 
-        <div className="achievement-div">
-          <h6 className="fs-5 fw-normal text-muted">
-            {`${gameInfo.achievements.completed}/${gameInfo.achievements.total} Achievements`}
-          </h6>
+        <div className="d-flex gap-5 align-items-baseline">
+          <div className="total-played text-muted">
+            <p className="m-0 fw-bold">TOTAL PLAYED:</p>
+            <p className="m-0">{`${(gameInfo.totalplayed / 60).toFixed(2)} hours`}</p>
+          </div>
+
+          <div className="achievement-div">
+            <div className="d-flex justify-content-between text-muted fs-5 fw-normal">
+              <p className="mb-1">{`${gameInfo.achievements.completed}/${gameInfo.achievements.total}`}</p>
+              <p className="mb-1">Achievements</p>
+            </div>
+            <div className="progress">
+              <div
+                className="progress-bar"
+                role="progressbar"
+                style={{ width: `${achievementPercent}%` }}
+                aria-valuenow={achievementPercent}
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

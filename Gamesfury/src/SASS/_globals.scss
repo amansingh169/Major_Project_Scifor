@@ -255,7 +255,7 @@ h6 {
     transition: 0.2s background;
 
     &::placeholder {
-      color: var(--text-color-accent);
+      color: var(--text-color);
     }
 
     &:hover,
@@ -279,6 +279,12 @@ h6 {
 
     button {
       background-color: var(--accent-color-2);
+    }
+  }
+
+  @media (max-width: 1400px) {
+    button {
+      padding: 10px !important;
     }
   }
 }
@@ -314,4 +320,8 @@ h6 {
 .img-thumbnail {
   border: none;
   padding: 0;
+}
+
+.badge.bg-secondary {
+  background-color: var(--accent-color-2) !important;
 }
