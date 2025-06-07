@@ -16,6 +16,7 @@ import Library from "./pages/Library";
 import Unity from "./pages/Unity";
 import Settings from "./pages/Settings";
 import GameDetails from "./pages/GameDetails";
+import SearchResults from "./pages/SearchResults";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -29,17 +30,18 @@ function App() {
           <Routes>
             <Route element={<MainLayout />}>
               <Route path="/" element={<Discover />} />
+              <Route path="/search" element={<SearchResults />} />
               <Route path="/browse" element={<Browse />} />
               <Route path="/news" element={<News />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="/library" element={<Library />} />
               <Route path="/library/:collectionId" element={<Library />} />
               <Route path="/unity" element={<Unity />} />
-              <Route path="/settings" element={<Settings />} />
               <Route path="/game/:id" element={<GameDetails />} />
-              <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
         </div>

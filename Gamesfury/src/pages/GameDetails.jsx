@@ -6,36 +6,45 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
   const { state } = useLocation();
+  const { id } = useParams();
   const userReviews = {
     positive: state?.positive,
     negative: state?.negative,
   };
-
   const [gameData, setGameData] = useState();
-  const { id } = useParams();
+  const feedback = getReviewSummary(state.positive, state.negative);
 
-  function getFeedback(ratings) {
-    if (!ratings || ratings.length === 0) return "No feedback";
+  function getReviewSummary(positive, negative) {
+    const total = positive + negative;
+    const percent = (positive / total) * 100;
 
-    const top = ratings.reduce((prev, curr) => (curr.count > prev.count ? curr : prev));
+    const icon =
+      percent > 70
+        ? "bi-hand-thumbs-up-fill text-success"
+        : percent > 40
+        ? "bi-hand-thumbs-up-fill text-warning"
+        : "bi-hand-thumbs-down-fill text-danger";
 
-    return top.title;
+    const message =
+      percent >= 95
+        ? "Overwhelmingly Positive"
+        : percent >= 85
+        ? "Very Positive"
+        : percent >= 80
+        ? "Mostly Positive"
+        : percent >= 70
+        ? "Positive"
+        : percent >= 40
+        ? "Mixed"
+        : percent >= 20
+        ? "Mostly Negative"
+        : percent >= 10
+        ? "Very Negative"
+        : "Overwhelmingly Negative";
+
+    if (total === 0) return { total: 0, message: "No Reviews yet" };
+    return { total: total, icon: icon, message: message };
   }
-
-  const formatFeedback = (title) => {
-    switch (getFeedback(gameData.ratings)) {
-      case "skip":
-        return "🛑 Skip";
-      case "meh":
-        return "😐 Meh";
-      case "recommended":
-        return "👍 Recommended";
-      case "exceptional":
-        return "🌟 Exceptional";
-      default:
-        return title;
-    }
-  };
 
   useEffect(() => {
     const getGameData = async () => {
@@ -44,7 +53,7 @@ const GameDetails = () => {
       if (storedData) {
         setGameData(JSON.parse(storedData));
         console.log("Stored Game Data Fetched!");
-        console.log(gameData);
+        // console.log(gameData);
       } else {
         const data = await fetchSteamGameData(id);
         setGameData(data);
@@ -62,19 +71,13 @@ const GameDetails = () => {
   return (
     <div className="game-details-wrapper d-flex flex-column gap-4">
       <h1 className="my-0 lh-1">{`${gameData.name}`}</h1>
-      // put the reviews logic here
-      <div className="rating d-flex gap-2">
-        <div className="rating-stars d-flex align-items-center">
-          {/* <div className={`badge d-flex gap-2 ${getRatingBadgeClass(gameData.rating)}`}> */}
-          <div className={`badge d-flex gap-2 bg-success`}>
-            <i className="bi bi-star-fill"></i>
-            {userReviews.positive}
-          </div>
-        </div>
 
-        {/* <div className="feedback">{formatFeedback(getFeedback(gameData.ratings))}</div> */}
-        <div className="feedback">Recommended</div>
+      <div className="feedback d-flex align-items-baseline gap-2">
+        <i className={`bi ${feedback.icon} fs-4`}></i>
+        <p className="text-primary m-0 fs-5">{`${feedback.message}`} </p>
+        <p className="m-0">{`(${feedback.total.toLocaleString()} Reviews)`}</p>
       </div>
+
       <div className="game-details row">
         <div className="details-main col-9">
           {gameData?.screenshots ? (
