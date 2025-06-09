@@ -39,6 +39,25 @@ app.get("/api/steam", async (req, res) => {
   }
 });
 
+// Proxy for Steam Search API
+app.get("/api/search", async (req, res) => {
+  const { term } = req.query;
+  if (!term) return res.status(400).json({ error: "Missing Search Term!" });
+
+  const url = `https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(
+    term
+  )}&cc=us&l=en`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching steam search data:", err);
+    res.status(500).json({ error: "Failed to fetch Steam search data" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Proxy server running at http://localhost:${PORT}`);
 });

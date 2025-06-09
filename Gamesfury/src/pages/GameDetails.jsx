@@ -12,7 +12,7 @@ const GameDetails = () => {
     negative: state?.negative,
   };
   const [gameData, setGameData] = useState();
-  const feedback = getReviewSummary(state.positive, state.negative);
+  const feedback = getReviewSummary(state?.positive, state?.negative);
 
   function getReviewSummary(positive, negative) {
     const total = positive + negative;
@@ -81,7 +81,7 @@ const GameDetails = () => {
       <div className="game-details row">
         <div className="details-main col-9">
           {gameData?.screenshots ? (
-            <Splide options={{ type: "fade", rewind: true, gap: "1rem", autoplay: true }}>
+            <Splide options={{ rewind: true, gap: "1rem", autoplay: true, lazyLoad: "nearby" }}>
               {gameData.screenshots.map((ss) => (
                 <SplideSlide key={ss.id}>
                   <div className="blur-bg">

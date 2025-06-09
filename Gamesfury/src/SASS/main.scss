@@ -25,7 +25,11 @@
   }
 }
 
-#profile-dropdown {
+.search-bar-container {
+  position: relative;
+}
+
+.dropdown-box {
   display: none;
   position: absolute;
   right: 0;
@@ -34,15 +38,42 @@
   backdrop-filter: blur(30px);
   border: 1px solid var(--border-color);
 
+  &.search-result-list {
+    left: 0;
+    right: initial;
+    top: 120%;
+
+    .dropdown-content {
+      .dropdown-link {
+        &-img {
+          background-color: black;
+          object-fit: cover;
+        }
+
+        &-info {
+          width: 300px;
+
+          p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            -ms-text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+
   &.show {
     display: block;
   }
 
-  ul {
+  .dropdown-content {
     list-style: none;
 
     .dropdown-link {
-      width: u.rem(150);
+      min-width: u.rem(150);
       padding: u.rem(10);
 
       transition: 0.2s background;
@@ -60,6 +91,15 @@
   flex: 1 1 0;
   // aspect-ratio: 2;
 
+  .game-title {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+  }
+
   .thumbnail {
     object-fit: cover;
     border-radius: 7px;
@@ -71,9 +111,10 @@
   }
 
   &.game-card {
+    width: clamp(140px, calc(140px + 17vw), 450px);
+
     .thumbnail {
-      width: clamp(140px, calc(140px + 17vw), 450px);
-      // aspect-ratio: 3/2;
+      width: 100%;
     }
   }
 

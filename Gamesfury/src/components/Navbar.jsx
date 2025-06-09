@@ -1,25 +1,16 @@
 import { NavLink, Link } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [query, setQuery] = useState("");
   const dropdownRef = useRef();
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     setShowDropdown((prev) => !prev);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      navigate(`/search?query=${encodeURIComponent(query)}`);
-    }
   };
 
   useEffect(() => {
@@ -43,17 +34,7 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          <form onSubmit={handleSearch} className="search-bar form-inline">
-            <i className="bi bi-search fs-6"></i>
-
-            <input
-              onChange={(e) => setQuery(e.target.value)}
-              className="form-control text-primary fs-6 px-3 py-2 text-primary"
-              type="search"
-              value={query}
-              placeholder="Search Store"
-            />
-          </form>
+          <SearchBar />
 
           <li className="nav-item">
             <NavLink className="nav-link" to="/">
@@ -94,7 +75,6 @@ const Navbar = () => {
               <button
                 id="avatar"
                 onClick={() => {
-                  console.log(showDropdown);
                   setShowDropdown((prev) => !prev);
                 }}
                 className="nav-link"
@@ -106,8 +86,11 @@ const Navbar = () => {
                 />
               </button>
 
-              <div id="profile-dropdown" className={`p-2 rounded-4 ${showDropdown ? "show" : ""}`}>
-                <ul className="d-flex flex-column p-0">
+              <div
+                id="profile-dropdown"
+                className={`dropdown-box p-2 rounded-4 ${showDropdown ? "show" : ""}`}
+              >
+                <ul className="dropdown-content d-flex flex-column p-0">
                   <Link className="dropdown-link rounded-3 text-white" to="/profile">
                     View Profile
                   </Link>
