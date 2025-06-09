@@ -36,7 +36,15 @@ export const fetchSearchResults = async (query) => {
       const steamData = await fetchSteamGameData(game.id);
       if (!steamData) return null;
 
-      return steamData;
+      return {
+        id: steamData.steam_appid,
+        name: steamData.name,
+        type: steamData.type,
+        genres: steamData.genres,
+        banner: steamData.header_image,
+        price: steamData.price_overview || null,
+        fullData: steamData,
+      };
     })
   );
 
@@ -68,4 +76,4 @@ const fetchGameList = async (type) => {
   return games;
 };
 
-export const fetchGames = () => fetchGameList("top100forever");
+export const fetchGames = () => fetchGameList("top100in2weeks");

@@ -104,7 +104,9 @@ const GameDetails = () => {
             style={{ top: document.querySelector(".header").clientHeight }}
           >
             <div className="d-flex">
-              <div className="badge bg-secondary text-primary fw-bold">Base Game</div>
+              <div className="badge bg-secondary text-primary fw-bold">
+                {gameData.type === "game" ? "Base Game" : "DLC (Downloadable Content)"}
+              </div>
             </div>
 
             {gameData.is_free ? (
