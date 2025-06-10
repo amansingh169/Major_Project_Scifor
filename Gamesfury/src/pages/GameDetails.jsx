@@ -1,50 +1,55 @@
-import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { fetchSteamGameData } from "../api/games";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { UserContext } from "../contexts/UserContext";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 const GameDetails = () => {
-  const { state } = useLocation();
+  const { user, setUser } = useContext(UserContext);
   const { id } = useParams();
-  const userReviews = {
-    positive: state?.positive,
-    negative: state?.negative,
-  };
+  const navigate = useNavigate();
   const [gameData, setGameData] = useState();
-  const feedback = getReviewSummary(state?.positive, state?.negative);
+  const [isInLib, setIsInLib] = useState(false);
+  const feedback = getReviewSummary(gameData?.recommendations?.total);
 
-  function getReviewSummary(positive, negative) {
-    const total = positive + negative;
-    const percent = (positive / total) * 100;
-
-    const icon =
-      percent > 70
-        ? "bi-hand-thumbs-up-fill text-success"
-        : percent > 40
-        ? "bi-hand-thumbs-up-fill text-warning"
-        : "bi-hand-thumbs-down-fill text-danger";
-
-    const message =
-      percent >= 95
-        ? "Overwhelmingly Positive"
-        : percent >= 85
-        ? "Very Positive"
-        : percent >= 80
-        ? "Mostly Positive"
-        : percent >= 70
-        ? "Positive"
-        : percent >= 40
-        ? "Mixed"
-        : percent >= 20
-        ? "Mostly Negative"
-        : percent >= 10
-        ? "Very Negative"
-        : "Overwhelmingly Negative";
-
-    if (total === 0) return { total: 0, message: "No Reviews yet" };
-    return { total: total, icon: icon, message: message };
+  function getReviewSummary(recCount) {
+    if (recCount >= 500000)
+      return { message: "Overwhelmingly Positive", icon: "bi-hand-thumbs-up-fill text-success" };
+    if (recCount >= 100000)
+      return { message: "Very Positive", icon: "bi-hand-thumbs-up-fill text-success" };
+    if (recCount >= 10000)
+      return { message: "Positive", icon: "bi-hand-thumbs-up-fill text-warning" };
+    if (recCount >= 1000) return { message: "Mixed", icon: "bi-hand-thumbs-up-fill text-warning" };
+    if (recCount >= 100)
+      return { message: "Mostly Negative", icon: "bi-hand-thumbs-up-fill text-danger" };
+    if (recCount > 0)
+      return { message: "Very Negative", icon: "bi-hand-thumbs-up-fill text-danger" };
+    return { message: "No Recommendations", icon: "text-muted" };
   }
+
+  const addToLibrary = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const newGame = {
+      appId: gameData?.steam_appid,
+      name: gameData?.name,
+      header_image: gameData?.header_image,
+      achievements: {
+        completed: 0,
+        total: gameData?.achievements?.total,
+      },
+      isfavorite: false,
+      totalplayed: 0,
+    };
+
+    user.collections.all.push(newGame);
+    setIsInLib(true);
+    console.log(user);
+
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+  };
 
   useEffect(() => {
     const getGameData = async () => {
@@ -66,6 +71,12 @@ const GameDetails = () => {
     getGameData();
   }, [id]);
 
+  useEffect(() => {
+    if (user?.collections && gameData) {
+      setIsInLib(user?.collections.all.some((game) => game.appId === gameData?.steam_appid));
+    }
+  }, [gameData]);
+
   if (!gameData) return <h2>Loading...</h2>;
 
   return (
@@ -75,7 +86,9 @@ const GameDetails = () => {
       <div className="feedback d-flex align-items-baseline gap-2">
         <i className={`bi ${feedback.icon} fs-4`}></i>
         <p className="text-primary m-0 fs-5">{`${feedback.message}`} </p>
-        <p className="m-0">{`(${feedback.total.toLocaleString()} Reviews)`}</p>
+        <p className="m-0">{`(${
+          gameData.recommendations?.total.toLocaleString() || 0
+        } Recommendations)`}</p>
       </div>
 
       <div className="game-details row">
@@ -130,9 +143,22 @@ const GameDetails = () => {
             )}
 
             <div className="d-flex flex-column gap-2">
-              <button className="buy-btn btn btn-primary rounded-10 fw-semibold">
-                {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
-              </button>
+              {isInLib ? (
+                <button
+                  onClick={() => navigate("/library")}
+                  className="buy-btn btn btn-primary rounded-10 fw-semibold d-flex justify-content-center align-items-center gap-2"
+                >
+                  <i className="bi bi-grid fs-5"></i>
+                  <p className="m-0">In Library</p>
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToLibrary()}
+                  className="buy-btn btn btn-primary rounded-10 fw-semibold"
+                >
+                  {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
+                </button>
+              )}
               <button className="buy-btn btn btn-secondary rounded-10">Add to Cart</button>
               <button className="buy-btn btn btn-secondary rounded-10">Add to Wishlist</button>
             </div>

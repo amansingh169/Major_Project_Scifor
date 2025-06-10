@@ -24,7 +24,6 @@ const Card = ({ gameInfo, discountedGame, isLoading }) => {
                 </p>
                 <h5 className="game-title fw-bold text-primary m-0">{gameInfo.name}</h5>
 
-                {/* fix this logic here */}
                 {discountedGame || gameInfo.price?.initial > gameInfo.price?.final ? (
                   <div className="price d-flex align-items-center gap-2 mt-3">
                     <div className="discount badge">-{gameInfo.price.discount_percent}%</div>
