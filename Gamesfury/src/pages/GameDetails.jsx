@@ -1,17 +1,20 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useParams, useLocation, useNavigate } from "react-router-dom";
 import { fetchSteamGameData } from "../api/games";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { UserContext } from "../contexts/UserContext";
 import "@splidejs/splide/dist/css/splide.min.css";
+import addToLibrary from "../utils/addToLibrary";
 
 const GameDetails = () => {
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const { id } = useParams();
-  const navigate = useNavigate();
   const [gameData, setGameData] = useState();
   const [isInLib, setIsInLib] = useState(false);
   const feedback = getReviewSummary(gameData?.recommendations?.total);
+
+  const logo = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameData?.steam_appid}/logo.png`;
 
   function getReviewSummary(recCount) {
     if (recCount >= 500000)
@@ -27,29 +30,6 @@ const GameDetails = () => {
       return { message: "Very Negative", icon: "bi-hand-thumbs-up-fill text-danger" };
     return { message: "No Recommendations", icon: "text-muted" };
   }
-
-  const addToLibrary = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    const newGame = {
-      appId: gameData?.steam_appid,
-      name: gameData?.name,
-      header_image: gameData?.header_image,
-      achievements: {
-        completed: 0,
-        total: gameData?.achievements?.total,
-      },
-      isfavorite: false,
-      totalplayed: 0,
-    };
-
-    user.collections.all.push(newGame);
-    setIsInLib(true);
-    console.log(user);
-
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
-  };
 
   useEffect(() => {
     const getGameData = async () => {
@@ -108,7 +88,23 @@ const GameDetails = () => {
             <div className="no-screenshots">No screenshots available</div>
           )}
 
-          <div style={{ height: "500px" }}></div>
+          {/* <div style={{ height: "500px" }}></div> */}
+
+          <div
+            className="mt-4 m-auto"
+            //  style={{ maxWidth: "800px", marginInline: "auto" }}
+          >
+            <div className="description">
+              <h3 className="lh-1">Description</h3>
+              <hr />
+
+              <div
+                id="game-description"
+                className="game-description"
+                dangerouslySetInnerHTML={{ __html: gameData.about_the_game }}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="details-aside col-3">
@@ -116,6 +112,10 @@ const GameDetails = () => {
             className="details-aside-content d-flex flex-column gap-3"
             style={{ top: document.querySelector(".header").clientHeight }}
           >
+            <div className="aside-header-img">
+              <img src={logo} alt={gameData.name} className="img-thumbnail w-100" />
+            </div>
+
             <div className="d-flex">
               <div className="badge bg-secondary text-primary fw-bold">
                 {gameData.type === "game" ? "Base Game" : "DLC (Downloadable Content)"}
@@ -153,7 +153,7 @@ const GameDetails = () => {
                 </button>
               ) : (
                 <button
-                  onClick={() => addToLibrary()}
+                  onClick={() => addToLibrary(gameData, setUser, setIsInLib)}
                   className="buy-btn btn btn-primary rounded-10 fw-semibold"
                 >
                   {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
@@ -202,6 +202,41 @@ const GameDetails = () => {
               <button className="report-btn btn btn-secondary rounded py-1 w-50">
                 <i className="bi bi-flag"></i>&nbsp; Report
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-9">
+        // fix these
+        <div className="description mt-4 bg-dark rounded-10 p-4">
+          <h3 className="lh-1">Content Description</h3>
+          <hr />
+
+          <div id="content-descriptors" className="content-descriptors">
+            The developers describe the content like this:
+            <br />
+            <br />
+            <i>{gameData?.content_descriptors?.notes || "No content descriptors available..."}</i>
+          </div>
+        </div>
+        <div className="description system-req mt-4 bg-dark rounded-10 p-4">
+          <h3 className="lh-1">System Requirements</h3>
+          <hr />
+
+          <div id="pc-requirements" className="pc-requirements d-flex gap-2">
+            <div className="w-50">
+              <div
+                className="min-specs"
+                dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.minimum }}
+              />
+            </div>
+
+            <div className="w-50">
+              <div
+                className="rec-specs"
+                dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.recommended }}
+              />
             </div>
           </div>
         </div>

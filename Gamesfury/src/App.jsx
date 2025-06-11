@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
@@ -21,6 +21,12 @@ import SearchResults from "./pages/SearchResults";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
+  useEffect(() => {
+    if ("Notification" in window && Notification.permission !== "granted") {
+      Notification.requestPermission();
+    }
+  }, []);
+
   return (
     <Router>
       <div className="wrapper container-fluid">
