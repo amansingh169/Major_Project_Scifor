@@ -146,6 +146,11 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  a {
+    scroll-snap-align: start;
+  }
 }
 
 .back-arrow {

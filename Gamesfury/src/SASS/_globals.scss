@@ -13,6 +13,10 @@ html {
   background-color: var(--card-bg) !important;
 }
 
+.bg-accent {
+  background-color: var(--accent-color) !important;
+}
+
 h1 {
   font-size: var(--fs-xxl);
   font-family: "Space Grotesk", sans-serif;
@@ -61,6 +65,9 @@ body {
 }
 .text-secondary {
   color: var(--text-color-2) !important;
+}
+.text-accent {
+  color: var(--accent-color) !important;
 }
 .text-muted {
   color: var(--text-color) !important;

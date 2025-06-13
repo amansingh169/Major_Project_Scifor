@@ -18,11 +18,11 @@ const Slider = ({ gameList, title }) => {
         </a>
 
         <div className="slider-nav gap-2 ms-auto d-none d-md-flex">
-          <button onClick={() => scroll(-500)} className="text-primary">
+          <button onClick={() => scroll(-700)} className="text-primary">
             <i className="bi bi-chevron-left fs-6 text-primary"></i>
           </button>
 
-          <button onClick={() => scroll(500)} className="text-primary">
+          <button onClick={() => scroll(700)} className="text-primary">
             <i className="bi bi-chevron-right fs-6 text-primary"></i>
           </button>
         </div>

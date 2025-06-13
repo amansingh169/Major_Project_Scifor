@@ -63,7 +63,7 @@ const Discover = () => {
         </a>
       </div>
 
-      <Slider gameList={games3.slice().reverse()} title="Popular Games" />
+      <Slider gameList={games2.slice().reverse()} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
       <Slider gameList={games1} title="Old Is Gold" />
     </div>

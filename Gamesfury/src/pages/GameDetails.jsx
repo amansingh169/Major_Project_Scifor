@@ -87,6 +87,33 @@ const GameDetails = () => {
             <h3 className="lh-1">Description</h3>
             <hr />
 
+            <div className="d-flex gap-3 my-4">
+              <div className="genres w-50">
+                <p className="fw-semibold my-2">Genres</p>
+
+                <div className="d-flex gap-2 flex-wrap">
+                  {gameData?.genres?.map((genre) => (
+                    <span key={genre.id} className="badge bg-secondary text-primary">
+                      {genre.description}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="vr"></div>
+
+              <div className="tags w-50">
+                <p className="fw-semibold my-2">Tags</p>
+                <div className="d-flex gap-2 flex-wrap">
+                  {gameData?.categories?.slice(0, 8).map((category) => (
+                    <span key={category.id} className="badge bg-secondary text-primary">
+                      {category.description}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             <div
               className="description-content"
               dangerouslySetInnerHTML={{ __html: gameData.about_the_game }}
@@ -214,26 +241,22 @@ const GameDetails = () => {
               <h3 className="lh-1">Available Achievements</h3>
               <hr />
 
-              <div className="d-flex gap-4">
-                // fix this
+              <div className="achievements-container d-flex overflow-auto gap-3">
                 {gameData.achievements.highlighted.map((achievement) => (
-                  <div
-                    key={achievement.name}
-                    className="achievement-card rounded-10 d-flex flex-column align-items-center"
-                  >
+                  <div key={achievement.name} className="achievement-card">
                     <img
                       src={achievement.path}
                       alt={achievement.name}
                       className="thumbnail mb-2 rounded-10"
                     />
-                    <p className="m-0 text-primary">{achievement.name}</p>
+                    <p className="m-0 text-primary fw-semibold">{achievement.name}</p>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="description mt-4 bg-dark rounded-10 p-4">
+          <div className="description mt-5 bg-secondary rounded-10 p-4">
             <h3 className="lh-1">Content Description</h3>
             <hr />
 
@@ -245,7 +268,7 @@ const GameDetails = () => {
             </div>
           </div>
 
-          <div className="description system-req mt-4 bg-dark rounded-10 p-4">
+          <div className="description system-req mt-5 bg-secondary rounded-10 p-4">
             <h3 className="lh-1">System Requirements</h3>
             <hr />
 
@@ -266,10 +289,6 @@ const GameDetails = () => {
             </div>
           </div>
         </div>
-
-        {/* <div className="col-3">
-          <h2>Hello Friends</h2>
-        </div> */}
       </div>
     </div>
   );

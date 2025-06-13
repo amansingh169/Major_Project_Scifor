@@ -177,13 +177,19 @@
   }
 }
 
-//fix this
 .achievements {
-  .achievement-card {
-    width: clamp(200px, calc(200px + 5vw), 400px);
+  .achievements-container {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-bg) transparent;
+    scroll-behavior: smooth;
 
-    img {
-      width: 100%;
+    .achievement-card {
+      scroll-snap-align: start;
+
+      img {
+        width: clamp(50px, calc(50px + 5vw), 150px);
+      }
     }
   }
 }
