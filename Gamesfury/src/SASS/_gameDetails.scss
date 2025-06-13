@@ -3,11 +3,65 @@
 .game-details-wrapper {
   position: relative;
 
+  .details-main {
+    .game-description {
+      position: relative;
+      max-height: 900px;
+      overflow: hidden;
+
+      &.expanded {
+        max-height: unset;
+
+        .read-more-grad {
+          display: none;
+        }
+      }
+
+      .read-more-grad {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        background: linear-gradient(to bottom, transparent, var(--bg-color) 100%);
+      }
+
+      .read-more-btn {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 50%;
+        translate: -50%;
+
+        a {
+          color: var(--text-color-accent);
+          padding: u.rem(10);
+          cursor: pointer;
+        }
+
+        hr {
+          width: 100%;
+          border-top: 2px solid var(--text-color-accent);
+          margin: 0;
+        }
+      }
+    }
+  }
+
   .details-aside {
     &-content {
       position: sticky;
       bottom: 0;
       height: auto;
+    }
+
+    .aside-header-img {
+      // background: radial-gradient(rgba(0, 150, 200, 0.2) 0%, transparent 70%);
+
+      img {
+        max-height: 200px;
+        object-fit: contain;
+      }
     }
   }
 }
@@ -16,7 +70,6 @@
   position: relative;
   border-radius: u.rem(10);
   place-content: center;
-  // background-color: black;
   border-radius: u.rem(10);
   overflow: hidden;
 
@@ -50,6 +103,7 @@
 .description {
   max-width: u.rem(900);
   margin-inline: auto;
+  margin-bottom: 10px;
 
   hr {
     border-top: u.rem(1) solid var(--accent-color);
@@ -78,11 +132,9 @@
     display: block;
     width: 100%;
     border-radius: u.rem(7);
-    margin-block: 20px;
-    // height: auto;
   }
 
-  .game-description {
+  .description-content {
     ul {
       li {
         // margin-top: u.rem(10);
@@ -121,6 +173,17 @@
       text-transform: uppercase;
       color: var(--text-color-accent);
       line-height: 1.7;
+    }
+  }
+}
+
+//fix this
+.achievements {
+  .achievement-card {
+    width: clamp(200px, calc(200px + 5vw), 400px);
+
+    img {
+      width: 100%;
     }
   }
 }

@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { NavLink, useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { fetchSteamGameData } from "../api/games";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { UserContext } from "../contexts/UserContext";
+import { getGameType, getReviewSummary } from "../utils/formatGameContent";
 import "@splidejs/splide/dist/css/splide.min.css";
 import addToLibrary from "../utils/addToLibrary";
 
@@ -15,21 +16,15 @@ const GameDetails = () => {
   const feedback = getReviewSummary(gameData?.recommendations?.total);
 
   const logo = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameData?.steam_appid}/logo.png`;
+  const gameDescription = document.querySelector(".game-description");
 
-  function getReviewSummary(recCount) {
-    if (recCount >= 500000)
-      return { message: "Overwhelmingly Positive", icon: "bi-hand-thumbs-up-fill text-success" };
-    if (recCount >= 100000)
-      return { message: "Very Positive", icon: "bi-hand-thumbs-up-fill text-success" };
-    if (recCount >= 10000)
-      return { message: "Positive", icon: "bi-hand-thumbs-up-fill text-warning" };
-    if (recCount >= 1000) return { message: "Mixed", icon: "bi-hand-thumbs-up-fill text-warning" };
-    if (recCount >= 100)
-      return { message: "Mostly Negative", icon: "bi-hand-thumbs-up-fill text-danger" };
-    if (recCount > 0)
-      return { message: "Very Negative", icon: "bi-hand-thumbs-up-fill text-danger" };
-    return { message: "No Recommendations", icon: "text-muted" };
-  }
+  const expandDescription = () => {
+    const gameDescription = document.querySelector(".game-description");
+    const readMoreBtn = document.querySelector(".rm-btn");
+
+    gameDescription.classList.toggle("expanded");
+    readMoreBtn.classList.toggle("d-none");
+  };
 
   useEffect(() => {
     const getGameData = async () => {
@@ -88,22 +83,27 @@ const GameDetails = () => {
             <div className="no-screenshots">No screenshots available</div>
           )}
 
-          {/* <div style={{ height: "500px" }}></div> */}
+          <div className="game-description description mt-4">
+            <h3 className="lh-1">Description</h3>
+            <hr />
 
-          <div
-            className="mt-4 m-auto"
-            //  style={{ maxWidth: "800px", marginInline: "auto" }}
-          >
-            <div className="description">
-              <h3 className="lh-1">Description</h3>
-              <hr />
+            <div
+              className="description-content"
+              dangerouslySetInnerHTML={{ __html: gameData.about_the_game }}
+            />
 
-              <div
-                id="game-description"
-                className="game-description"
-                dangerouslySetInnerHTML={{ __html: gameData.about_the_game }}
-              />
-            </div>
+            <div className="read-more-grad"></div>
+          </div>
+
+          <div className="read-more-btn text-center">
+            <button
+              onClick={() => expandDescription()}
+              className="rm-btn btn btn-secondary px-5 py-1 rounded-10"
+            >
+              <i className="bi bi-chevron-double-down"></i> Read More{" "}
+              <i className="bi bi-chevron-double-down"></i>
+            </button>
+            {/* <hr /> */}
           </div>
         </div>
 
@@ -118,7 +118,7 @@ const GameDetails = () => {
 
             <div className="d-flex">
               <div className="badge bg-secondary text-primary fw-bold">
-                {gameData.type === "game" ? "Base Game" : "DLC (Downloadable Content)"}
+                {getGameType(gameData.type)}
               </div>
             </div>
 
@@ -207,39 +207,69 @@ const GameDetails = () => {
         </div>
       </div>
 
-      <div className="col-9">
-        // fix these
-        <div className="description mt-4 bg-dark rounded-10 p-4">
-          <h3 className="lh-1">Content Description</h3>
-          <hr />
+      <div className="row">
+        <div className="col-9">
+          {gameData?.achievements && gameData?.achievements?.highlighted && (
+            <div className="achievements description mt-4">
+              <h3 className="lh-1">Available Achievements</h3>
+              <hr />
 
-          <div id="content-descriptors" className="content-descriptors">
-            The developers describe the content like this:
-            <br />
-            <br />
-            <i>{gameData?.content_descriptors?.notes || "No content descriptors available..."}</i>
+              <div className="d-flex gap-4">
+                // fix this
+                {gameData.achievements.highlighted.map((achievement) => (
+                  <div
+                    key={achievement.name}
+                    className="achievement-card rounded-10 d-flex flex-column align-items-center"
+                  >
+                    <img
+                      src={achievement.path}
+                      alt={achievement.name}
+                      className="thumbnail mb-2 rounded-10"
+                    />
+                    <p className="m-0 text-primary">{achievement.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="description mt-4 bg-dark rounded-10 p-4">
+            <h3 className="lh-1">Content Description</h3>
+            <hr />
+
+            <div className="content-descriptors">
+              The developers describe the content like this:
+              <br />
+              <br />
+              <i>{gameData?.content_descriptors?.notes || "No content descriptors available..."}</i>
+            </div>
+          </div>
+
+          <div className="description system-req mt-4 bg-dark rounded-10 p-4">
+            <h3 className="lh-1">System Requirements</h3>
+            <hr />
+
+            <div className="pc-requirements d-flex gap-2">
+              <div className="w-50">
+                <div
+                  className="min-specs"
+                  dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.minimum }}
+                />
+              </div>
+
+              <div className="w-50">
+                <div
+                  className="rec-specs"
+                  dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.recommended }}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="description system-req mt-4 bg-dark rounded-10 p-4">
-          <h3 className="lh-1">System Requirements</h3>
-          <hr />
 
-          <div id="pc-requirements" className="pc-requirements d-flex gap-2">
-            <div className="w-50">
-              <div
-                className="min-specs"
-                dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.minimum }}
-              />
-            </div>
-
-            <div className="w-50">
-              <div
-                className="rec-specs"
-                dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.recommended }}
-              />
-            </div>
-          </div>
-        </div>
+        {/* <div className="col-3">
+          <h2>Hello Friends</h2>
+        </div> */}
       </div>
     </div>
   );

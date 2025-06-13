@@ -1,3 +1,4 @@
+import { getGameType } from "../utils/formatGameContent";
 import CardSkeleton from "./sekeletons/CardSkeleton";
 
 const Card = ({ gameInfo, discountedGame, isLoading }) => {
@@ -20,7 +21,7 @@ const Card = ({ gameInfo, discountedGame, isLoading }) => {
 
               <div className="card-content">
                 <p className="product-type fw-semibold text-muted mt-2 m-0">
-                  {gameInfo.type === "game" ? "Base Game" : "DLC"}
+                  {getGameType(gameInfo.type)}
                 </p>
                 <h5 className="game-title fw-bold text-primary m-0">{gameInfo.name}</h5>
 
