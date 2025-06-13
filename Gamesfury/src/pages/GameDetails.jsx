@@ -6,6 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import { getGameType, getReviewSummary } from "../utils/formatGameContent";
 import "@splidejs/splide/dist/css/splide.min.css";
 import addToLibrary from "../utils/addToLibrary";
+import PegiRating from "../components/PegiRating";
 
 const GameDetails = () => {
   const navigate = useNavigate();
@@ -14,9 +15,7 @@ const GameDetails = () => {
   const [gameData, setGameData] = useState();
   const [isInLib, setIsInLib] = useState(false);
   const feedback = getReviewSummary(gameData?.recommendations?.total);
-
   const logo = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameData?.steam_appid}/logo.png`;
-  const gameDescription = document.querySelector(".game-description");
 
   const expandDescription = () => {
     const gameDescription = document.querySelector(".game-description");
@@ -33,7 +32,7 @@ const GameDetails = () => {
       if (storedData) {
         setGameData(JSON.parse(storedData));
         console.log("Stored Game Data Fetched!");
-        // console.log(gameData);
+        console.log(JSON.parse(storedData));
       } else {
         const data = await fetchSteamGameData(id);
         setGameData(data);
@@ -143,11 +142,15 @@ const GameDetails = () => {
               <img src={logo} alt={gameData.name} className="img-thumbnail w-100" />
             </div>
 
+            <PegiRating pegi={gameData?.ratings?.pegi} />
+
             <div className="d-flex">
               <div className="badge bg-secondary text-primary fw-bold">
                 {getGameType(gameData.type)}
               </div>
             </div>
+
+            {/* make a component out of it */}
 
             {gameData.is_free ? (
               <div className="final-price text-primary fw-bold fs-5">Free To Play</div>
@@ -241,7 +244,7 @@ const GameDetails = () => {
               <h3 className="lh-1">Available Achievements</h3>
               <hr />
 
-              <div className="achievements-container d-flex overflow-auto gap-3">
+              <div className="achievements-container d-flex overflow-auto gap-5">
                 {gameData.achievements.highlighted.map((achievement) => (
                   <div key={achievement.name} className="achievement-card">
                     <img
@@ -268,7 +271,36 @@ const GameDetails = () => {
             </div>
           </div>
 
-          <div className="description system-req mt-5 bg-secondary rounded-10 p-4">
+          {gameData.metacritic && gameData.metacritic.score && (
+            <div className="description mt-5 bg-secondary rounded-10 p-4">
+              <h3 className="lh-1">Metacritic Score</h3>
+              <hr />
+
+              <div className="d-flex flex-wrap gap-4 justify-content-center align-items-center p-4">
+                <div className="bg-success p-4">
+                  <h1 className="m-0">{gameData.metacritic.score}</h1>
+                </div>
+
+                <div className="metacritic-logo d-flex align-items-center gap-2">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Metacritic_M.png"
+                    alt="metacritic"
+                  />
+                  <div>
+                    <h2 className="m-0">metacritic</h2>
+
+                    <a href={gameData?.metacritic?.url}>
+                      <p className="m-0">
+                        Read Critic Reviews <i class="bi bi-box-arrow-up-right"></i>
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="description mt-5 bg-secondary rounded-10 p-4">
             <h3 className="lh-1">System Requirements</h3>
             <hr />
 
