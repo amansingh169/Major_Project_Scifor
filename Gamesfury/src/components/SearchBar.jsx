@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { fetchSearchList } from "../api/games";
 import { Link, useNavigate } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import SearchResultSkeleton from "./sekeletons/SearchResultSkeleton";
 

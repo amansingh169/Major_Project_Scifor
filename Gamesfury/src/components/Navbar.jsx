@@ -3,8 +3,6 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import SearchBar from "./SearchBar";
 
-// Make this component responsive
-
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -29,8 +27,8 @@ const Navbar = () => {
 
   return (
     <nav className="header navbar navbar-expand">
-      <ul className="navbar-nav me-auto gap-3 align-items-center">
-        <li className="nav-item">
+      <ul className="navbar-nav me-auto gap-2 align-items-center">
+        <li className="nav-item d-none d-lg-block">
           <NavLink className="back-arrow nav-link fs-6" onClick={() => navigate(-1)}>
             <i className="bi bi-chevron-left p-2"></i>
           </NavLink>
@@ -38,39 +36,73 @@ const Navbar = () => {
 
         <SearchBar />
 
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/">
-            Discover
-          </NavLink>
-        </li>
+        <div className="d-block d-lg-none">
+          <li className="nav-item">
+            <select
+              onChange={(e) => {
+                if (e.target.value) navigate(e.target.value);
+              }}
+              value={window.location.pathname}
+              className="form-select bg-transparent border-0 text-primary fw-semibold"
+            >
+              <option className="bg-card text-muted fw-semibold" value="/">
+                Discover
+              </option>
+              <option className="bg-card text-muted fw-semibold" value="/browse">
+                Browse
+              </option>
+              <option className="bg-card text-muted fw-semibold" value="/news">
+                News
+              </option>
+            </select>
+          </li>
+        </div>
 
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/browse">
-            Browse
-          </NavLink>
-        </li>
+        <div className="d-none d-lg-flex gap-2">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/">
+              Discover
+            </NavLink>
+          </li>
 
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/news">
-            News
-          </NavLink>
-        </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/browse">
+              Browse
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/news">
+              News
+            </NavLink>
+          </li>
+        </div>
       </ul>
 
-      <ul className="navbar-nav d-flex align-items-center gap-4">
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/wishlist">
-            Wishlist
-          </NavLink>
-        </li>
+      <ul className="navbar-nav d-flex align-items-center gap-2">
+        <div className="d-flex gap-2">
+          <li className="nav-item">
+            <NavLink className="nav-link d-none d-lg-block" to="/wishlist">
+              Wishlist
+            </NavLink>
 
-        <li className="nav-item">
-          <NavLink className="nav-link" to="/cart">
-            Cart
-          </NavLink>
-        </li>
+            <NavLink className="nav-link d-none d-md-block d-lg-none" to="/wishlist">
+              <i className="bi bi-check-circle fs-4 d-lg-none"></i>
+            </NavLink>
+          </li>
 
-        <div className="vr my-2 mx-1 bg-light"></div>
+          <li className="nav-item">
+            <NavLink className="nav-link d-none d-lg-block" to="/cart">
+              Cart
+            </NavLink>
+
+            <NavLink className="nav-link d-none d-md-block d-lg-none" to="/cart">
+              <i className="bi bi-cart fs-4 d-lg-none"></i>
+            </NavLink>
+          </li>
+        </div>
+
+        <div className="vr my-2 mx-1 bg-light d-none d-md-block"></div>
 
         {user ? (
           <li className="nav-item" ref={dropdownRef}>
@@ -97,7 +129,13 @@ const Navbar = () => {
                   View Profile
                 </Link>
                 <Link className="dropdown-link rounded-3 text-white" to="/library">
-                  My Library
+                  Library
+                </Link>
+                <Link className="dropdown-link rounded-3 text-white d-md-none" to="/cart">
+                  Cart
+                </Link>
+                <Link className="dropdown-link rounded-3 text-white d-md-none" to="/wishlist">
+                  Wishlist
                 </Link>
                 <Link className="dropdown-link rounded-3 text-white" to="/settings">
                   Settings

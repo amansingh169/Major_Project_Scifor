@@ -269,7 +269,7 @@ const GameDetails = () => {
             </div>
           )}
 
-          <div className="description mt-5 bg-dark rounded-10 p-4">
+          <div className="description mt-5 bg-card rounded-10 p-4">
             <h3 className="lh-1">Content Description</h3>
             <hr />
 
@@ -282,7 +282,7 @@ const GameDetails = () => {
           </div>
 
           {gameData.metacritic && gameData.metacritic.score && (
-            <div className="description mt-5 bg-dark rounded-10 p-4">
+            <div className="description mt-5 bg-card rounded-10 p-4">
               <h3 className="lh-1">Metacritic Score</h3>
               <hr />
 
@@ -310,7 +310,7 @@ const GameDetails = () => {
             </div>
           )}
 
-          <div className="description mt-5 bg-dark rounded-10 p-4">
+          <div className="description mt-5 bg-card rounded-10 p-4">
             <h3 className="lh-1">System Requirements</h3>
             <hr />
 

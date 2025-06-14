@@ -1,5 +1,5 @@
-import Card from "../components/Card";
 import Slider from "../components/Slider";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { fetchGames } from "../api/games";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
@@ -40,7 +40,44 @@ const Discover = () => {
 
   return (
     <div className="d-flex flex-column gap-3">
-      <div className="d-flex gap-3">
+      <Splide
+        className="d-lg-none"
+        options={{
+          type: "loop",
+          rewind: true,
+          gap: "1rem",
+          autoplay: true,
+          lazyLoad: "nearby",
+          arrows: false,
+          pagination: true,
+        }}
+      >
+        <SplideSlide>
+          <img
+            className="splide-img"
+            src="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
+            alt="Screenshot"
+          />
+        </SplideSlide>
+
+        <SplideSlide>
+          <img
+            className="splide-img"
+            src="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
+            alt="Screenshot"
+          />
+        </SplideSlide>
+
+        <SplideSlide>
+          <img
+            className="splide-img"
+            src="https://cdn2.unrealengine.com/en-mega-sale-3up-fg-banner-asset-1920x1080-615c6807a1ad.jpg?resize=1&w=854&h=480&quality=medium"
+            alt="Screenshot"
+          />
+        </SplideSlide>
+      </Splide>
+
+      <div className="d-none d-lg-flex gap-3">
         <a href="#" className="card-wrapper">
           <img
             className="thumbnail img-thumbnail"
@@ -64,7 +101,7 @@ const Discover = () => {
         </a>
       </div>
 
-      <Slider gameList={games2.slice().reverse()} title="Popular Games" />
+      <Slider gameList={games3.slice().reverse()} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
       <Slider gameList={games1} title="Old Is Gold" />
 

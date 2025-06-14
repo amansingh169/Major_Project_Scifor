@@ -9,7 +9,7 @@ html {
   background-color: var(--accent-color-2) !important;
 }
 
-.bg-dark {
+.bg-card {
   background-color: var(--card-bg) !important;
 }
 
@@ -50,6 +50,10 @@ li {
 }
 
 a {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+select {
   font-family: "Space Grotesk", sans-serif;
 }
 
@@ -288,12 +292,6 @@ h6 {
 
     button {
       background-color: var(--accent-color-2);
-    }
-  }
-
-  @media (max-width: 1400px) {
-    button {
-      padding: 10px !important;
     }
   }
 }
