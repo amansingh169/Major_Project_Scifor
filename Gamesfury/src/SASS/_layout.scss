@@ -20,7 +20,7 @@
 .main {
   height: 1500px;
   width: 85%;
-  border-left: 1px solid var(--card-bg);
+  // border-left: 1px solid var(--card-bg);
   transition: 0.3s border;
   flex-grow: 1;
 
@@ -39,11 +39,11 @@
 
 @media (max-width: 1400px) {
   .sidebar {
-    padding-inline: 10px 20px;
+    padding-inline: u.rem(10) u.rem(10);
     width: auto;
   }
 
   .main {
-    padding-inline: 20px 10px;
+    padding-inline: u.rem(10) u.rem(10);
   }
 }

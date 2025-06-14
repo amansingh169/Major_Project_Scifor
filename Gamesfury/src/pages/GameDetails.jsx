@@ -7,6 +7,7 @@ import { getGameType, getReviewSummary } from "../utils/formatGameContent";
 import "@splidejs/splide/dist/css/splide.min.css";
 import addToLibrary from "../utils/addToLibrary";
 import PegiRating from "../components/PegiRating";
+import Footer from "../components/Footer";
 
 const GameDetails = () => {
   const navigate = useNavigate();
@@ -56,7 +57,6 @@ const GameDetails = () => {
   return (
     <div className="game-details-wrapper d-flex flex-column gap-4">
       <h1 className="my-0 lh-1">{`${gameData.name}`}</h1>
-
       <div className="feedback d-flex align-items-baseline gap-2">
         <i className={`bi ${feedback.icon} fs-4`}></i>
         <p className="text-primary m-0 fs-5">{`${feedback.message}`} </p>
@@ -66,7 +66,7 @@ const GameDetails = () => {
       </div>
 
       <div className="game-details row">
-        <div className="details-main col-9">
+        <div className="details-main col-12 col-xl-9 col-md-8 order-2 order-md-1">
           {gameData?.screenshots ? (
             <Splide options={{ rewind: true, gap: "1rem", autoplay: true, lazyLoad: "nearby" }}>
               {gameData.screenshots.map((ss) => (
@@ -133,13 +133,23 @@ const GameDetails = () => {
           </div>
         </div>
 
-        <div className="details-aside col-3">
+        <div className="details-aside col-12 col-xl-3 col-md-4 order-1 order-md-2">
           <div
-            className="details-aside-content d-flex flex-column gap-3"
+            className="details-aside-content d-flex flex-column gap-3 mb-4"
             style={{ top: document.querySelector(".header").clientHeight }}
           >
             <div className="aside-header-img">
-              <img src={logo} alt={gameData.name} className="img-thumbnail w-100" />
+              <img
+                src={logo}
+                alt={gameData.name}
+                className="img-thumbnail w-100 d-none d-md-block"
+              />
+
+              <img
+                src={gameData.header_image}
+                alt={gameData.name}
+                className="img-thumbnail mh-100 w-100 d-md-none"
+              />
             </div>
 
             <PegiRating pegi={gameData?.ratings?.pegi} />
@@ -149,8 +159,6 @@ const GameDetails = () => {
                 {getGameType(gameData.type)}
               </div>
             </div>
-
-            {/* make a component out of it */}
 
             {gameData.is_free ? (
               <div className="final-price text-primary fw-bold fs-5">Free To Play</div>
@@ -226,11 +234,13 @@ const GameDetails = () => {
             </ul>
 
             <div className="share-report d-flex gap-2">
-              <button className="share-btn btn btn-secondary rounded py-1 w-50">
-                <i className="bi bi-share"></i>&nbsp; Share
+              <button className="share-btn btn btn-secondary d-flex justify-content-center gap-2 rounded py-1 w-50">
+                <i className="bi bi-share"></i>
+                <p className="m-0 d-none d-lg-block">Share</p>
               </button>
-              <button className="report-btn btn btn-secondary rounded py-1 w-50">
-                <i className="bi bi-flag"></i>&nbsp; Report
+              <button className="report-btn btn btn-secondary d-flex justify-content-center gap-2 rounded py-1 w-50">
+                <i className="bi bi-flag"></i>
+                <p className="m-0 d-none d-lg-block">Report</p>
               </button>
             </div>
           </div>
@@ -238,7 +248,7 @@ const GameDetails = () => {
       </div>
 
       <div className="row">
-        <div className="col-9">
+        <div className="col-12 col-xl-9 col-md-8">
           {gameData?.achievements && gameData?.achievements?.highlighted && (
             <div className="achievements description mt-4">
               <h3 className="lh-1">Available Achievements</h3>
@@ -259,7 +269,7 @@ const GameDetails = () => {
             </div>
           )}
 
-          <div className="description mt-5 bg-secondary rounded-10 p-4">
+          <div className="description mt-5 bg-dark rounded-10 p-4">
             <h3 className="lh-1">Content Description</h3>
             <hr />
 
@@ -272,7 +282,7 @@ const GameDetails = () => {
           </div>
 
           {gameData.metacritic && gameData.metacritic.score && (
-            <div className="description mt-5 bg-secondary rounded-10 p-4">
+            <div className="description mt-5 bg-dark rounded-10 p-4">
               <h3 className="lh-1">Metacritic Score</h3>
               <hr />
 
@@ -300,19 +310,19 @@ const GameDetails = () => {
             </div>
           )}
 
-          <div className="description mt-5 bg-secondary rounded-10 p-4">
+          <div className="description mt-5 bg-dark rounded-10 p-4">
             <h3 className="lh-1">System Requirements</h3>
             <hr />
 
-            <div className="pc-requirements d-flex gap-2">
-              <div className="w-50">
+            <div className="pc-requirements d-flex flex-column flex-lg-row gap-2">
+              <div className="w-lg-50">
                 <div
                   className="min-specs"
                   dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.minimum }}
                 />
               </div>
 
-              <div className="w-50">
+              <div className="w-lg-50 mt-4 mt-lg-0">
                 <div
                   className="rec-specs"
                   dangerouslySetInnerHTML={{ __html: gameData.pc_requirements.recommended }}
@@ -322,6 +332,7 @@ const GameDetails = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

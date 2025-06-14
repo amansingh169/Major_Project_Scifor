@@ -6,7 +6,7 @@
   .details-main {
     .game-description {
       position: relative;
-      max-height: 900px;
+      max-height: u.rem(900);
       overflow: hidden;
 
       &.expanded {
@@ -41,7 +41,7 @@
 
         hr {
           width: 100%;
-          border-top: 2px solid var(--text-color-accent);
+          border-top: u.rem(2) solid var(--text-color-accent);
           margin: 0;
         }
       }
@@ -59,7 +59,7 @@
       // background: radial-gradient(rgba(0, 150, 200, 0.2) 0%, transparent 70%);
 
       img {
-        max-height: 200px;
+        max-height: u.rem(200);
         object-fit: contain;
       }
     }
@@ -94,7 +94,7 @@
 }
 
 .pegi-rating {
-  border: 1px solid var(--text-color-accent);
+  border: u.rem(1) solid var(--text-color-accent);
 
   .pegi-logo {
     width: 20%;
@@ -112,10 +112,14 @@
   }
 }
 
+.list-group-item {
+  border-color: inherit;
+}
+
 .description {
   max-width: u.rem(900);
   margin-inline: auto;
-  margin-bottom: 10px;
+  margin-bottom: u.rem(10);
 
   hr {
     border-top: u.rem(1) solid var(--accent-color);
@@ -150,12 +154,12 @@
 
     h1 {
       text-decoration: underline;
-      text-underline-offset: 15px;
-      text-decoration-thickness: 2px;
+      text-underline-offset: u.rem(15);
+      text-decoration-thickness: u.rem(2);
       text-decoration-style: dashed;
       text-decoration-color: var(--accent-color);
       font-size: var(--fs-xl);
-      margin-bottom: 35px;
+      margin-bottom: u.rem(35);
     }
 
     .bb_tag {
@@ -177,6 +181,18 @@
       margin: 0;
       padding: 0;
       list-style: none;
+
+      li {
+        margin-block: u.rem(10);
+
+        strong {
+          font-size: var(--fs-sm);
+          font-weight: normal;
+          text-transform: capitalize;
+          color: var(--text-color-accent);
+          line-height: 1.7;
+        }
+      }
     }
 
     strong {
@@ -190,7 +206,7 @@
 
 .metacritic-logo {
   img {
-    width: clamp(20px, calc(20px + 5vw), 60px);
+    width: clamp(u.rem(20), calc(u.rem(20) + 5vw), u.rem(60));
   }
 }
 
@@ -205,7 +221,7 @@
       scroll-snap-align: start;
 
       img {
-        width: clamp(50px, calc(50px + 5vw), 150px);
+        width: clamp(u.rem(50), calc(u.rem(50) + 5vw), u.rem(150));
       }
     }
   }

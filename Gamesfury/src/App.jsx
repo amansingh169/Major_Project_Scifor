@@ -29,7 +29,7 @@ function App() {
 
   return (
     <Router>
-      <div className="wrapper container-fluid">
+      <div className="wrapper container-fluid px-2">
         <Sidebar />
         <div className="main h-auto">
           <ScrollToTop />

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Card from "../components/Card";
 import { fetchSearchResults } from "../api/games";
+import Footer from "../components/Footer";
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -31,18 +32,20 @@ const SearchResults = () => {
   }
 
   return (
-    <div className="d-flex flex-wrap gap-4 justify-content-center px-2">
-      {!resultList || <h2>Loading...</h2> ? (
-        resultList.map((game) => (
-          <Link to={`/game/${game.id}`} key={game.id}>
-            <Card gameInfo={game} isLoading={isLoading} />
-          </Link>
-        ))
-      ) : (
-        <p className="text-center mt-5 fs-4">No results for this search.</p>
-      )}
-    </div>
+    <>
+      <div className="d-flex flex-wrap gap-4 justify-content-center px-2">
+        {!resultList || <h2>Loading...</h2> ? (
+          resultList.map((game) => (
+            <Link to={`/game/${game.id}`} key={game.id}>
+              <Card gameInfo={game} isLoading={isLoading} />
+            </Link>
+          ))
+        ) : (
+          <p className="text-center mt-5 fs-4">No results for this search.</p>
+        )}
+      </div>
+      <Footer />
+    </>
   );
 };
-
 export default SearchResults;

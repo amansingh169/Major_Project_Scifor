@@ -2,6 +2,7 @@ import { NavLink, Link, useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import LibraryCard from "../components/LibraryCard";
+import Footer from "../components/Footer";
 
 const Library = () => {
   const { user } = useContext(UserContext);
@@ -28,7 +29,6 @@ const Library = () => {
           <i className="bi bi-arrow-clockwise fs-3 text-muted"></i>
         </a>
       </div>
-
       <div className="collection-nav mt-5">
         <div className="navbar justify-content-start gap-4">
           {Object.keys(collections).map((coll) => (
@@ -38,7 +38,6 @@ const Library = () => {
           ))}
         </div>
       </div>
-
       <div className="lib-games d-flex flex-column gap-4 mt-4">
         {collections[collectionId].length === 0 ? (
           <h1>No games in this collection.</h1>
@@ -50,6 +49,7 @@ const Library = () => {
           ))
         )}
       </div>
+      <Footer />
     </div>
   );
 };

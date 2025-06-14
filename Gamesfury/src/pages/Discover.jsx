@@ -2,6 +2,7 @@ import Card from "../components/Card";
 import Slider from "../components/Slider";
 import { fetchGames } from "../api/games";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 const Discover = () => {
   const [games, setGames] = useState([]);
@@ -66,8 +67,9 @@ const Discover = () => {
       <Slider gameList={games2.slice().reverse()} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
       <Slider gameList={games1} title="Old Is Gold" />
+
+      <Footer />
     </div>
   );
 };
-
 export default Discover;

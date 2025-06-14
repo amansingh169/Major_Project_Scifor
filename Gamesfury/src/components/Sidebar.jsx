@@ -6,7 +6,7 @@ const Sidebar = () => {
   const isStoreActive = storePages.some((page) => location.pathname.includes(page));
 
   return (
-    <div className="sidebar d-flex flex-column">
+    <div className="sidebar d-none d-sm-flex flex-column">
       <div className="brand text-center mt-2">
         <NavLink to="/">
           <i className="bi bi-steam"></i>

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import EmptySection from "../components/EmptySection";
+import Footer from "../components/Footer";
 
 const Wishlist = () => {
   const { user } = useContext(UserContext);
@@ -11,7 +12,13 @@ const Wishlist = () => {
     return <h2>Loading...</h2>;
   }
 
-  return user.wishlist.length === 0 ? <EmptySection sectionName="Wishlist" /> : null;
+  return user.wishlist.length === 0 ? (
+    <EmptySection sectionName="Wishlist" />
+  ) : (
+    <>
+      <Footer />
+    </>
+  );
 };
 
 export default Wishlist;
