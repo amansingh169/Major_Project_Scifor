@@ -1,6 +1,13 @@
+const getBaseUrl = () => {
+  console.log(import.meta.env.DEV ? "http://localhost:5000/api" : "/api");
+  return import.meta.env.DEV ? "http://localhost:5000/api" : "/api";
+};
+
+const baseUrl = getBaseUrl();
+
 const fetchSteamSpyGames = async (type) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/steamspy?type=${type}`);
+    const res = await fetch(`${baseUrl}/steamspy?type=${type}`);
     const data = await res.json();
     return Object.values(data);
   } catch (err) {
@@ -10,7 +17,7 @@ const fetchSteamSpyGames = async (type) => {
 
 export const fetchSteamGameData = async (appId) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/steam?appid=${appId}`);
+    const res = await fetch(`${baseUrl}/steam?appid=${appId}`);
     const data = await res.json();
     return data[appId]?.data || null;
   } catch (err) {
@@ -20,7 +27,7 @@ export const fetchSteamGameData = async (appId) => {
 
 export const fetchSearchList = async (query) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/search?term=${query}&cc=us&l=en`);
+    const res = await fetch(`${baseUrl}/search?term=${query}&cc=us&l=en`);
     const data = await res.json();
     return data.items || [];
   } catch (err) {

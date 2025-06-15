@@ -30,7 +30,7 @@
 .header {
   position: sticky;
   top: 0;
-  height: u.rem(100);
+  height: clamp(u.rem(70), 10vw, u.rem(100));
   z-index: 100;
   background-color: var(--bg-color);
 

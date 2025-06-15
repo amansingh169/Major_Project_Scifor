@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { fetchSearchList } from "../api/games";
 import { Link, useNavigate } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -10,6 +10,8 @@ const SearchBar = () => {
   const [searchResultList, setSearchResultList] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [expandSearch, setExpandSearch] = useState(false);
+  const inputRef = useRef();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -18,6 +20,16 @@ const SearchBar = () => {
     if (query.trim()) {
       navigate(`/search?query=${encodeURIComponent(query)}`); // encodeURIComponent is used to safely encode a string so it can be placed inside a URL.
     }
+  };
+
+  const handleIconClick = (e) => {
+    e.preventDefault();
+    setExpandSearch(true);
+    document.getElementsByClassName("nav-dropdown")[0].classList.add("d-none");
+
+    setTimeout(() => {
+      if (inputRef.current) inputRef.current.focus();
+    }, 100);
   };
 
   const handleSearchChange = async (e) => {
@@ -29,7 +41,6 @@ const SearchBar = () => {
       const res = await fetchSearchList(e.target.value); // already getting parsed data from proxy.js
       setSearchResultList(res);
       setIsLoading(false);
-      // console.log(searchResultList);
     } else {
       setSearchResultList([]);
       setIsLoading(false);
@@ -38,7 +49,7 @@ const SearchBar = () => {
 
   return (
     <div className="search-bar-container">
-      <form onSubmit={handleSearch} className="search-bar form-inline">
+      <form onSubmit={handleSearch} className="search-bar form-inline d-none d-md-flex">
         <i className="bi bi-search fs-6"></i>
 
         <input
@@ -51,6 +62,33 @@ const SearchBar = () => {
           placeholder="Search Store"
         />
       </form>
+
+      <div className="d-md-none">
+        {!expandSearch ? (
+          <button onClick={handleIconClick} className="bg-transparent rounded-circle lh-1">
+            <i className="bi bi-search fs-6 text-primary"></i>
+          </button>
+        ) : (
+          <form onSubmit={handleSearch} className="search-bar form-inline">
+            <i className="bi bi-search fs-6"></i>
+
+            <input
+              onChange={(e) => handleSearchChange(e)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => {
+                document.getElementsByClassName("nav-dropdown")[0].classList.remove("d-none");
+                setTimeout(() => setIsFocused(false), 200);
+                setExpandSearch(false);
+              }}
+              ref={inputRef}
+              className="form-control text-primary fs-6 px-3 py-2 text-primary"
+              type="search"
+              value={query}
+              placeholder="Search Store"
+            />
+          </form>
+        )}
+      </div>
 
       {isFocused && searchResultList.length > 0 && (
         <div className="search-result-list dropdown-box rounded-4 p-2 rounded-4 show">

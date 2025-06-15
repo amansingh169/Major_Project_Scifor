@@ -36,7 +36,7 @@ const Navbar = () => {
 
         <SearchBar />
 
-        <div className="d-block d-lg-none">
+        <div className="nav-dropdown d-block d-lg-none m-auto">
           <li className="nav-item">
             <select
               onChange={(e) => {
