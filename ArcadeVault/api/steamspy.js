@@ -1,5 +1,6 @@
-export default async function handler(res, req) {
+export default async function handler(req, res) {
   const { type = "top100in2weeks" } = req.query;
+
   const url = `https://steamspy.com/api.php?request=${type}`;
 
   try {
