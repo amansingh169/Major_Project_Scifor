@@ -24,11 +24,12 @@ const Library = () => {
   return (
     <div className="library-wrapper">
       <div className="d-flex align-items-center gap-3">
-        <h1 className="lh-1">Library</h1>
+        <h1 className="lh-1 m-0">Library</h1>
         <a href="">
           <i className="bi bi-arrow-clockwise fs-3 text-muted"></i>
         </a>
       </div>
+
       <div className="collection-nav mt-5">
         <div className="navbar justify-content-start gap-4">
           {Object.keys(collections).map((coll) => (
@@ -38,6 +39,7 @@ const Library = () => {
           ))}
         </div>
       </div>
+
       <div className="lib-games d-flex flex-column gap-4 mt-4">
         {collections[collectionId].length === 0 ? (
           <h1>No games in this collection.</h1>

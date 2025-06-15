@@ -15,9 +15,9 @@ const Wishlist = () => {
   return user.wishlist.length === 0 ? (
     <EmptySection sectionName="Wishlist" />
   ) : (
-    <>
+    <div className="wishlist-wrapper">
       <Footer />
-    </>
+    </div>
   );
 };
 

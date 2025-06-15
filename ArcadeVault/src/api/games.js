@@ -1,5 +1,4 @@
 const getBaseUrl = () => {
-  console.log(import.meta.env.DEV ? "http://localhost:5000/api" : "/api");
   return import.meta.env.DEV ? "http://localhost:5000/api" : "/api";
 };
 

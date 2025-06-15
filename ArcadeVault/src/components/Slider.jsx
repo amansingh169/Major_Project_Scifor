@@ -32,15 +32,8 @@ const Slider = ({ gameList, title }) => {
         {gameList.map(
           (game) =>
             game && (
-              <Link
-                to={`/game/${game.id}`}
-                key={game.id}
-                state={{ positive: game.positive, negative: game.negative }}
-              >
-                <Card
-                  gameInfo={game}
-                  discountedGame={title === "Mega Sale Special" ? true : false}
-                />
+              <Link to={`/game/${game.id}`} key={game.id}>
+                <Card gameInfo={game} />
               </Link>
             )
         )}

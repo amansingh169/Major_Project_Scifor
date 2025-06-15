@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchSteamGameData } from "../api/games";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { UserContext } from "../contexts/UserContext";
@@ -57,6 +57,7 @@ const GameDetails = () => {
   return (
     <div className="game-details-wrapper d-flex flex-column gap-4">
       <h1 className="my-0 lh-1">{`${gameData.name}`}</h1>
+
       <div className="feedback d-flex align-items-baseline gap-2">
         <i className={`bi ${feedback.icon} fs-4`}></i>
         <p className="text-primary m-0 fs-5">{`${feedback.message}`} </p>
@@ -66,7 +67,7 @@ const GameDetails = () => {
       </div>
 
       <div className="game-details row">
-        <div className="details-main col-12 col-xl-9 col-md-8 order-2 order-md-1">
+        <div className="details-main col-12 col-md-8 col-xl-9 order-2 order-md-1">
           {gameData?.screenshots ? (
             <Splide options={{ rewind: true, gap: "1rem", autoplay: true, lazyLoad: "nearby" }}>
               {gameData.screenshots.map((ss) => (
@@ -133,7 +134,7 @@ const GameDetails = () => {
           </div>
         </div>
 
-        <div className="details-aside col-12 col-xl-3 col-md-4 order-1 order-md-2">
+        <div className="details-aside col-12 col-md-4 col-xl-3 order-1 order-md-2">
           <div
             className="details-aside-content d-flex flex-column gap-3 mb-4"
             style={{ top: document.querySelector(".header").clientHeight }}
