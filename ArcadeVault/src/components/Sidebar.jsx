@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const storePages = ["/browse", "/news", "/wishlist", "/cart"];
+  const storePages = ["/browse", "/news", "/wishlist", "/cart", "/game"];
   const location = useLocation();
   const isStoreActive = storePages.some((page) => location.pathname.includes(page));
 

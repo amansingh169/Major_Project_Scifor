@@ -97,11 +97,11 @@
   border: u.rem(1) solid var(--text-color-accent);
 
   .pegi-logo {
-    width: 20%;
+    width: clamp(45px, 5vw, 70px);
   }
 
   .pegi-info {
-    width: 80%;
+    width: 100%;
   }
 }
 

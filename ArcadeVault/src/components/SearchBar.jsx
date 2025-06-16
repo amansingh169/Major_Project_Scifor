@@ -3,6 +3,7 @@ import { fetchSearchList } from "../api/games";
 import { Link, useNavigate } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import SearchResultSkeleton from "./sekeletons/SearchResultSkeleton";
+import PriceOverview from "./PriceOverview";
 
 const SearchBar = () => {
   const navigate = useNavigate();
@@ -121,29 +122,7 @@ const SearchBar = () => {
                       <p className="m-0">Downloadable Content</p>
                     )}
 
-                    {!game.price ? (
-                      <div className="final-price fw-bold fs-6">Free To Play</div>
-                    ) : (
-                      <div className="price d-flex align-items-center gap-2">
-                        {game.price.initial === game.price.final ? (
-                          <div className="final-price fw-bold fs-6">{`$ ${
-                            game.price.final / 100
-                          }`}</div>
-                        ) : (
-                          <>
-                            <div className="discount badge">{`-${Math.floor(
-                              100 - (game.price.final / game.price.initial) * 100
-                            )}%`}</div>
-                            <div className="cut-price text-decoration-line-through">
-                              {`$ ${game.price.initial / 100}`}
-                            </div>
-                            <div className="final-price fw-bold fs-5">{`$ ${
-                              game.price.final / 100
-                            }`}</div>
-                          </>
-                        )}
-                      </div>
-                    )}
+                    <PriceOverview price_overview={game.price} />
                   </div>
                 </Link>
               ))

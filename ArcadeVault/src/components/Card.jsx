@@ -1,4 +1,5 @@
 import { getGameType } from "../utils/formatGameContent";
+import PriceOverview from "./PriceOverview";
 import CardSkeleton from "./sekeletons/CardSkeleton";
 
 const Card = ({ gameInfo, isLoading }) => {
@@ -23,25 +24,9 @@ const Card = ({ gameInfo, isLoading }) => {
                 <p className="product-type fw-semibold text-muted mt-2 m-0">
                   {getGameType(gameInfo.type)}
                 </p>
-                <h5 className="game-title fw-bold text-primary m-0">{gameInfo.name}</h5>
+                <h5 className="game-title fw-bold text-primary">{gameInfo.name}</h5>
 
-                {gameInfo.price?.initial > gameInfo.price?.final ? (
-                  <div className="price d-flex align-items-center gap-2 mt-3">
-                    <div className="discount badge">-{gameInfo.price.discount_percent}%</div>
-
-                    <div className="cut-price text-decoration-line-through text-muted">
-                      {gameInfo.price.initial_formatted}
-                    </div>
-
-                    <div className="final-price text-primary fw-bold fs-5">
-                      {gameInfo.price.final_formatted}
-                    </div>
-                  </div>
-                ) : (
-                  <h6 className="price text-full fw-light m-0 mt-3">
-                    {gameInfo.price?.final_formatted || "Free To Play"}
-                  </h6>
-                )}
+                <PriceOverview price_overview={gameInfo.price} fs="6" />
               </div>
             </div>
           )}

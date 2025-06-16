@@ -199,9 +199,10 @@ h6 {
 .btn {
   border: none !important;
   outline: none !important;
+  color: var(--text-color);
 
   &:hover {
-    background-color: var(--accent-color-2);
+    color: var(--text-color-accent);
   }
 
   &:active {

@@ -3,8 +3,10 @@ import showNotif from "./showNotification";
 const addToLibrary = (gameData, setUser, setIsInLib) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
+  if (!user) alert("You need to log in first!");
+
   const newGame = {
-    appId: gameData?.steam_appid,
+    appid: gameData?.steam_appid,
     name: gameData?.name,
     header_image: gameData?.header_image,
     achievements: {
@@ -17,8 +19,6 @@ const addToLibrary = (gameData, setUser, setIsInLib) => {
 
   user.collections.all.push(newGame);
   setIsInLib(true);
-
-  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
   showNotif(`${gameData.name} added to library successfully!`);
 };

@@ -6,8 +6,10 @@ import { UserContext } from "../contexts/UserContext";
 import { getGameType, getReviewSummary } from "../utils/formatGameContent";
 import "@splidejs/splide/dist/css/splide.min.css";
 import addToLibrary from "../utils/addToLibrary";
+import addToCart from "../utils/addToCart";
 import PegiRating from "../components/PegiRating";
 import Footer from "../components/Footer";
+import PriceOverview from "../components/PriceOverview";
 
 const GameDetails = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const GameDetails = () => {
   const { id } = useParams();
   const [gameData, setGameData] = useState();
   const [isInLib, setIsInLib] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
   const feedback = getReviewSummary(gameData?.recommendations?.total);
   const logo = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameData?.steam_appid}/logo.png`;
 
@@ -47,8 +50,9 @@ const GameDetails = () => {
   }, [id]);
 
   useEffect(() => {
-    if (user?.collections && gameData) {
-      setIsInLib(user?.collections.all.some((game) => game.appId === gameData?.steam_appid));
+    if (user?.collections && user?.cart && gameData) {
+      setIsInLib(user?.collections.all.some((game) => game.appid === gameData?.steam_appid));
+      setIsInCart(user?.cart.some((game) => game.appid === gameData?.steam_appid));
     }
   }, [gameData]);
 
@@ -161,45 +165,44 @@ const GameDetails = () => {
               </div>
             </div>
 
-            {gameData.is_free ? (
-              <div className="final-price text-primary fw-bold fs-5">Free To Play</div>
-            ) : gameData.price_overview ? (
-              <div className="price d-flex align-items-baseline gap-2">
-                {gameData.price_overview.discount_percent > 0 ? (
-                  <>
-                    <div className="discount badge">{`-${gameData.price_overview.discount_percent}%`}</div>
-                    <div className="cut-price text-decoration-line-through">
-                      {`${gameData.price_overview.initial_formatted}`}
-                    </div>
-                    <div className="final-price text-primary fw-bold fs-5">{`${gameData.price_overview.final_formatted}`}</div>
-                  </>
-                ) : (
-                  <div className="final-price text-primary fw-bold fs-5">{`${gameData.price_overview.final_formatted}`}</div>
-                )}
-              </div>
-            ) : (
-              <div>Price Unavailable</div>
-            )}
+            <PriceOverview price_overview={gameData.price_overview} fs="5" align_text="baseline" />
 
             <div className="d-flex flex-column gap-2">
               {isInLib ? (
                 <button
                   onClick={() => navigate("/library")}
-                  className="buy-btn btn btn-primary rounded-10 fw-semibold d-flex justify-content-center align-items-center gap-2"
+                  className="btn btn-primary rounded-10 fw-semibold d-flex justify-content-center align-items-center gap-2"
                 >
                   <i className="bi bi-grid fs-5"></i>
                   <p className="m-0">In Library</p>
                 </button>
               ) : (
-                <button
-                  onClick={() => addToLibrary(gameData, setUser, setIsInLib)}
-                  className="buy-btn btn btn-primary rounded-10 fw-semibold"
-                >
-                  {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
-                </button>
+                <>
+                  <button
+                    onClick={() => addToLibrary(gameData, setUser, setIsInLib)}
+                    className="btn btn-primary rounded-10 fw-semibold"
+                  >
+                    {`${gameData.is_free ? "Get Now" : "Buy Now"}`}
+                  </button>
+
+                  {isInCart ? (
+                    <button
+                      onClick={() => navigate(`/cart`)}
+                      className="btn btn-secondary rounded-10"
+                    >
+                      View in Cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToCart(gameData, setUser, setIsInCart)}
+                      className="btn btn-secondary rounded-10"
+                    >
+                      Add to Cart
+                    </button>
+                  )}
+                  <button className="btn btn-secondary rounded-10">Add to Wishlist</button>
+                </>
               )}
-              <button className="buy-btn btn btn-secondary rounded-10">Add to Cart</button>
-              <button className="buy-btn btn btn-secondary rounded-10">Add to Wishlist</button>
             </div>
 
             <ul className="list-group list-group-flush">
@@ -302,7 +305,7 @@ const GameDetails = () => {
 
                     <a href={gameData?.metacritic?.url}>
                       <p className="m-0">
-                        Read Critic Reviews <i class="bi bi-box-arrow-up-right"></i>
+                        Read Critic Reviews <i className="bi bi-box-arrow-up-right"></i>
                       </p>
                     </a>
                   </div>

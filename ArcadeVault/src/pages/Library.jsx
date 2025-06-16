@@ -45,7 +45,7 @@ const Library = () => {
           <h1>No games in this collection.</h1>
         ) : (
           collections[collectionId].map((game) => (
-            <Link key={game.appId} to={`/game/${game.appId}`}>
+            <Link key={game.appid} to={`/game/${game.appid}`}>
               <LibraryCard gameInfo={game} />
             </Link>
           ))

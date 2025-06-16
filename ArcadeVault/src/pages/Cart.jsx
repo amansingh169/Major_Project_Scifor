@@ -1,37 +1,113 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { getGameType } from "../utils/formatGameContent";
+import { Link } from "react-router-dom";
+import PegiRating from "../components/PegiRating";
 import EmptySection from "../components/EmptySection";
 import Footer from "../components/Footer";
+import PriceOverview from "../components/PriceOverview";
 
 const Cart = () => {
   const { user } = useContext(UserContext);
+  const cart = user?.cart;
 
   if (!user) {
     return <h2>You are not logged in!</h2>;
-  } else if (!user.cart) {
+  } else if (!cart) {
     return <h2>Loading...</h2>;
   }
 
-  return user.cart.length === 0 ? (
-    <EmptySection sectionName="Cart" />
-  ) : (
+  const price = cart.reduce((total, item) => {
+    const finalPrice = item?.price_overview?.final;
+    return total + (finalPrice ? finalPrice / 100 : 0);
+  }, 0);
+
+  const discount = cart.reduce((total, item) => {
+    const discountPercent = item?.price_overview?.discount_percent || 0;
+    const originalPrice = item?.price_overview?.initial || 0;
+    return total + (originalPrice * (discountPercent / 100)) / 100;
+  }, 0);
+
+  const subtotal = price - discount;
+
+  if (cart.length === 0) return <EmptySection sectionName="Cart" />;
+
+  return (
     <div className="cart-wrapper">
       <div className="d-flex justify-content-between align-items-center mb-5">
         <h1 className="lh-1 m-0">Cart</h1>
 
-        <a className="d-flex align-items-center" href="#">
-          <span className="fs-5 text-primary">AV Wallet</span>
-          <i className="bi bi-arrow-up-right-square ms-2 fs-5 text-muted"></i>
-          <div className="badge bg-secondary fs-4 ms-3">$ 56.88</div>
+        <a className="nav-link d-flex align-items-center" href="#">
+          <span>AV Wallet</span>
+          <i className="bi bi-arrow-up-right-square ms-2"></i>
+          <div className="badge bg-card fs-4 ms-3">$ 56.88</div>
         </a>
       </div>
 
       <div className="row">
-        <div className="cart-items col-12 col-xl-9 col-md-8 order-2 order-md-1 bg-primary">
-          Hello
+        <div className="cart-items col-12 col-xl-9 col-lg-8 d-flex flex-column gap-3">
+          {cart.map((game) => (
+            <div className="cart-item bg-card p-3 rounded-4">
+              <div className="d-flex gap-3 mb-2 flex-column flex-sm-row">
+                <Link to={`/game/${game.appid}`} className="cart-game-img">
+                  <img src={game.header_image} alt={game.name} className="img-thumbnail w-100" />
+                </Link>
+
+                <div className="cart-game-info w-100">
+                  <div className="d-flex justify-content-between align-items-start">
+                    <div className="badge bg-secondary text-primary fw-bold">
+                      {getGameType(game.type)}
+                    </div>
+
+                    <div className="d-none d-md-block">
+                      <PriceOverview price_overview={game.price_overview} />
+                    </div>
+                  </div>
+
+                  <Link to={`/game/${game.appid}`}>
+                    <h3 className="my-2">{game.name}</h3>
+                  </Link>
+
+                  <div className="d-md-none">
+                    <PriceOverview price_overview={game.price_overview} />
+                  </div>
+
+                  <PegiRating pegi={game.rating} />
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-between">
+                <button className="btn">Remove</button>
+                <button className="btn">Move to Wishlist</button>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="details-aside col-12 col-xl-3 col-md-4 order-1 order-md-2 bg-secondary">
-          <h3 className="mb-5">Games & Apps Summary</h3>
+
+        <div className="details-aside col-12 col-xl-3 col-lg-4 mt-4 mt-lg-0">
+          <h2 className="mb-5">Games & Apps Summary</h2>
+
+          <div className="d-flex flex-column text-primary">
+            <div className="d-flex justify-content-between mb-3">
+              <span>Price</span>
+              <span>${price.toFixed(2)}</span>
+            </div>
+            <div className="d-flex justify-content-between mb-3">
+              <span>Tax</span>
+              <span>Calculated at checkout</span>
+            </div>
+            <div className="d-flex justify-content-between">
+              <span>Discount</span>
+              <span>${discount.toFixed(2)}</span>
+            </div>
+            <hr />
+            <div className="d-flex justify-content-between mb-3">
+              <strong>Subtotal</strong>
+              <strong>${subtotal.toFixed(2)}</strong>
+            </div>
+
+            <button className="btn btn-primary">Checkout</button>
+          </div>
         </div>
       </div>
 
