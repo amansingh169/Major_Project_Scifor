@@ -1,12 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { getGameType } from "../utils/formatGameContent";
-import { Link } from "react-router-dom";
-import PegiRating from "../components/PegiRating";
 import EmptySection from "../components/EmptySection";
 import Footer from "../components/Footer";
-import PriceOverview from "../components/PriceOverview";
-import removeItem from "../utils/removeItem";
 import CartItem from "../components/CartItem";
 
 const Cart = () => {
@@ -18,6 +13,8 @@ const Cart = () => {
   } else if (!cart) {
     return <h2>Loading...</h2>;
   }
+
+  const handleCheckout = async () => {};
 
   const price = cart.reduce((total, item) => {
     const finalPrice = item?.price_overview?.final;
@@ -75,7 +72,12 @@ const Cart = () => {
               <strong>${subtotal.toFixed(2)}</strong>
             </div>
 
-            <button className="btn btn-primary">Checkout</button>
+            <button
+              // onClick={handleCheckout}
+              className="btn btn-primary"
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>
