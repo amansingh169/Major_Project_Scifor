@@ -1,6 +1,6 @@
 import showNotif from "./showNotification";
 
-const addToCart = (gameData, setUser, setIsInCart) => {
+const addToWishlist = (gameData, setUser, setIsInWishlist) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) alert("You need to log in first!");
@@ -14,12 +14,12 @@ const addToCart = (gameData, setUser, setIsInCart) => {
     type: gameData?.type,
   };
 
-  user.cart.push(newGame);
-  if (setIsInCart) setIsInCart(true);
+  user.wishlist.push(newGame);
+  if (setIsInWishlist) setIsInWishlist(true);
 
   localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
-  showNotif(`${gameData.name} added to Cart successfully!`);
+  showNotif(`${gameData.name} added to Wishlist successfully!`);
 };
 
-export default addToCart;
+export default addToWishlist;

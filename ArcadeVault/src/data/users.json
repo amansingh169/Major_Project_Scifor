@@ -8,7 +8,7 @@
     "collections": {
       "all": [
         {
-          "appid": 594650,
+          "steam_appid": 594650,
           "name": "Hunt: Showdown 1896",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/594650/header.jpg?t=1749829051",
           "achievements": {
@@ -19,7 +19,7 @@
           "totalplayed": 0
         },
         {
-          "appid": 2073850,
+          "steam_appid": 2073850,
           "name": "THE FINALS",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/05c094dc480f5002adfb7c9076789260bf86faee/header.jpg?t=1743523996",
           "achievements": {
@@ -30,7 +30,7 @@
           "totalplayed": 25687
         },
         {
-          "appid": 1091500,
+          "steam_appid": 1091500,
           "name": "Cyberpunk 2077",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header.jpg?t=1746519355",
           "achievements": {
@@ -41,7 +41,7 @@
           "totalplayed": 3283
         },
         {
-          "appid": 2531310,
+          "steam_appid": 2531310,
           "name": "The Last of Us™ Part II Remastered",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg?t=1746152571",
           "achievements": {
@@ -52,7 +52,7 @@
           "totalplayed": 14837
         },
         {
-          "appid": 1240440,
+          "steam_appid": 1240440,
           "name": "Halo Infinite",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1240440/081fa5dfa41a2c3334ec335fe0668b54bdf36ad7/header.jpg?t=1746550788",
           "achievements": {
@@ -63,7 +63,7 @@
           "totalplayed": 7893
         },
         {
-          "appid": 739630,
+          "steam_appid": 739630,
           "name": "Phasmophobia",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/739630/header.jpg?t=1747947938",
           "achievements": {
@@ -76,7 +76,7 @@
       ],
       "favorites": [
         {
-          "appid": 2073850,
+          "steam_appid": 2073850,
           "name": "THE FINALS",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2073850/05c094dc480f5002adfb7c9076789260bf86faee/header.jpg?t=1743523996",
           "achievements": {
@@ -87,7 +87,7 @@
           "totalplayed": 25687
         },
         {
-          "appid": 2531310,
+          "steam_appid": 2531310,
           "name": "The Last of Us™ Part II Remastered",
           "header_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg?t=1746152571",
           "achievements": {

@@ -6,7 +6,7 @@ const addToLibrary = (gameData, setUser, setIsInLib) => {
   if (!user) alert("You need to log in first!");
 
   const newGame = {
-    appid: gameData?.steam_appid,
+    steam_appid: gameData?.steam_appid,
     name: gameData?.name,
     header_image: gameData?.header_image,
     achievements: {

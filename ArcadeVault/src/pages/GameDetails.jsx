@@ -10,6 +10,8 @@ import addToCart from "../utils/addToCart";
 import PegiRating from "../components/PegiRating";
 import Footer from "../components/Footer";
 import PriceOverview from "../components/PriceOverview";
+import removeItem from "../utils/removeItem";
+import addToWishlist from "../utils/addToWishlist";
 
 const GameDetails = () => {
   const navigate = useNavigate();
@@ -18,6 +20,7 @@ const GameDetails = () => {
   const [gameData, setGameData] = useState();
   const [isInLib, setIsInLib] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
+  const [isInWishlist, setIsInWishlist] = useState(false);
   const feedback = getReviewSummary(gameData?.recommendations?.total);
   const logo = `https://cdn.cloudflare.steamstatic.com/steam/apps/${gameData?.steam_appid}/logo.png`;
 
@@ -51,8 +54,9 @@ const GameDetails = () => {
 
   useEffect(() => {
     if (user?.collections && user?.cart && gameData) {
-      setIsInLib(user?.collections.all.some((game) => game.appid === gameData?.steam_appid));
-      setIsInCart(user?.cart.some((game) => game.appid === gameData?.steam_appid));
+      setIsInLib(user?.collections.all.some((game) => game.steam_appid === gameData?.steam_appid));
+      setIsInCart(user?.cart.some((game) => game.steam_appid === gameData?.steam_appid));
+      setIsInWishlist(user?.wishlist.some((game) => game.steam_appid === gameData?.steam_appid));
     }
   }, [gameData]);
 
@@ -200,7 +204,22 @@ const GameDetails = () => {
                       Add to Cart
                     </button>
                   )}
-                  <button className="btn btn-secondary rounded-10">Add to Wishlist</button>
+
+                  {isInWishlist ? (
+                    <button
+                      onClick={() => removeItem(gameData, setUser, "wishlist", setIsInWishlist)}
+                      className="btn btn-secondary rounded-10"
+                    >
+                      Remove from Wishlist
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => addToWishlist(gameData, setUser, setIsInWishlist)}
+                      className="btn btn-secondary rounded-10"
+                    >
+                      Add to Wishlist
+                    </button>
+                  )}
                 </>
               )}
             </div>

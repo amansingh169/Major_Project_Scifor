@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { getGameType } from "../utils/formatGameContent";
 import { Link } from "react-router-dom";
@@ -6,9 +6,11 @@ import PegiRating from "../components/PegiRating";
 import EmptySection from "../components/EmptySection";
 import Footer from "../components/Footer";
 import PriceOverview from "../components/PriceOverview";
+import removeItem from "../utils/removeItem";
+import CartItem from "../components/CartItem";
 
 const Cart = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const cart = user?.cart;
 
   if (!user) {
@@ -47,40 +49,7 @@ const Cart = () => {
       <div className="row">
         <div className="cart-items col-12 col-xl-9 col-lg-8 d-flex flex-column gap-3">
           {cart.map((game) => (
-            <div className="cart-item bg-card p-3 rounded-4">
-              <div className="d-flex gap-3 mb-2 flex-column flex-sm-row">
-                <Link to={`/game/${game.appid}`} className="cart-game-img">
-                  <img src={game.header_image} alt={game.name} className="img-thumbnail w-100" />
-                </Link>
-
-                <div className="cart-game-info w-100">
-                  <div className="d-flex justify-content-between align-items-start">
-                    <div className="badge bg-secondary text-primary fw-bold">
-                      {getGameType(game.type)}
-                    </div>
-
-                    <div className="d-none d-md-block">
-                      <PriceOverview price_overview={game.price_overview} />
-                    </div>
-                  </div>
-
-                  <Link to={`/game/${game.appid}`}>
-                    <h3 className="my-2">{game.name}</h3>
-                  </Link>
-
-                  <div className="d-md-none">
-                    <PriceOverview price_overview={game.price_overview} />
-                  </div>
-
-                  <PegiRating pegi={game.rating} />
-                </div>
-              </div>
-
-              <div className="d-flex justify-content-between">
-                <button className="btn">Remove</button>
-                <button className="btn">Move to Wishlist</button>
-              </div>
-            </div>
+            <CartItem key={game.steam_appid} game={game} />
           ))}
         </div>
 
