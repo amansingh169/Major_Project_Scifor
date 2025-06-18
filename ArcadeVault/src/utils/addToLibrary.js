@@ -1,4 +1,4 @@
-import showNotif from "./showNotification";
+// import showNotif from "./showNotification";
 
 const addToLibrary = async (gameData, setUser, setIsInLib) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -20,7 +20,7 @@ const addToLibrary = async (gameData, setUser, setIsInLib) => {
   user.collections.all.push(newGame);
   setIsInLib(true);
   setUser(user);
-  showNotif(`${gameData.name} added to library successfully!`);
+  // showNotif(`${gameData.name} added to library successfully!`);
 };
 
 export default addToLibrary;

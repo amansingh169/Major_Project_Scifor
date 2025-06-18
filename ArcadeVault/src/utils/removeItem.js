@@ -1,4 +1,4 @@
-import showNotification from "./showNotification";
+// import showNotification from "./showNotification";
 
 const removeItem = (game, setUser, removeFrom, setState) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -22,7 +22,7 @@ const removeItem = (game, setUser, removeFrom, setState) => {
     user[removeFrom] = filtered;
   }
 
-  showNotification(`${game.name} removed from ${removeFrom}.`);
+  // showNotification(`${game.name} removed from ${removeFrom}.`);
   setUser(user);
   if (setState) setState(false);
 };

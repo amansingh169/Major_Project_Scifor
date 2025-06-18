@@ -1,4 +1,4 @@
-import showNotif from "./showNotification";
+// import showNotif from "./showNotification";
 
 const addToCart = (gameData, setUser, setIsInCart) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -17,9 +17,8 @@ const addToCart = (gameData, setUser, setIsInCart) => {
   user.cart.push(newGame);
   if (setIsInCart) setIsInCart(true);
 
-  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
-  showNotif(`${gameData.name} added to Cart successfully!`);
+  // showNotif(`${gameData.name} added to Cart successfully!`);
 };
 
 export default addToCart;
