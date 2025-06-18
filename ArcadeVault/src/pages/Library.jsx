@@ -43,7 +43,7 @@ const Library = () => {
             </div>
           </div>
 
-          <div className="lib-games d-flex flex-column gap-4 mt-4">
+          <div className="lib-games d-flex flex-column gap-5 gap-sm-4 mt-4">
             {collections[collectionId].length === 0 ? (
               <h1>No games in this collection.</h1>
             ) : (

@@ -57,7 +57,7 @@ const SearchBar = () => {
           onChange={(e) => handleSearchChange(e)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-          className="form-control text-primary fs-6 px-3 py-2 text-primary"
+          className="form-control text-primary fs-6 px-3 py-2"
           type="search"
           value={query}
           placeholder="Search Store"
@@ -103,37 +103,40 @@ const SearchBar = () => {
               </>
             ) : (
               searchResultList.slice(0, 4).map((game) => (
-                <Link
-                  key={game.id}
-                  to={`/game/${game.id}`}
-                  className="dropdown-link d-flex gap-3 rounded-3 text-white"
-                >
-                  <img
-                    className="dropdown-link-img rounded-1"
-                    src={game.tiny_image}
-                    alt={game.name}
-                  />
-                  <div className="dropdown-link-info d-flex flex-column justify-content-between">
-                    <p className="fs-5 m-0">{game.name}</p>
+                <li key={game.id}>
+                  <Link
+                    to={`/game/${game.id}`}
+                    className="dropdown-link d-flex gap-3 rounded-3 text-white"
+                  >
+                    <img
+                      className="dropdown-link-img rounded-1"
+                      src={game.tiny_image}
+                      alt={game.name}
+                    />
+                    <div className="dropdown-link-info d-flex flex-column justify-content-between">
+                      <p className="fs-5 m-0">{game.name}</p>
 
-                    {game.type === "app" ? (
-                      <p className="m-0">Base game</p>
-                    ) : (
-                      <p className="m-0">Downloadable Content</p>
-                    )}
+                      {game.type === "app" ? (
+                        <p className="m-0">Base game</p>
+                      ) : (
+                        <p className="m-0">Downloadable Content</p>
+                      )}
 
-                    <PriceOverview price_overview={game.price} />
-                  </div>
-                </Link>
+                      <PriceOverview price_overview={game.price} />
+                    </div>
+                  </Link>
+                </li>
               ))
             )}
 
-            <Link
-              className="dropdown-link rounded-3 text-white mt-4"
-              to={`/search?query=${encodeURIComponent(query)}`}
-            >
-              See All Results
-            </Link>
+            <li>
+              <Link
+                className="dropdown-link rounded-3 text-white mt-4"
+                to={`/search?query=${encodeURIComponent(query)}`}
+              >
+                See All Results
+              </Link>
+            </li>
           </ul>
         </div>
       )}

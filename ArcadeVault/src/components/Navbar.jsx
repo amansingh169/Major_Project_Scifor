@@ -106,10 +106,22 @@ const Navbar = () => {
               className={`dropdown-box p-2 rounded-4 ${showDropdown ? "show" : ""}`}
             >
               <ul className="dropdown-content d-flex flex-column p-0">
-                <Link className="dropdown-link rounded-3 text-white" to="/profile">
+                <Link
+                  onClick={() => {
+                    setShowDropdown((prev) => !prev);
+                  }}
+                  className="dropdown-link rounded-3 text-white"
+                  to="/profile"
+                >
                   View Profile
                 </Link>
-                <Link className="dropdown-link rounded-3 text-white" to="/library">
+                <Link
+                  onClick={() => {
+                    setShowDropdown((prev) => !prev);
+                  }}
+                  className="dropdown-link rounded-3 text-white"
+                  to="/library"
+                >
                   Library
                 </Link>
                 <Link className="dropdown-link rounded-3 text-white" onClick={handleLogout}>

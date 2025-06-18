@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import users from "../data/users.json";
 
 export const UserContext = createContext();

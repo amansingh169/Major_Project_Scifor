@@ -21,7 +21,7 @@ const NavDropdown = () => {
   }, [location]);
 
   return (
-    <div className="dropdown d-md-none my-3">
+    <div className="nav-dropdown dropdown d-md-none my-3">
       <button
         className="btn text-primary dropdown-toggle"
         type="button"
