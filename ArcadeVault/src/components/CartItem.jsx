@@ -14,15 +14,25 @@ const CartItem = ({ game, inWishlist = false }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(game, setUser);
-    removeItem(game, setUser, "wishlist");
+
+    try {
+      addToCart(game, setUser);
+      removeItem(game, setUser, "wishlist");
+    } catch (err) {
+      document.write(err);
+    }
   };
 
   const handleMoveToWishlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addToWishlist(game, setUser);
-    removeItem(game, setUser, "cart");
+
+    try {
+      addToWishlist(game, setUser);
+      removeItem(game, setUser, "cart");
+    } catch (err) {
+      document.write(err);
+    }
   };
 
   return (

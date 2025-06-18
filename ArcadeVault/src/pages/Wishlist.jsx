@@ -48,9 +48,9 @@ const Wishlist = () => {
           <div className="sort-by d-flex align-items-center">
             <span>Sort by:</span>
 
-            <div class="dropdown">
+            <div className="dropdown">
               <button
-                class="btn text-primary dropdown-toggle"
+                className="btn text-primary dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
@@ -59,26 +59,30 @@ const Wishlist = () => {
                 {sortBy}
               </button>
 
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>
-                  <div onClick={() => setSortBy("On Sale")} class="dropdown-item" href="#">
+                  <div onClick={() => setSortBy("On Sale")} className="dropdown-item" href="#">
                     On Sale
                   </div>
                 </li>
                 <li>
-                  <div onClick={() => setSortBy("Recently Added")} class="dropdown-item" href="#">
+                  <div
+                    onClick={() => setSortBy("Recently Added")}
+                    className="dropdown-item"
+                    href="#"
+                  >
                     Recently Added
                   </div>
                 </li>
                 <li>
-                  <div onClick={() => setSortBy("Alphabetical")} class="dropdown-item" href="#">
+                  <div onClick={() => setSortBy("Alphabetical")} className="dropdown-item" href="#">
                     Alphabetical
                   </div>
                 </li>
                 <li>
                   <div
                     onClick={() => setSortBy("Price: Low to High")}
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="#"
                   >
                     Price: Low to High
@@ -87,7 +91,7 @@ const Wishlist = () => {
                 <li>
                   <div
                     onClick={() => setSortBy("Price: High to Low")}
-                    class="dropdown-item"
+                    className="dropdown-item"
                     href="#"
                   >
                     Price: High to Low
