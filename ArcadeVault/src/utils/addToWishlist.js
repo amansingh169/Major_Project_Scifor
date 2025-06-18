@@ -17,7 +17,6 @@ const addToWishlist = (gameData, setUser, setIsInWishlist) => {
   user.wishlist.push(newGame);
   if (setIsInWishlist) setIsInWishlist(true);
 
-  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
   showNotif(`${gameData.name} added to Wishlist successfully!`);
 };

@@ -17,7 +17,6 @@ const addToCart = (gameData, setUser, setIsInCart) => {
   user.cart.push(newGame);
   if (setIsInCart) setIsInCart(true);
 
-  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
   showNotif(`${gameData.name} added to Cart successfully!`);
 };

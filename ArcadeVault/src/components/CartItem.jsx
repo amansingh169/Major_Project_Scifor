@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import PegiRating from "../components/PegiRating";
 import PriceOverview from "../components/PriceOverview";
 import removeItem from "../utils/removeItem";
-import addToCart from "../utils/addToCart";
-import addToWishlist from "../utils/addToWishlist";
 
 const CartItem = ({ game, inWishlist = false }) => {
   const { setUser } = useContext(UserContext);
@@ -15,24 +13,52 @@ const CartItem = ({ game, inWishlist = false }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    try {
-      addToCart(game, setUser);
-      removeItem(game, setUser, "wishlist");
-    } catch (err) {
-      console.log(err);
-    }
+    setUser((prevUser) => {
+      const newUser = { ...prevUser };
+
+      // Check if game is already in cart
+      if (!newUser.cart.some((g) => g.steam_appid === game.steam_appid)) {
+        newUser.cart.push({
+          steam_appid: game.steam_appid,
+          name: game.name,
+          header_image: game.header_image,
+          price_overview: game.price_overview,
+          rating: game.rating,
+          type: game.type,
+        });
+      }
+
+      // Remove from wishlist
+      newUser.wishlist = newUser.wishlist.filter((g) => g.steam_appid !== game.steam_appid);
+
+      showNotif(`${game.name} moved to Cart`);
+      return newUser;
+    });
   };
 
   const handleMoveToWishlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    try {
-      addToWishlist(game, setUser);
-      removeItem(game, setUser, "cart");
-    } catch (err) {
-      console.log(err);
-    }
+    setUser((prevUser) => {
+      const newUser = { ...prevUser };
+
+      if (!newUser.wishlist.some((g) => g.steam_appid === game.steam_appid)) {
+        newUser.wishlist.push({
+          steam_appid: game.steam_appid,
+          name: game.name,
+          header_image: game.header_image,
+          price_overview: game.price_overview,
+          rating: game.rating,
+          type: game.type,
+        });
+      }
+
+      newUser.cart = newUser.cart.filter((g) => g.steam_appid !== game.steam_appid);
+
+      showNotif(`${game.name} moved to Wishlist`);
+      return newUser;
+    });
   };
 
   return (

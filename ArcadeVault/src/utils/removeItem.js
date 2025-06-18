@@ -22,7 +22,6 @@ const removeItem = (game, setUser, removeFrom, setState) => {
     user[removeFrom] = filtered;
   }
 
-  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
   if (setState) setState(false);
   showNotification(`${game.name} removed from ${removeFrom}.`);
