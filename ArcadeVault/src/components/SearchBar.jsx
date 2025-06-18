@@ -109,31 +109,37 @@ const SearchBar = () => {
                     className="dropdown-link d-flex gap-3 rounded-3 text-white"
                   >
                     <img
-                      className="dropdown-link-img rounded-1"
+                      className="dropdown-link-img rounded-1 object-fit-contain"
                       src={game.tiny_image}
                       alt={game.name}
                     />
+
                     <div className="dropdown-link-info d-flex flex-column justify-content-between">
                       <p className="fs-5 m-0">{game.name}</p>
 
-                      {game.type === "app" ? (
-                        <p className="m-0">Base game</p>
-                      ) : (
-                        <p className="m-0">Downloadable Content</p>
-                      )}
+                      <div className="d-flex gap-3 align-items-center">
+                        {game.type === "app" ? (
+                          <span>Base game</span>
+                        ) : (
+                          <span>Downloadable Content</span>
+                        )}
 
-                      <PriceOverview price_overview={game.price} />
+                        <div className="d-none d-sm-block d-lg-none">
+                          <PriceOverview price_overview={game.price} />
+                        </div>
+                      </div>
+
+                      <div className="d-none d-lg-block">
+                        <PriceOverview price_overview={game.price} />
+                      </div>
                     </div>
                   </Link>
                 </li>
               ))
             )}
 
-            <li>
-              <Link
-                className="dropdown-link rounded-3 text-white mt-4"
-                to={`/search?query=${encodeURIComponent(query)}`}
-              >
+            <li className="dropdown-link rounded-3 mt-4">
+              <Link className="text-white" to={`/search?query=${encodeURIComponent(query)}`}>
                 See All Results
               </Link>
             </li>

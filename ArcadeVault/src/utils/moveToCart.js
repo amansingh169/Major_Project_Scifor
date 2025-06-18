@@ -23,7 +23,6 @@ const moveToCart = (gameData, setUser, setIsInCart) => {
   // remove from wishlist by filtering
   user.wishlist = user.wishlist.filter((g) => g.steam_appid !== gameData.steam_appid);
 
-  // localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
   showNotif(`${gameData.name} moved to Cart`);
 };

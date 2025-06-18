@@ -18,7 +18,7 @@ const PriceOverview = ({ price_overview, fs = "6", align_text = "center" }) => {
               ).toFixed(2)}`}</span>
             </>
           ) : (
-            <span className={`final-price text-primary fw-bold fs-${fs - 1}`}>{`$${(
+            <span className={`final-price text-primary fw-bold fs-${fs}`}>{`$${(
               price_overview.final / 100
             ).toFixed(2)}`}</span>
           )}
