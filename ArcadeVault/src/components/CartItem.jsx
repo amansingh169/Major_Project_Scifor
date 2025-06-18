@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PegiRating from "../components/PegiRating";
 import PriceOverview from "../components/PriceOverview";
 import removeItem from "../utils/removeItem";
+import showNotif from "../utils/showNotification";
 
 const CartItem = ({ game, inWishlist = false }) => {
   const { setUser } = useContext(UserContext);
