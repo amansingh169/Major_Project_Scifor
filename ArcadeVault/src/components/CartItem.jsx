@@ -11,7 +11,7 @@ import addToWishlist from "../utils/addToWishlist";
 const CartItem = ({ game, inWishlist = false }) => {
   const { setUser } = useContext(UserContext);
 
-  const handleAddToCart = (e) => {
+  const handleMoveToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -19,7 +19,7 @@ const CartItem = ({ game, inWishlist = false }) => {
       addToCart(game, setUser);
       removeItem(game, setUser, "wishlist");
     } catch (err) {
-      document.write(err);
+      console.log(err);
     }
   };
 
@@ -31,7 +31,7 @@ const CartItem = ({ game, inWishlist = false }) => {
       addToWishlist(game, setUser);
       removeItem(game, setUser, "cart");
     } catch (err) {
-      document.write(err);
+      console.log(err);
     }
   };
 
@@ -80,7 +80,7 @@ const CartItem = ({ game, inWishlist = false }) => {
             Move to Wishlist
           </button>
         ) : (
-          <button onClick={(e) => handleAddToCart(e)} className="btn btn-primary py-1 px-3">
+          <button onClick={(e) => handleMoveToCart(e)} className="btn btn-primary py-1 px-3">
             Add to Cart
           </button>
         )}

@@ -1,5 +1,5 @@
 import { fetchSteamGameData } from "../api/games";
-// import showNotification from "./showNotification";
+import showNotification from "./showNotification";
 
 const checkout = async (setUser) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -29,7 +29,7 @@ const checkout = async (setUser) => {
   user.collections.all.push(...newGames);
   user.cart = [];
   setUser(user);
-  // showNotification("Checkout complete! Games added to your library.");
+  showNotification("Checkout complete! Games added to your library.");
 };
 
 export default checkout;

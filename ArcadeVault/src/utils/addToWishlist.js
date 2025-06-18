@@ -1,4 +1,4 @@
-// import showNotif from "./showNotification";
+import showNotif from "./showNotification";
 
 const addToWishlist = (gameData, setUser, setIsInWishlist) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -17,8 +17,9 @@ const addToWishlist = (gameData, setUser, setIsInWishlist) => {
   user.wishlist.push(newGame);
   if (setIsInWishlist) setIsInWishlist(true);
 
+  localStorage.setItem("user", JSON.stringify(user));
   setUser(user);
-  // showNotif(`${gameData.name} added to Wishlist successfully!`);
+  showNotif(`${gameData.name} added to Wishlist successfully!`);
 };
 
 export default addToWishlist;
