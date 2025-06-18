@@ -2,6 +2,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import SearchBar from "./SearchBar";
+import NavDropdown from "./NavDropdown";
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
@@ -36,27 +37,7 @@ const Navbar = () => {
 
         <SearchBar />
 
-        <div className="nav-dropdown d-block d-lg-none m-auto">
-          <li className="nav-item">
-            <select
-              onChange={(e) => {
-                if (e.target.value) navigate(e.target.value);
-              }}
-              value={window.location.pathname}
-              className="form-select bg-transparent border-0 text-primary fw-semibold"
-            >
-              <option className="bg-card text-muted fw-semibold" value="/">
-                Discover
-              </option>
-              <option className="bg-card text-muted fw-semibold" value="/browse">
-                Browse
-              </option>
-              <option className="bg-card text-muted fw-semibold" value="/news">
-                News
-              </option>
-            </select>
-          </li>
-        </div>
+        <NavDropdown />
 
         <div className="d-none d-lg-flex gap-2">
           <li className="nav-item">
@@ -130,15 +111,6 @@ const Navbar = () => {
                 </Link>
                 <Link className="dropdown-link rounded-3 text-white" to="/library">
                   Library
-                </Link>
-                <Link className="dropdown-link rounded-3 text-white d-md-none" to="/cart">
-                  Cart
-                </Link>
-                <Link className="dropdown-link rounded-3 text-white d-md-none" to="/wishlist">
-                  Wishlist
-                </Link>
-                <Link className="dropdown-link rounded-3 text-white" to="/settings">
-                  Settings
                 </Link>
                 <Link className="dropdown-link rounded-3 text-white" onClick={handleLogout}>
                   Logout

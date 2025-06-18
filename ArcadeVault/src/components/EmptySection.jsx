@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
 const EmptySection = ({ sectionName }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div
@@ -30,7 +33,7 @@ const EmptySection = ({ sectionName }) => {
 
           <h1 className="mt-4">You haven't added anything in your {sectionName} yet.</h1>
 
-          <button className="btn btn-primary rounded-10 mt-3">
+          <button onClick={() => navigate("/")} className="btn btn-primary rounded-10 mt-3">
             <p className="m-0">Shot for Games & Apps</p>
           </button>
         </div>

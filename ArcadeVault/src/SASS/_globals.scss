@@ -333,3 +333,52 @@ h6 {
 .badge.bg-secondary {
   background-color: var(--accent-color-2) !important;
 }
+
+.accordion {
+  & * {
+    color: var(--text-color-accent);
+
+    :focus {
+      color: var(--text-color-accent);
+    }
+
+    :enabled {
+      color: var(--text-color-accent);
+    }
+  }
+
+  .accordion-item {
+    background-color: transparent;
+    border-color: var(--border-color);
+  }
+
+  .accordion-button {
+    background-color: var(--bg-color);
+    // padding-block: 20px;
+    padding-block: clamp(10px, 2vw, 20px);
+    padding-inline: clamp(10px, 2vw, 20px);
+
+    i {
+      color: var(--border-color);
+    }
+
+    &:after {
+      display: none !important;
+    }
+  }
+}
+
+.dropdown {
+  & * {
+    color: var(--text-color-accent);
+  }
+
+  .dropdown-menu {
+    background-color: var(--card-bg);
+
+    .dropdown-item:hover {
+      background-color: var(--accent-color-2);
+      color: var(--text-color-accent);
+    }
+  }
+}

@@ -43,7 +43,6 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/settings" element={<Settings />} />
               <Route path="/library" element={<Library />} />
               <Route path="/library/:collectionId" element={<Library />} />
               <Route path="/unity" element={<Unity />} />

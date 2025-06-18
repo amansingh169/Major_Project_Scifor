@@ -85,8 +85,7 @@
   }
 }
 
-.card-wrapper,
-.lib-games-card {
+.card-wrapper {
   position: relative;
   flex: 1 1 0;
   // aspect-ratio: 2;
@@ -121,23 +120,13 @@
   &:hover .add-to {
     opacity: 1;
   }
+}
 
-  .ph {
-    background-color: var(--accent-color-2) !important;
-  }
-  .product-type-ph,
-  .game-title-ph,
-  .price-ph {
-    height: 25px;
-  }
-  .product-type-ph {
-    width: 150px;
-  }
-  .game-title-ph {
-    width: 300px;
-  }
-  .price-ph {
-    width: 100px;
+.lib-games-thumbnail {
+  position: relative;
+
+  &:hover .add-to {
+    opacity: 1;
   }
 }
 

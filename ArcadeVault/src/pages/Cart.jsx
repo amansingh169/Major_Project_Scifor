@@ -3,6 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import EmptySection from "../components/EmptySection";
 import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
+import checkout from "../utils/checkout";
 
 const Cart = () => {
   const { user, setUser } = useContext(UserContext);
@@ -13,8 +14,6 @@ const Cart = () => {
   } else if (!cart) {
     return <h2>Loading...</h2>;
   }
-
-  const handleCheckout = async () => {};
 
   const price = cart.reduce((total, item) => {
     const finalPrice = item?.price_overview?.final;
@@ -34,12 +33,23 @@ const Cart = () => {
   return (
     <div className="cart-wrapper">
       <div className="d-flex justify-content-between align-items-center mb-5">
-        <h1 className="lh-1 m-0">Cart</h1>
+        <div className="d-flex align-items-center gap-2">
+          <h1 className="lh-1 m-0">Cart</h1>
+          <a href="">
+            <i className="bi bi-arrow-clockwise fs-3 text-muted"></i>
+          </a>
+        </div>
 
         <a className="nav-link d-flex align-items-center" href="#">
-          <span>AV Wallet</span>
-          <i className="bi bi-arrow-up-right-square ms-2"></i>
-          <div className="badge bg-card fs-4 ms-3">$ 56.88</div>
+          <div className="d-none d-sm-block">
+            <span>AV Wallet</span>
+            <i className="bi bi-arrow-up-right-square ms-2"></i>
+          </div>
+
+          <div className="badge bg-card text-primary fs-4 ms-3">
+            $ 56.88
+            <i className="bi bi-arrow-up-right-square ms-2 d-sm-none"></i>
+          </div>
         </a>
       </div>
 
@@ -72,10 +82,7 @@ const Cart = () => {
               <strong>${subtotal.toFixed(2)}</strong>
             </div>
 
-            <button
-              // onClick={handleCheckout}
-              className="btn btn-primary"
-            >
+            <button onClick={() => checkout(setUser)} className="btn btn-primary">
               Checkout
             </button>
           </div>
