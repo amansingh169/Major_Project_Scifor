@@ -2,8 +2,7 @@ import showNotif from "./showNotification";
 
 const addToCart = (gameData, setUser, setIsInCart) => {
   const user = JSON.parse(localStorage.getItem("user"));
-
-  if (!user) alert("You need to log in first!");
+  if (!user) return alert("You need to log in first!");
 
   const newGame = {
     steam_appid: gameData?.steam_appid,

@@ -5,62 +5,11 @@ import { Link } from "react-router-dom";
 import PegiRating from "../components/PegiRating";
 import PriceOverview from "../components/PriceOverview";
 import removeItem from "../utils/removeItem";
-import showNotif from "../utils/showNotification";
+import moveToCart from "../utils/moveToCart";
+import moveToWishlist from "../utils/moveToWishlist";
 
 const CartItem = ({ game, inWishlist = false }) => {
   const { setUser } = useContext(UserContext);
-
-  const handleMoveToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setUser((prevUser) => {
-      const newUser = { ...prevUser };
-
-      // Check if game is already in cart
-      if (!newUser.cart.some((g) => g.steam_appid === game.steam_appid)) {
-        newUser.cart.push({
-          steam_appid: game.steam_appid,
-          name: game.name,
-          header_image: game.header_image,
-          price_overview: game.price_overview,
-          rating: game.rating,
-          type: game.type,
-        });
-      }
-
-      // Remove from wishlist
-      newUser.wishlist = newUser.wishlist.filter((g) => g.steam_appid !== game.steam_appid);
-
-      showNotif(`${game.name} moved to Cart`);
-      return newUser;
-    });
-  };
-
-  const handleMoveToWishlist = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setUser((prevUser) => {
-      const newUser = { ...prevUser };
-
-      if (!newUser.wishlist.some((g) => g.steam_appid === game.steam_appid)) {
-        newUser.wishlist.push({
-          steam_appid: game.steam_appid,
-          name: game.name,
-          header_image: game.header_image,
-          price_overview: game.price_overview,
-          rating: game.rating,
-          type: game.type,
-        });
-      }
-
-      newUser.cart = newUser.cart.filter((g) => g.steam_appid !== game.steam_appid);
-
-      showNotif(`${game.name} moved to Wishlist`);
-      return newUser;
-    });
-  };
 
   return (
     <div key={game.steam_appid} className="cart-item bg-card p-3 rounded-4">
@@ -103,11 +52,11 @@ const CartItem = ({ game, inWishlist = false }) => {
         </button>
 
         {!inWishlist ? (
-          <button onClick={(e) => handleMoveToWishlist(e)} className="btn">
+          <button onClick={() => moveToWishlist(game, setUser)} className="btn">
             Move to Wishlist
           </button>
         ) : (
-          <button onClick={(e) => handleMoveToCart(e)} className="btn btn-primary py-1 px-3">
+          <button onClick={() => moveToCart(game, setUser)} className="btn btn-primary py-1 px-3">
             Add to Cart
           </button>
         )}
