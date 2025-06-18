@@ -11,12 +11,16 @@ import addToWishlist from "../utils/addToWishlist";
 const CartItem = ({ game, inWishlist = false }) => {
   const { setUser } = useContext(UserContext);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     addToCart(game, setUser);
     removeItem(game, setUser, "wishlist");
   };
 
-  const handleMoveToWishlist = () => {
+  const handleMoveToWishlist = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     addToWishlist(game, setUser);
     removeItem(game, setUser, "cart");
   };
@@ -51,18 +55,22 @@ const CartItem = ({ game, inWishlist = false }) => {
 
       <div className="d-flex justify-content-between">
         <button
-          onClick={() => removeItem(game, setUser, inWishlist ? "wishlist" : "cart")}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            removeItem(game, setUser, inWishlist ? "wishlist" : "cart");
+          }}
           className="btn"
         >
           Remove
         </button>
 
         {!inWishlist ? (
-          <button onClick={handleMoveToWishlist} className="btn">
+          <button onClick={(e) => handleMoveToWishlist(e)} className="btn">
             Move to Wishlist
           </button>
         ) : (
-          <button onClick={handleAddToCart} className="btn btn-primary py-1 px-3">
+          <button onClick={(e) => handleAddToCart(e)} className="btn btn-primary py-1 px-3">
             Add to Cart
           </button>
         )}
