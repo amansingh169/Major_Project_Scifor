@@ -3,10 +3,14 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import SearchBar from "./SearchBar";
 import NavDropdown from "./NavDropdown";
+import AuthModal from "./AuthModal";
+
+// complete this logic with usercontext
 
 const Navbar = () => {
   const { user, logout } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef();
 
@@ -83,7 +87,7 @@ const Navbar = () => {
           </li>
         </div>
 
-        <div className="vr my-2 mx-1 bg-light d-none d-md-block"></div>
+        <div className="vr my-2 mx-1 bg-secondary d-none d-md-block"></div>
 
         {user ? (
           <li className="nav-item" ref={dropdownRef}>
@@ -132,9 +136,11 @@ const Navbar = () => {
           </li>
         ) : (
           <li className="nav-item">
-            <NavLink className="nav-link" to="/login">
+            <button onClick={() => setShowModal(true)} className="nav-link">
               Login
-            </NavLink>
+            </button>
+
+            <AuthModal show={showModal} onClose={() => setShowModal(false)} />
           </li>
         )}
       </ul>

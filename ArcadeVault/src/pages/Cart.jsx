@@ -16,7 +16,7 @@ const Cart = () => {
   }
 
   const price = cart.reduce((total, item) => {
-    const finalPrice = item?.price_overview?.final;
+    const finalPrice = item?.price_overview?.initial;
     return total + (finalPrice ? finalPrice / 100 : 0);
   }, 0);
 
@@ -82,7 +82,7 @@ const Cart = () => {
               <strong>${subtotal.toFixed(2)}</strong>
             </div>
 
-            <button onClick={() => checkout(setUser)} className="btn btn-primary">
+            <button onClick={() => checkout(setUser)} className="btn btn-primary rounded-10">
               Checkout
             </button>
           </div>

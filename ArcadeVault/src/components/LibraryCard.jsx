@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const LibraryCard = ({ gameInfo }) => {
@@ -23,7 +22,14 @@ const LibraryCard = ({ gameInfo }) => {
             <i className="bi bi-heart fs-6 p-2"></i>
           )}
         </button>
-        <img className="img-thumbnail p-0 w-100" src={gameInfo.header_image} alt={gameInfo.name} />
+
+        <Link to={`/game/${gameInfo.steam_appid}`}>
+          <img
+            className="img-thumbnail p-0 w-100"
+            src={gameInfo.header_image}
+            alt={gameInfo.name}
+          />
+        </Link>
       </div>
 
       <div className="lib-games-thumbnail px-0 d-none d-sm-block w-25">
@@ -34,16 +40,21 @@ const LibraryCard = ({ gameInfo }) => {
             <i className="bi bi-heart fs-6 p-2"></i>
           )}
         </button>
-        <img
-          className="img-thumbnail p-0 w-100 h-100 object-fit-cover"
-          src={gameInfo.header_image}
-          alt={gameInfo.name}
-        />
+
+        <Link to={`/game/${gameInfo.steam_appid}`}>
+          <img
+            className="img-thumbnail p-0 w-100 h-100 object-fit-cover"
+            src={gameInfo.header_image}
+            alt={gameInfo.name}
+          />
+        </Link>
       </div>
 
       <div className="lib-games-info d-flex flex-column justify-content-between w-100">
         <div className="d-flex align-items-start">
-          <h4 className="game-name m-0">{gameInfo.name}</h4>
+          <Link to={`/game/${gameInfo.steam_appid}`}>
+            <h4 className="game-name m-0">{gameInfo.name}</h4>
+          </Link>
 
           <div className="dropdown ms-auto">
             <button

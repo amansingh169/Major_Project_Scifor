@@ -1,6 +1,5 @@
 [
   {
-    "id": "1",
     "username": "amansingh169",
     "name": "Aman Singh",
     "email": "as2211075@gmail.com",
@@ -101,50 +100,33 @@
       "shooters": []
     },
     "cart": [],
-    "wishlist": []
+    "wishlist": [],
+    "defaultTheme": "onyx"
   },
   {
-    "id": "2",
     "username": "beastboyshub",
     "name": "BeastBoyShub",
     "email": "beastboy@gmail.com",
     "password": "654321",
     "collections": {
-      "ownedGames": [
-        "51325",
-        "427930",
-        "840788",
-        "326243",
-        "58751"
-      ],
-      "favorites": [
-        "840788",
-        "427930",
-        "58751"
-      ]
+      "ownedGames": [],
+      "favorites": []
     },
-    "cart": []
+    "cart": [],
+    "wishlist": [],
+    "defaultTheme": "dark"
   },
   {
-    "id": "3",
     "username": "divyanshsharma69",
     "name": "Divyansh Sharma",
     "email": "divyansh123@gmail.com",
     "password": "div123",
     "collections": {
-      "ownedGames": [
-        "51325",
-        "427930",
-        "840788",
-        "326243",
-        "58751"
-      ],
-      "favorites": [
-        "840788",
-        "427930",
-        "58751"
-      ]
+      "ownedGames": [],
+      "favorites": []
     },
-    "cart": []
+    "cart": [],
+    "wishlist": [],
+    "defaultTheme": "dark"
   }
 ]

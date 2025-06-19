@@ -277,14 +277,10 @@ const GameDetails = () => {
               <h3 className="lh-1">Available Achievements</h3>
               <hr />
 
-              <div className="achievements-container d-flex overflow-auto gap-5">
+              <div className="achievements-container d-flex overflow-auto gap-3 gap-md-4 gap-xl-5 pb-2">
                 {gameData.achievements.highlighted.map((achievement) => (
                   <div key={achievement.name} className="achievement-card">
-                    <img
-                      src={achievement.path}
-                      alt={achievement.name}
-                      className="thumbnail mb-2 rounded-10"
-                    />
+                    <img src={achievement.path} alt={achievement.name} className="thumbnail mb-2" />
                     <p className="m-0 text-primary fw-semibold">{achievement.name}</p>
                   </div>
                 ))}
