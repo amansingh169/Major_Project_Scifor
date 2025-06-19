@@ -55,7 +55,7 @@ const Cart = () => {
 
       <div className="row">
         <div className="cart-items col-12 col-xl-9 col-lg-8 d-flex flex-column gap-3">
-          {cart.map((game) => (
+          {cart.reverse().map((game) => (
             <CartItem key={game.steam_appid} game={game} />
           ))}
         </div>

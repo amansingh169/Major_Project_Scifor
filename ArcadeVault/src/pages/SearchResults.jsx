@@ -36,7 +36,7 @@ const SearchResults = () => {
       <div className="d-flex flex-wrap gap-4 justify-content-center px-2">
         {!resultList || <h2>Loading...</h2> ? (
           resultList.map((game) => (
-            <Link to={`/game/${game.id}`} key={game.id}>
+            <Link to={`/game/${game?.steam_appid}`} key={game?.steam_appid}>
               <Card gameInfo={game} isLoading={isLoading} />
             </Link>
           ))

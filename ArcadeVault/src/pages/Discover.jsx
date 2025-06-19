@@ -22,7 +22,7 @@ const Discover = () => {
         console.log("API Fetched!");
 
         setGames(data);
-        const discountedGames = data.filter((game) => game?.price?.discount_percent > 0);
+        const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
         setDiscountedGames(discountedGames);
 
         localStorage.setItem("gamesData", JSON.stringify(data));

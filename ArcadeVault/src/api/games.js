@@ -14,11 +14,27 @@ const fetchSteamSpyGames = async (type) => {
   }
 };
 
+export const fetchSteamSpyGenreGames = async (genre) => {
+  try {
+    const res = await fetch(`${baseUrl}/steamspy/genre?genre=${encodeURIComponent(genre)}`);
+    const data = await res.json();
+    return Object.values(data);
+  } catch (err) {
+    console.error("Error fetching genre-based games from SteamSpy:", err);
+  }
+};
+
 export const fetchSteamGameData = async (appId) => {
   try {
     const res = await fetch(`${baseUrl}/steam?appid=${appId}`);
     const data = await res.json();
-    return data[appId]?.data || null;
+
+    if (!data || !data[appId] || !data[appId].data) {
+      console.warn(`No valid data for appid: ${appId}`, data);
+      return null;
+    }
+
+    return data[appId].data;
   } catch (err) {
     console.error("Error fetching game data from Steam:", err);
   }
@@ -43,12 +59,12 @@ export const fetchSearchResults = async (query) => {
       if (!steamData) return null;
 
       return {
-        id: steamData.steam_appid,
+        steam_appid: steamData.steam_appid,
         name: steamData.name,
         type: steamData.type,
         genres: steamData.genres,
-        banner: steamData.header_image,
-        price: steamData.price_overview || null,
+        header_image: steamData.header_image,
+        price_overview: steamData.price_overview || null,
         fullData: steamData,
       };
     })
@@ -69,17 +85,39 @@ const fetchGameList = async (type) => {
       if (!steamData) return null;
 
       return {
-        id: steamData.steam_appid,
+        steam_appid: steamData.steam_appid,
         name: steamData.name,
         type: steamData.type,
         genres: steamData.genres,
-        banner: steamData.header_image,
-        price: steamData.price_overview || null,
+        header_image: steamData.header_image,
+        price_overview: steamData.price_overview || null,
       };
     })
   );
 
   return games;
+};
+
+const fetchGenreGameList = async (type) => {
+  const gamesList = await fetchSteamSpyGenreGames(type);
+
+  const games = await Promise.all(
+    gamesList.map(async (spyData) => {
+      const steamData = await fetchSteamGameData(spyData.appid);
+      if (!steamData) return null;
+
+      return {
+        steam_appid: steamData.steam_appid,
+        name: steamData.name,
+        type: steamData.type,
+        genres: steamData.genres,
+        header_image: steamData.header_image,
+        price_overview: steamData.price_overview || null,
+      };
+    })
+  );
+
+  return games.filter(Boolean);
 };
 
 export const fetchGames = () => fetchGameList("top100in2weeks");

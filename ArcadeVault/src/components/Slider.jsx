@@ -32,7 +32,7 @@ const Slider = ({ gameList, title }) => {
         {gameList.map(
           (game) =>
             game && (
-              <Link to={`/game/${game.id}`} key={game.id}>
+              <Link to={`/game/${game.steam_appid}`} key={game.steam_appid}>
                 <Card gameInfo={game} />
               </Link>
             )

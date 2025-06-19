@@ -101,7 +101,7 @@ const Wishlist = () => {
             </div>
           </div>
 
-          {wishlist.map((game) => (
+          {wishlist.reverse().map((game) => (
             <CartItem key={game.steam_appid} game={game} inWishlist={true} />
           ))}
         </div>

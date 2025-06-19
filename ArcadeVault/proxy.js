@@ -22,6 +22,23 @@ app.get("/api/steamspy", async (req, res) => {
   }
 });
 
+// Proxy for SteamSpy genre-based games
+app.get("/api/steamspy/genre", async (req, res) => {
+  const { genre } = req.query;
+  if (!genre) return res.status(400).json({ error: "Missing genre" });
+
+  const url = `https://steamspy.com/api.php?request=genre&genre=${encodeURIComponent(genre)}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching SteamSpy genre data:", error);
+    res.status(500).json({ error: "Failed to fetch genre data from SteamSpy" });
+  }
+});
+
 // Proxy for Steam Store API
 app.get("/api/steam", async (req, res) => {
   const { appid } = req.query;

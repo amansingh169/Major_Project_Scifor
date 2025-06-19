@@ -33,11 +33,11 @@ const LibraryCard = ({ gameInfo }) => {
       </div>
 
       <div className="lib-games-thumbnail px-0 d-none d-sm-block w-25">
-        <button className="add-to place-content-center">
+        <button className="add-to place-content-center p-0 d-none d-md-block">
           {gameInfo.isfavorite === true ? (
-            <i className="bi bi-heart-fill fs-6 p-2"></i>
+            <i className="bi bi-heart-fill fs-7 p-2"></i>
           ) : (
-            <i className="bi bi-heart fs-6 p-2"></i>
+            <i className="bi bi-heart fs-7 p-2"></i>
           )}
         </button>
 
