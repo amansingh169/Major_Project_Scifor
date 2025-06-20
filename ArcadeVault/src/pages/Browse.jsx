@@ -4,7 +4,7 @@ import { fetchSteamSpyGenreGames } from "../api/games";
 const Browse = () => {
   useEffect(() => {
     const fetchGames = async () => {
-      const res = await fetchSteamSpyGenreGames("action");
+      const res = await fetchSteamSpyGenreGames("rpg");
       console.log(res.slice(51, 101));
     };
 
