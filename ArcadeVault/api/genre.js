@@ -3,10 +3,10 @@ export default async function handler(req, res) {
   if (!genre) return res.status(400).json({ error: "Missing genre" });
 
   try {
-    const res = await fetch(
+    const response = await fetch(
       `https://steamspy.com/api.php?request=genre&genre=${encodeURIComponent(genre)}`
     );
-    const data = await res.json();
+    const data = await response.json();
     res.status(200).json(data);
   } catch (err) {
     console.error("Error fetching genre response.", err);
