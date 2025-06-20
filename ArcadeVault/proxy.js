@@ -27,7 +27,7 @@ app.get("/api/steamspy/genre", async (req, res) => {
   const { genre } = req.query;
   if (!genre) return res.status(400).json({ error: "Missing genre" });
 
-  const url = `https://steamspy.com/api.php?request=genre&genre=${encodeURIComponent(genre)}`;
+  const url = `https://steamspy.com/api.php?request=genre&genre=${genre}`;
 
   try {
     const response = await fetch(url);
