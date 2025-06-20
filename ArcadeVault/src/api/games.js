@@ -14,7 +14,7 @@ const fetchSteamSpyGames = async (type) => {
   }
 };
 
-export const fetchSteamSpyGenreGames = async (genre) => {
+const fetchSteamSpyGenreGames = async (genre) => {
   try {
     const res = await fetch(`${baseUrl}/steamspy/genre?genre=${encodeURIComponent(genre)}`);
     const data = await res.json();
@@ -98,11 +98,11 @@ const fetchGameList = async (type) => {
   return games;
 };
 
-const fetchGenreGameList = async (type) => {
+export const fetchGenreGameList = async (type, start = 101, end = 151) => {
   const gamesList = await fetchSteamSpyGenreGames(type);
 
   const games = await Promise.all(
-    gamesList.map(async (spyData) => {
+    gamesList.slice(start, end).map(async (spyData) => {
       const steamData = await fetchSteamGameData(spyData.appid);
       if (!steamData) return null;
 

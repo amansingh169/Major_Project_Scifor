@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 const Discover = () => {
   const [games, setGames] = useState([]);
   const [discountedGames, setDiscountedGames] = useState([]);
+  const [sliderGames, setsliderGames] = useState([]);
 
   useEffect(() => {
     const getGames = async () => {
@@ -17,6 +18,9 @@ const Discover = () => {
         setGames(JSON.parse(storedData));
         setDiscountedGames(JSON.parse(storedDiscountedGames));
         console.log("Stored Data Fetched!");
+
+        setsliderGames(JSON.parse(storedData).slice(93, 99));
+        console.log(JSON.parse(storedData).slice(93, 99));
       } else {
         const data = await fetchGames();
         console.log("API Fetched!");
@@ -27,6 +31,8 @@ const Discover = () => {
 
         localStorage.setItem("gamesData", JSON.stringify(data));
         localStorage.setItem("discountedGamesData", JSON.stringify(discountedGames));
+
+        setsliderGames(JSON.parse(storedData).slice(93, 99));
       }
     };
 
@@ -99,6 +105,46 @@ const Discover = () => {
             alt="Card"
           />
         </a>
+      </div>
+
+      <div className="row">
+        <div className="col-9">
+          <Splide
+            options={{
+              type: "loop",
+              rewind: true,
+              gap: "1rem",
+              autoplay: true,
+              lazyLoad: "nearby",
+              arrows: false,
+              pagination: true,
+            }}
+          >
+            {sliderGames.map((game) => (
+              <SplideSlide>
+                <div className="game-slide-content">
+                  <img
+                    src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
+                    alt={game.name}
+                  />
+                  <h1>Hello</h1>
+                </div>
+
+                {/* i want the 1st ss of the game here, fix it */}
+
+                {/* {game?.screenshots?.length > 0 && (
+                  <img
+                    className="splide-img"
+                    src={game?.screenshots[0]?.path_full}
+                    alt="Screenshot"
+                  />
+                )} */}
+              </SplideSlide>
+            ))}
+          </Splide>
+        </div>
+
+        <div className="col-3"></div>
       </div>
 
       <Slider gameList={games3.slice().reverse()} title="Popular Games" />

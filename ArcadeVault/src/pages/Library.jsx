@@ -47,7 +47,9 @@ const Library = () => {
             {collections[collectionId].length === 0 ? (
               <h1>No games in this collection.</h1>
             ) : (
-              collections[collectionId].map((game) => <LibraryCard gameInfo={game} />)
+              collections[collectionId].map((game) => (
+                <LibraryCard key={game.steam_appid} gameInfo={game} />
+              ))
             )}
           </div>
         </div>
