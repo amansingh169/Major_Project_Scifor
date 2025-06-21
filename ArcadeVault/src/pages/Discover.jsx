@@ -1,7 +1,9 @@
 import Slider from "../components/Slider";
+import PriceOverview from "../components/PriceOverview";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { fetchGames } from "../api/games";
+import { fetchGames, fetchSteamGameData } from "../api/games";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Discover = () => {
@@ -13,26 +15,37 @@ const Discover = () => {
     const getGames = async () => {
       const storedData = localStorage.getItem("gamesData") || "";
       const storedDiscountedGames = localStorage.getItem("discountedGamesData") || "";
+      const storedSliderGames = localStorage.getItem("sliderGames") || "";
 
-      if (storedData && storedDiscountedGames) {
+      if (storedData && storedDiscountedGames && storedSliderGames) {
         setGames(JSON.parse(storedData));
         setDiscountedGames(JSON.parse(storedDiscountedGames));
-        console.log("Stored Data Fetched!");
-
-        setsliderGames(JSON.parse(storedData).slice(93, 99));
-        console.log(JSON.parse(storedData).slice(93, 99));
+        setsliderGames(JSON.parse(storedSliderGames));
       } else {
         const data = await fetchGames();
-        console.log("API Fetched!");
+        const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
+        const top6Games = discountedGames.slice(-8);
+        console.log(top6Games);
+        const enrichedTopGames = await Promise.all(
+          top6Games.map(async (g) => {
+            const fullGame = await fetchSteamGameData(g.steam_appid);
+
+            return {
+              ...g,
+              screenshots: fullGame?.screenshots || [],
+              short_description: fullGame?.short_description || [],
+            };
+          })
+        );
+        console.log(enrichedTopGames);
 
         setGames(data);
-        const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
         setDiscountedGames(discountedGames);
+        setsliderGames(enrichedTopGames);
 
         localStorage.setItem("gamesData", JSON.stringify(data));
         localStorage.setItem("discountedGamesData", JSON.stringify(discountedGames));
-
-        setsliderGames(JSON.parse(storedData).slice(93, 99));
+        localStorage.setItem("sliderGames", JSON.stringify(enrichedTopGames));
       }
     };
 
@@ -107,44 +120,87 @@ const Discover = () => {
         </a>
       </div>
 
-      <div className="row">
-        <div className="col-9">
+      <div className="top-games-slider">
+        <div className="d-none d-xl-block">
+          <Splide
+            options={{
+              type: "fade",
+              rewind: true,
+              gap: "1rem",
+              autoplay: true,
+              arrows: true,
+              pagination: true,
+            }}
+          >
+            {sliderGames.map((game) => (
+              <SplideSlide key={game.steam_appid}>
+                <Link className="game-slide">
+                  <div className="gradient"></div>
+
+                  <div className="game-slide-content">
+                    <img
+                      className="game-logo"
+                      height={200}
+                      src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
+                      alt={game.name}
+                    />
+                    <p className="fw-semibold text-accent">• Live MEGA SALE</p>
+                    <p className="text-primary">{game.short_description}</p>
+                    <PriceOverview price_overview={game.price_overview} fs="5" />
+                    <div className="d-flex gap-2 mt-2">
+                      <button className="btn btn-primary fw-bold">Buy Now</button>
+                      <div className="btn btn-secondary">
+                        <i className="bi bi-plus-circle"></i>&nbsp; Add to Wishlist
+                      </div>
+                    </div>
+                  </div>
+
+                  <img
+                    className="splide-img"
+                    src={game?.screenshots[5].path_full}
+                    alt="Screenshot"
+                  />
+                </Link>
+              </SplideSlide>
+            ))}
+          </Splide>
+        </div>
+
+        <div className="d-xl-none">
           <Splide
             options={{
               type: "loop",
               rewind: true,
               gap: "1rem",
               autoplay: true,
-              lazyLoad: "nearby",
-              arrows: false,
               pagination: true,
             }}
           >
             {sliderGames.map((game) => (
-              <SplideSlide>
-                <div className="game-slide-content">
+              <SplideSlide key={game.steam_appid}>
+                <Link className="game-slide game-slide-small">
+                  <div className="gradient"></div>
                   <img
+                    className="game-logo"
                     src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
                     alt={game.name}
                   />
-                  <h1>Hello</h1>
-                </div>
+                  <div className="game-slide-content">
+                    <p className="fw-semibold text-accent my-2">• Live MEGA SALE</p>
+                    <PriceOverview price_overview={game.price_overview} fs="6" />
+                    <p className="game-des text-primary my-2">{game.short_description}</p>
+                  </div>
 
-                {/* i want the 1st ss of the game here, fix it */}
-
-                {/* {game?.screenshots?.length > 0 && (
                   <img
                     className="splide-img"
-                    src={game?.screenshots[0]?.path_full}
+                    src={game?.screenshots[5].path_full}
                     alt="Screenshot"
                   />
-                )} */}
+                </Link>
               </SplideSlide>
             ))}
           </Splide>
         </div>
-
-        <div className="col-3"></div>
       </div>
 
       <Slider gameList={games3.slice().reverse()} title="Popular Games" />

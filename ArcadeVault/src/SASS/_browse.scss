@@ -1,7 +1,64 @@
-.game-slide-content {
-  background-color: red;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
+@use "utils" as u;
+
+.top-games-slider {
+  .game-slide {
+    .gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent 50%);
+      z-index: 2;
+    }
+
+    .splide-img {
+      object-position: center;
+    }
+
+    .game-slide-content {
+      .game-logo {
+        height: u.rem(200);
+        margin-bottom: u.rem(30);
+      }
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      max-width: u.rem(500);
+      margin: u.rem(50) u.rem(70);
+      z-index: 3;
+    }
+
+    &-small {
+      .gradient {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent, rgba(0, 0, 0, 0.8));
+      }
+
+      .splide-img {
+        height: u.rem(500);
+      }
+
+      .game-logo {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: u.rem(150);
+        z-index: 2;
+      }
+
+      .game-slide-content {
+        .game-des {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        margin: u.rem(20) u.rem(20);
+      }
+    }
+  }
 }
