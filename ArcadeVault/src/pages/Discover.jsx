@@ -2,11 +2,14 @@ import Slider from "../components/Slider";
 import PriceOverview from "../components/PriceOverview";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { fetchGames, fetchSteamGameData } from "../api/games";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import { UserContext } from "../contexts/UserContext";
+import addToWishlist from "../utils/addToWishlist";
 
 const Discover = () => {
+  const { setUser } = useContext(UserContext);
   const [games, setGames] = useState([]);
   const [discountedGames, setDiscountedGames] = useState([]);
   const [sliderGames, setsliderGames] = useState([]);
@@ -60,7 +63,7 @@ const Discover = () => {
   return (
     <div className="d-flex flex-column gap-3">
       <Splide
-        className="d-lg-none"
+        className="d-md-none"
         options={{
           type: "loop",
           rewind: true,
@@ -96,7 +99,7 @@ const Discover = () => {
         </SplideSlide>
       </Splide>
 
-      <div className="d-none d-lg-flex gap-3">
+      <div className="d-none d-md-flex gap-3">
         <a href="#" className="card-wrapper">
           <img
             className="thumbnail img-thumbnail"
@@ -134,24 +137,35 @@ const Discover = () => {
           >
             {sliderGames.map((game) => (
               <SplideSlide key={game.steam_appid}>
-                <Link className="game-slide">
+                <div className="game-slide">
                   <div className="gradient"></div>
 
                   <div className="game-slide-content">
-                    <img
-                      className="game-logo"
-                      height={200}
-                      src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
-                      alt={game.name}
-                    />
-                    <p className="fw-semibold text-accent">• Live MEGA SALE</p>
+                    <Link to={`/game/${game.steam_appid}`}>
+                      <img
+                        className="game-logo"
+                        height={200}
+                        src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
+                        alt={game.name}
+                      />
+                    </Link>
+                    <p className="fw-semibold text-success">
+                      <i className="bi bi-circle-fill fs-7"></i>&nbsp; Live MEGA SALE
+                    </p>
                     <p className="text-primary">{game.short_description}</p>
                     <PriceOverview price_overview={game.price_overview} fs="5" />
                     <div className="d-flex gap-2 mt-2">
                       <button className="btn btn-primary fw-bold">Buy Now</button>
-                      <div className="btn btn-secondary">
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToWishlist(game, setUser);
+                        }}
+                        className="btn btn-secondary"
+                      >
                         <i className="bi bi-plus-circle"></i>&nbsp; Add to Wishlist
-                      </div>
+                      </button>
                     </div>
                   </div>
 
@@ -160,7 +174,7 @@ const Discover = () => {
                     src={game?.screenshots[5].path_full}
                     alt="Screenshot"
                   />
-                </Link>
+                </div>
               </SplideSlide>
             ))}
           </Splide>
@@ -169,16 +183,17 @@ const Discover = () => {
         <div className="d-xl-none">
           <Splide
             options={{
-              type: "loop",
+              type: "fade",
               rewind: true,
               gap: "1rem",
+              arrows: false,
               autoplay: true,
               pagination: true,
             }}
           >
             {sliderGames.map((game) => (
               <SplideSlide key={game.steam_appid}>
-                <Link className="game-slide game-slide-small">
+                <Link to={`/game/${game.steam_appid}`} className="game-slide game-slide-small">
                   <div className="gradient"></div>
                   <img
                     className="game-logo"
