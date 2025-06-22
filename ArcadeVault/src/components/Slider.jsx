@@ -30,12 +30,7 @@ const Slider = ({ gameList, title }) => {
 
       <div className="slider-container d-flex gap-3" ref={sliderRef}>
         {gameList.map(
-          (game) =>
-            game && (
-              <Link to={`/game/${game.steam_appid}`} key={game.steam_appid}>
-                <Card gameInfo={game} />
-              </Link>
-            )
+          (game) => game && <Card key={game.steam_appid} gameInfo={game} slider={true} />
         )}
       </div>
     </div>

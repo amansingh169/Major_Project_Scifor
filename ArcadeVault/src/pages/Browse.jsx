@@ -55,8 +55,8 @@ const Browse = () => {
 
   return (
     <div className="browse-wrapper">
-      <div className="genre-slider mt-4">
-        <h3>Popular Genres</h3>
+      <div className="genre-slider mt-3">
+        <h2>Popular Genres</h2>
 
         <div className="d-none d-xl-block">
           <Splide
@@ -112,17 +112,17 @@ const Browse = () => {
         </div>
       </div>
 
-      <div className="row mt-5">
-        <div className="col-10">
+      <div className="row mt-4 mt-md-5">
+        <div className="col-12 col-md-9 order-2 order-md-1 mt-3 mt-md-0">
           <SortBy />
 
-          {allGames.map((g) => (
-            <Link key={g.steam_appid} to={`/game/${g.steam_appid}`}>
+          <div className="games-container gap-3 mt-3">
+            {allGames.map((g) => (
               <Card gameInfo={g} />
-            </Link>
-          ))}
+            ))}
+          </div>
         </div>
-        <div className="col-2">
+        <div className="col-12 col-md-3 order-1 order-md-2">
           <h4 className="mb-4">Filters</h4>
           <Filters />
         </div>

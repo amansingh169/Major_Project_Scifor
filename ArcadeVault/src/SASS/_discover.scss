@@ -77,10 +77,15 @@
   }
 }
 
+// fix this
 .card-wrapper {
   position: relative;
-  flex: 1 1 0;
-  // aspect-ratio: 2;
+  flex-shrink: 0;
+  min-width: 200px;
+
+  &.banner-card {
+    flex: 1 1 0;
+  }
 
   .game-title {
     width: 100%;
@@ -91,9 +96,8 @@
     -ms-text-overflow: ellipsis;
   }
 
-  .thumbnail {
-    object-fit: cover;
-    border-radius: 7px;
+  .img-thumbnail {
+    width: 100%;
     transition: 0.2s filter;
 
     &:hover {

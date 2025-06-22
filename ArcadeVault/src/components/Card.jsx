@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 import { getGameType } from "../utils/formatGameContent";
 import PriceOverview from "./PriceOverview";
 import CardSkeleton from "./sekeletons/CardSkeleton";
 
-const Card = ({ gameInfo, isLoading }) => {
+const Card = ({ gameInfo, isLoading, slider = false }) => {
   return (
-    <div className={`card-wrapper  ${gameInfo ? "game-card" : ""}`}>
+    <Link
+      to={`/game/${gameInfo.steam_appid}`}
+      className={`card-wrapper ${slider ? "game-card" : ""}`}
+    >
       {isLoading ? (
         <>
           <CardSkeleton />
@@ -12,15 +16,15 @@ const Card = ({ gameInfo, isLoading }) => {
         </>
       ) : (
         <>
-          <img className="thumbnail" src={gameInfo?.header_image} alt="Card" />
+          <img className="img-thumbnail" src={gameInfo?.header_image} alt="Card" />
 
           {gameInfo && (
-            <div>
+            <div className="card-content">
               <button className="add-to place-content-center">
                 <i className="bi bi-plus fs-4"></i>
               </button>
 
-              <div className="card-content">
+              <div>
                 <p className="product-type fw-semibold text-muted mt-2 m-0">
                   {getGameType(gameInfo?.type)}
                 </p>
@@ -32,7 +36,7 @@ const Card = ({ gameInfo, isLoading }) => {
           )}
         </>
       )}
-    </div>
+    </Link>
   );
 };
 

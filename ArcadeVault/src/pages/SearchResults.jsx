@@ -33,12 +33,12 @@ const SearchResults = () => {
 
   return (
     <>
-      <div className="d-flex flex-wrap gap-4 justify-content-center px-2">
-        {!resultList || <h2>Loading...</h2> ? (
+      <div className="games-container gap-4 px-2">
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : resultList && resultList.length > 0 ? (
           resultList.map((game) => (
-            <Link to={`/game/${game?.steam_appid}`} key={game?.steam_appid}>
-              <Card gameInfo={game} isLoading={isLoading} />
-            </Link>
+            <Card key={game?.steam_appid} gameInfo={game} isLoading={isLoading} />
           ))
         ) : (
           <p className="text-center mt-5 fs-4">No results for this search.</p>

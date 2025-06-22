@@ -1,12 +1,10 @@
 import Slider from "../components/Slider";
-import PriceOverview from "../components/PriceOverview";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { fetchGames, fetchSteamGameData } from "../api/games";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { UserContext } from "../contexts/UserContext";
-import addToWishlist from "../utils/addToWishlist";
+import TopGamesSlider from "../components/TopGamesSlider";
 
 const Discover = () => {
   const { setUser } = useContext(UserContext);
@@ -28,7 +26,6 @@ const Discover = () => {
         const data = await fetchGames();
         const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
         const top6Games = discountedGames.slice(-8);
-        console.log(top6Games);
         const enrichedTopGames = await Promise.all(
           top6Games.map(async (g) => {
             const fullGame = await fetchSteamGameData(g.steam_appid);
@@ -40,7 +37,6 @@ const Discover = () => {
             };
           })
         );
-        console.log(enrichedTopGames);
 
         setGames(data);
         setDiscountedGames(discountedGames);
@@ -100,21 +96,21 @@ const Discover = () => {
       </Splide>
 
       <div className="d-none d-md-flex gap-3">
-        <a href="#" className="card-wrapper">
+        <a href="#" className="card-wrapper banner-card">
           <img
             className="thumbnail img-thumbnail"
             src="https://cdn2.unrealengine.com/en-mega-sale-3up-ms-banner-asset-1920x1080-32a2d144ab4d.jpg?resize=1&w=854&h=480&quality=medium"
             alt="Card"
           />
         </a>
-        <a href="#" className="card-wrapper">
+        <a href="#" className="card-wrapper banner-card">
           <img
             className="thumbnail img-thumbnail"
             src="https://cdn2.unrealengine.com/en-rewards-boosted-breaker-asset-7dfda25a88fe.avif?resize=1&w=854&h=480&quality=medium"
             alt="Card"
           />
         </a>
-        <a href="#" className="card-wrapper">
+        <a href="#" className="card-wrapper banner-card">
           <img
             className="thumbnail img-thumbnail"
             src="https://cdn2.unrealengine.com/en-mega-sale-3up-fg-banner-asset-1920x1080-615c6807a1ad.jpg?resize=1&w=854&h=480&quality=medium"
@@ -123,100 +119,7 @@ const Discover = () => {
         </a>
       </div>
 
-      <div className="top-games-slider">
-        <div className="d-none d-xl-block">
-          <Splide
-            options={{
-              type: "fade",
-              rewind: true,
-              gap: "1rem",
-              autoplay: true,
-              arrows: true,
-              pagination: true,
-            }}
-          >
-            {sliderGames.map((game) => (
-              <SplideSlide key={game.steam_appid}>
-                <div className="game-slide">
-                  <div className="gradient"></div>
-
-                  <div className="game-slide-content">
-                    <Link to={`/game/${game.steam_appid}`}>
-                      <img
-                        className="game-logo"
-                        height={200}
-                        src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
-                        alt={game.name}
-                      />
-                    </Link>
-                    <p className="fw-semibold text-success">
-                      <i className="bi bi-circle-fill fs-7"></i>&nbsp; Live MEGA SALE
-                    </p>
-                    <p className="text-primary">{game.short_description}</p>
-                    <PriceOverview price_overview={game.price_overview} fs="5" />
-                    <div className="d-flex gap-2 mt-2">
-                      <button className="btn btn-primary fw-bold">Buy Now</button>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          addToWishlist(game, setUser);
-                        }}
-                        className="btn btn-secondary"
-                      >
-                        <i className="bi bi-plus-circle"></i>&nbsp; Add to Wishlist
-                      </button>
-                    </div>
-                  </div>
-
-                  <img
-                    className="splide-img"
-                    src={game?.screenshots[5].path_full}
-                    alt="Screenshot"
-                  />
-                </div>
-              </SplideSlide>
-            ))}
-          </Splide>
-        </div>
-
-        <div className="d-xl-none">
-          <Splide
-            options={{
-              type: "fade",
-              rewind: true,
-              gap: "1rem",
-              arrows: false,
-              autoplay: true,
-              pagination: true,
-            }}
-          >
-            {sliderGames.map((game) => (
-              <SplideSlide key={game.steam_appid}>
-                <Link to={`/game/${game.steam_appid}`} className="game-slide game-slide-small">
-                  <div className="gradient"></div>
-                  <img
-                    className="game-logo"
-                    src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
-                    alt={game.name}
-                  />
-                  <div className="game-slide-content">
-                    <p className="fw-semibold text-accent my-2">• Live MEGA SALE</p>
-                    <PriceOverview price_overview={game.price_overview} fs="6" />
-                    <p className="game-des text-primary my-2">{game.short_description}</p>
-                  </div>
-
-                  <img
-                    className="splide-img"
-                    src={game?.screenshots[5].path_full}
-                    alt="Screenshot"
-                  />
-                </Link>
-              </SplideSlide>
-            ))}
-          </Splide>
-        </div>
-      </div>
+      <TopGamesSlider sliderGames={sliderGames} />
 
       <Slider gameList={games3.slice().reverse()} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
