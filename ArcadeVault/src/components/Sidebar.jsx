@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="sidebar d-none d-sm-flex flex-column">
       <div className="brand text-center mx-auto">
         <NavLink to="/">
-          <img className="w-100" src="../public/project logo.svg" alt="ArcadeVault" />
+          <img className="w-100" src="/project logo.svg" alt="ArcadeVault" />
         </NavLink>
       </div>
 
