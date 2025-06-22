@@ -1,0 +1,108 @@
+ArcadeVault/
+│
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── README.md
+├── proxy.js
+├── vite.config.js
+├── vercel.json
+├── eslint.config.js
+├── structure.txt
+│
+├── api/
+│   ├── search.js
+│   ├── steam.js
+│   ├── steamspy.js
+│   └── steamspy/
+│       └── genre.js
+│
+├── dist/                # Build folder (ignored in production)
+├── public/
+│   ├── project logo.png
+│   ├── project logo.svg
+│   └── project logo2.png
+│
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   │
+│   ├── api/
+│   │   └── games.js
+│   │
+│   ├── assets/
+│   │   ├── banner1.jpg
+│   │   ├── banner2.jpg
+│   │   ├── banner3.jpg
+│   │   └── neon.jpg
+│   │
+│   ├── components/
+│   │   ├── sekeletons/
+│   │   │   ├── CardSkeleton.jsx
+│   │   │   └── SearchResultSkeleton.jsx
+│   │   │
+│   │   ├── AuthModal.jsx
+│   │   ├── Card.jsx
+│   │   ├── Card2.jsx
+│   │   ├── CartItem.jsx
+│   │   ├── CollectionNav.jsx
+│   │   ├── EmptySection.jsx
+│   │   ├── Filters.jsx
+│   │   ├── Footer.jsx
+│   │   ├── GenreCard.jsx
+│   │   ├── LibraryCard.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── NavDropdown.jsx
+│   │   ├── PegiRating.jsx
+│   │   ├── PriceOverview.jsx
+│   │   ├── ScrollToTop.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── Sidebar.jsx
+│   │   ├── Slider.jsx
+│   │   ├── SortBy.jsx
+│   │   ├── ThemeSelector.jsx
+│   │   └── TopGamesSlider.jsx
+│   │
+│   ├── contexts/
+│   │   ├── ThemeContext.jsx
+│   │   └── UserContext.jsx
+│   │
+│   ├── layouts/
+│   │   └── MainLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Browse.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Discover.jsx
+│   │   ├── GameDetails.jsx
+│   │   ├── Library.jsx
+│   │   ├── Login.jsx
+│   │   ├── News.jsx
+│   │   ├── Profile.jsx
+│   │   ├── SearchResults.jsx
+│   │   ├── Settings.jsx
+│   │   ├── Unity.jsx
+│   │   └── Wishlist.jsx
+│   │
+│   ├── SASS/
+│   │   ├── _browse.scss
+│   │   ├── _discover.scss
+│   │   ├── _gameDetails.scss
+│   │   ├── _globals.scss
+│   │   ├── _layout.scss
+│   │   ├── _library.scss
+│   │   ├── _utils.scss
+│   │   ├── _variables.scss
+│   │   └── main.scss
+│   │
+│   └── utils/
+│       ├── addToCart.js
+│       ├── addToLibrary.js
+│       ├── addToWishlist.js
+│       ├── checkout.js
+│       ├── formatGameContent.js
+│       ├── moveToCart.js
+│       ├── moveToWishlist.js
+│       ├── removeItem.js
+│       └── showNotification.js

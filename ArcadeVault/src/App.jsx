@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
@@ -10,11 +10,9 @@ import Browse from "./pages/Browse";
 import News from "./pages/News";
 import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
-import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Library from "./pages/Library";
 import Unity from "./pages/Unity";
-import Settings from "./pages/Settings";
 import GameDetails from "./pages/GameDetails";
 import SearchResults from "./pages/SearchResults";
 
@@ -41,7 +39,6 @@ function App() {
               <Route path="/news" element={<News />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/library" element={<Library />} />
               <Route path="/library/:collectionId" element={<Library />} />

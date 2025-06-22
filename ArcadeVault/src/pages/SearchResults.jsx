@@ -33,7 +33,9 @@ const SearchResults = () => {
 
   return (
     <>
-      <div className="games-container gap-4 px-2">
+      <h3 className="mb-4">Search Results:</h3>
+
+      <div className="games-container gap-4">
         {isLoading ? (
           <h2>Loading...</h2>
         ) : resultList && resultList.length > 0 ? (
