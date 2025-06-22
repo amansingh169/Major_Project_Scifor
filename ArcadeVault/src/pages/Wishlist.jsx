@@ -5,12 +5,11 @@ import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 import Filters from "../components/Filters";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import SortBy from "../components/SortBy";
 
 const Wishlist = () => {
   const { user } = useContext(UserContext);
   const wishlist = user?.wishlist;
-
-  const [sortBy, setSortBy] = useState("On Sale");
 
   if (!user) {
     return <h2>You are not logged in!</h2>;
@@ -45,61 +44,7 @@ const Wishlist = () => {
 
       <div className="row">
         <div className="cart-items col-12 col-xl-9 col-lg-8 d-flex flex-column gap-3">
-          <div className="sort-by d-flex align-items-center">
-            <span>Sort by:</span>
-
-            <div className="dropdown">
-              <button
-                className="btn text-primary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {sortBy}
-              </button>
-
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li>
-                  <div onClick={() => setSortBy("On Sale")} className="dropdown-item" href="#">
-                    On Sale
-                  </div>
-                </li>
-                <li>
-                  <div
-                    onClick={() => setSortBy("Recently Added")}
-                    className="dropdown-item"
-                    href="#"
-                  >
-                    Recently Added
-                  </div>
-                </li>
-                <li>
-                  <div onClick={() => setSortBy("Alphabetical")} className="dropdown-item" href="#">
-                    Alphabetical
-                  </div>
-                </li>
-                <li>
-                  <div
-                    onClick={() => setSortBy("Price: Low to High")}
-                    className="dropdown-item"
-                    href="#"
-                  >
-                    Price: Low to High
-                  </div>
-                </li>
-                <li>
-                  <div
-                    onClick={() => setSortBy("Price: High to Low")}
-                    className="dropdown-item"
-                    href="#"
-                  >
-                    Price: High to Low
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <SortBy />
 
           {wishlist.reverse().map((game) => (
             <CartItem key={game.steam_appid} game={game} inWishlist={true} />

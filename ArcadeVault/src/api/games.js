@@ -75,34 +75,57 @@ export const fetchSearchResults = async (query) => {
 
 const fetchGameList = async (type) => {
   const steamSpyGames = await fetchSteamSpyGames(type);
+  let games;
 
-  const games = await Promise.all(
-    steamSpyGames.map(async (spyData) => {
-      console.log(spyData);
+  if (type === "all") {
+    games = await Promise.all(
+      steamSpyGames.slice(-50).map(async (spyData) => {
+        console.log(spyData);
 
-      const appId = spyData.appid;
-      const steamData = await fetchSteamGameData(appId);
-      if (!steamData) return null;
+        const appId = spyData.appid;
+        const steamData = await fetchSteamGameData(appId);
+        if (!steamData) return null;
 
-      return {
-        steam_appid: steamData.steam_appid,
-        name: steamData.name,
-        type: steamData.type,
-        genres: steamData.genres,
-        header_image: steamData.header_image,
-        price_overview: steamData.price_overview || null,
-      };
-    })
-  );
+        return {
+          steam_appid: steamData.steam_appid,
+          name: steamData.name,
+          type: steamData.type,
+          genres: steamData.genres,
+          header_image: steamData.header_image,
+          price_overview: steamData.price_overview || null,
+        };
+      })
+    );
+  } else {
+    games = await Promise.all(
+      steamSpyGames.map(async (spyData) => {
+        console.log(spyData);
+
+        const appId = spyData.appid;
+        const steamData = await fetchSteamGameData(appId);
+        if (!steamData) return null;
+
+        return {
+          steam_appid: steamData.steam_appid,
+          name: steamData.name,
+          type: steamData.type,
+          genres: steamData.genres,
+          header_image: steamData.header_image,
+          price_overview: steamData.price_overview || null,
+        };
+      })
+    );
+  }
 
   return games;
 };
 
-export const fetchGenreGameList = async (type, start = 101, end = 151) => {
+export const fetchGenreGameList = async (type, last = -50) => {
   const gamesList = await fetchSteamSpyGenreGames(type);
+  console.log(gamesList);
 
   const games = await Promise.all(
-    gamesList.slice(start, end).map(async (spyData) => {
+    gamesList.slice(last).map(async (spyData) => {
       const steamData = await fetchSteamGameData(spyData.appid);
       if (!steamData) return null;
 
@@ -121,3 +144,4 @@ export const fetchGenreGameList = async (type, start = 101, end = 151) => {
 };
 
 export const fetchGames = () => fetchGameList("top100in2weeks");
+export const fetchAllGames = () => fetchGameList("all");

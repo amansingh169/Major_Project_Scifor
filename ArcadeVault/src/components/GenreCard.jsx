@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const GenreCard = ({ genre }) => {
   return (
     <SplideSlide>
-      <Link to={`/browse?genre=${encodeURIComponent(genre)}`}>
-        <div className="genre-div bg-accent rounded-2 py-5 text-center">
-          <h3 className="text-secondary">{genre.charAt(0).toUpperCase() + genre.slice(1)}</h3>
+      <Link to={`/browse?genre=${encodeURIComponent(genre.slug)}`}>
+        <div className="genre-div bg-accent rounded-2 d-flex align-items-center justify-content-center text-center">
+          <span className="fs-3 fw-bold text-secondary">{genre.name}</span>
         </div>
       </Link>
     </SplideSlide>
