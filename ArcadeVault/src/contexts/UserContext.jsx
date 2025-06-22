@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext } from "react";
-import users from "../data/users.json";
 
 export const UserContext = createContext();
 
@@ -18,8 +17,10 @@ export const UserProvider = ({ children }) => {
 
   // Save user and all users to localStorage when changed
   useEffect(() => {
-    if (user) localStorage.setItem("user", JSON.stringify(user));
-    else localStorage.removeItem("user");
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      setUserList((prev) => prev.map((u) => (u.email === user.email ? user : u)));
+    } else localStorage.removeItem("user");
   }, [user]);
 
   useEffect(() => {

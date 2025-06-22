@@ -124,7 +124,7 @@ const Browse = () => {
         </div>
         <div className="col-12 col-md-3 order-1 order-md-2">
           <h4 className="mb-4">Filters</h4>
-          <Filters />
+          <Filters browse={true} />
         </div>
       </div>
     </div>

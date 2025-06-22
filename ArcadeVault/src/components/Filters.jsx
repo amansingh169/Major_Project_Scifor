@@ -1,4 +1,4 @@
-const Filters = ({ library = false }) => {
+const Filters = ({ library = false, browse = false }) => {
   return (
     <div className="accordion" id="filterAccordion">
       {library && (
@@ -50,6 +50,86 @@ const Filters = ({ library = false }) => {
             </div>
           </div>
         </div>
+      )}
+
+      {browse && (
+        <>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="eventsHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#eventsCollapse"
+                aria-expanded="false"
+                aria-controls="eventsCollapse"
+              >
+                Events
+                <i className="bi bi-chevron-down custom-icon ms-auto"></i>
+              </button>
+            </h2>
+            <div
+              id="eventsCollapse"
+              className="accordion-collapse collapse"
+              aria-labelledby="eventsHeading"
+              data-bs-parent="#filterAccordion"
+            >
+              <div className="accordion-body">
+                {["Deals of the Week", "EA Classic", "MEGA Savings", "First Run"].map((e) => (
+                  <div className="form-check" key={e}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={e.toLowerCase()}
+                      id={`e-${e}`}
+                    />
+                    <label className="form-check-label" htmlFor={`e-${e}`}>
+                      {e}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="priceHeading">
+              <button
+                className="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#priceCollapse"
+                aria-expanded="false"
+                aria-controls="priceCollapse"
+              >
+                Price
+                <i className="bi bi-chevron-down custom-icon ms-auto"></i>
+              </button>
+            </h2>
+            <div
+              id="priceCollapse"
+              className="accordion-collapse collapse"
+              aria-labelledby="priceHeading"
+              data-bs-parent="#filterAccordion"
+            >
+              <div className="accordion-body">
+                {["Free", "Under $10", "Under $20", "Under $35", "$25 and above"].map((p) => (
+                  <div className="form-check" key={p}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value={p.toLowerCase()}
+                      id={`p-${p}`}
+                    />
+                    <label className="form-check-label" htmlFor={`p-${p}`}>
+                      {p}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Genre Filter */}
