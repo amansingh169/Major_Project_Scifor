@@ -7,9 +7,9 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar d-none d-sm-flex flex-column">
-      <div className="brand text-center">
+      <div className="brand text-center mx-auto">
         <NavLink to="/">
-          <i className="bi bi-steam"></i>
+          <img className="w-100" src="../public/project logo.svg" alt="ArcadeVault" />
         </NavLink>
       </div>
 

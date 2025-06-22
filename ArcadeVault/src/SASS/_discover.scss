@@ -1,19 +1,9 @@
 @use "utils" as u;
 
 .brand {
-  line-height: 1;
   height: u.rem(100);
+  width: clamp(50px, 5vw, 60px);
   place-content: center;
-
-  a {
-    font-size: clamp(2.5rem, 5vw, 3.5rem) !important;
-  }
-
-  & a {
-    color: var(--text-color-accent);
-    text-decoration: none;
-    font-size: clamp(2.6rem, calc(2.6rem + 3vw), 4.5rem);
-  }
 }
 
 .search-bar-container {
