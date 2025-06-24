@@ -120,4 +120,4 @@ node proxy.js
 
 **Aman Singh**  
 Frontend Developer | Blender 3D Hobbyist  
-🌐 [LinkedIn](https://linkedin.com/in/yourprofile) • [GitHub](https://github.com/yourusername)
+🌐 [LinkedIn](https://www.linkedin.com/in/aman-singh-b69a7120b/) • [GitHub](https://github.com/amansingh169)
