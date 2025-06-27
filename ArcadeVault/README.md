@@ -20,13 +20,13 @@ ArcadeVault is a modern game discovery and library management web app built with
 
 > [🚀 Click here to view ArcadeVault Live](https://arcadevault.vercel.app)
 
-![ArcadeVault Preview](https://i.ibb.co/XxjYc34w/Screenshot-80.png)
-![ArcadeVault Preview](https://i.ibb.co/8D7XyY8J/Screenshot-81.png)
-![ArcadeVault Preview](https://i.ibb.co/hxCNpk8b/Screenshot-82.png)
-![ArcadeVault Preview](https://i.ibb.co/WW0GnR4R/Screenshot-83.png)
-![ArcadeVault Preview](https://i.ibb.co/S4kgJJTz/Screenshot-84.png)
-![ArcadeVault Preview](https://i.ibb.co/4Z766tpW/Screenshot-85.png)
-![ArcadeVault Preview](https://i.ibb.co/pvxyHG5m/Screenshot-2025-06-22-232918.png)
+![ArcadeVault Screenshot](https://i.ibb.co/XxjYc34w/Screenshot-80.png)
+![ArcadeVault Screenshot](https://i.ibb.co/8D7XyY8J/Screenshot-81.png)
+![ArcadeVault Screenshot](https://i.ibb.co/hxCNpk8b/Screenshot-82.png)
+![ArcadeVault Screenshot](https://i.ibb.co/WW0GnR4R/Screenshot-83.png)
+![ArcadeVault Screenshot](https://i.ibb.co/S4kgJJTz/Screenshot-84.png)
+![ArcadeVault Screenshot](https://i.ibb.co/4Z766tpW/Screenshot-85.png)
+![ArcadeVault Screenshot](https://i.ibb.co/pvxyHG5m/Screenshot-2025-06-22-232918.png)
 
 ## 🧱 Tech Stack
 
@@ -67,7 +67,7 @@ ArcadeVault is a modern game discovery and library management web app built with
 ### 🔧 Setup
 
 ```bash
-git clone https://github.com/amansingh169/arcadevault.git
+git clone https://github.com/amansingh169/Major_Project_Scifor.git
 cd arcadevault
 npm install
 ```
@@ -83,7 +83,7 @@ npm run dev
 ### 🔁 Start Backend Proxy (for dev only)
 
 ```bash
-node proxy.js
+node proxy
 ```
 
 > Runs Express proxy server on `http://localhost:5000`
