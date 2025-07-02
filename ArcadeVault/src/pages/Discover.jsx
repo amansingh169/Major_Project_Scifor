@@ -3,11 +3,10 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { fetchGames, fetchSteamGameData } from "../api/games";
 import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
-import { UserContext } from "../contexts/UserContext";
+// import { UserContext } from "../contexts/UserContext";
 import TopGamesSlider from "../components/TopGamesSlider";
 
 const Discover = () => {
-  const { setUser } = useContext(UserContext);
   const [games, setGames] = useState([]);
   const [discountedGames, setDiscountedGames] = useState([]);
   const [sliderGames, setsliderGames] = useState([]);

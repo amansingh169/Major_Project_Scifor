@@ -51,7 +51,7 @@ const TopGamesSlider = ({ sliderGames }) => {
                   </div>
                 </div>
 
-                <img className="splide-img" src={game?.screenshots[5].path_full} alt="Screenshot" />
+                <img className="splide-img" src={game?.screenshots[4].path_full} alt="Screenshot" />
               </div>
             </SplideSlide>
           ))}
@@ -84,7 +84,7 @@ const TopGamesSlider = ({ sliderGames }) => {
                   <p className="game-des text-primary my-2">{game.short_description}</p>
                 </div>
 
-                <img className="splide-img" src={game?.screenshots[5].path_full} alt="Screenshot" />
+                <img className="splide-img" src={game?.screenshots[4].path_full} alt="Screenshot" />
               </Link>
             </SplideSlide>
           ))}
