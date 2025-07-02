@@ -1,9 +1,8 @@
 import Slider from "../components/Slider";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { fetchGames, fetchSteamGameData } from "../api/games";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-// import { UserContext } from "../contexts/UserContext";
 import TopGamesSlider from "../components/TopGamesSlider";
 
 const Discover = () => {
@@ -24,7 +23,7 @@ const Discover = () => {
       } else {
         const data = await fetchGames();
         const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
-        const top6Games = discountedGames.slice(-8);
+        const top6Games = discountedGames.slice(-17, -8);
         const enrichedTopGames = await Promise.all(
           top6Games.map(async (g) => {
             const fullGame = await fetchSteamGameData(g.steam_appid);
@@ -120,7 +119,7 @@ const Discover = () => {
 
       <TopGamesSlider sliderGames={sliderGames} />
 
-      <Slider gameList={games3.slice().reverse()} title="Popular Games" />
+      <Slider gameList={games3} title="Popular Games" />
       <Slider gameList={discountedGames.slice().reverse()} title="Mega Sale Special" />
       <Slider gameList={games1} title="Old Is Gold" />
 

@@ -26,7 +26,7 @@ const TopGamesSlider = ({ sliderGames }) => {
                   <Link to={`/game/${game.steam_appid}`}>
                     <img
                       className="game-logo"
-                      height={200}
+                      width={400}
                       src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
                       alt={game.name}
                     />
@@ -75,6 +75,7 @@ const TopGamesSlider = ({ sliderGames }) => {
                 <div className="gradient"></div>
                 <img
                   className="game-logo"
+                  width={270}
                   src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${game?.steam_appid}/logo.png`}
                   alt={game.name}
                 />

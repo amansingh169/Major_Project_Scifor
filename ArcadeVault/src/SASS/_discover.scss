@@ -208,7 +208,6 @@
       z-index: 100;
 
       .game-logo {
-        height: u.rem(200);
         margin-bottom: u.rem(30);
       }
 
@@ -231,10 +230,9 @@
 
       .game-logo {
         position: absolute;
-        top: 0;
+        top: 10%;
         left: 50%;
         transform: translateX(-50%);
-        height: u.rem(150);
         z-index: 2;
       }
 
