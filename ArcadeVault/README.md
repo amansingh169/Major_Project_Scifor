@@ -20,16 +20,16 @@ ArcadeVault is a modern game discovery and library management web app built with
 
 > [🚀 Click here to view ArcadeVault Live](https://arcadevault.vercel.app)
 
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083263452741662/Screenshot_89.png?ex=685fb0c7&is=685e5f47&hm=2404ea9d9cc38028408235fb51b6002bda23a49c277a4dd67b0730002722062b&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083267231678485/Screenshot_86.png?ex=685fb0c8&is=685e5f48&hm=79a6be58fbc6e8c05d652a3456cae05c8aa270e9a243669241658ddd65655778&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083263901536336/Screenshot_81.png?ex=685fb0c7&is=685e5f47&hm=174107471f219535a8512b3601e9b952fa7cf34d7e5e46fae54bc098e1a46f1a&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083264509575239/Screenshot_82.png?ex=685fb0c7&is=685e5f47&hm=3de6a7dceb740955b90e0ac76d7e912ca9982b04d1b08e9fb8c63d34a9213ff9&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083264849449082/Screenshot_83.png?ex=685fb0c7&is=685e5f47&hm=6a0ef5ef88e294368b5dd54520b48264edfd1bc44f0a2bae84e933612d9979fa&=&format=webp&quality=lossless&width=1768&height=737)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083265243578506/Screenshot_84.png?ex=685fb0c7&is=685e5f47&hm=03325af9bb30fb733f4303e901cf4e72168103902d88b3d7a36577642821ff4e&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://cdn.discordapp.com/attachments/1238915463321358607/1388083265604157521/Screenshot_2025-06-23_115527.png?ex=685fb0c7&is=685e5f47&hm=2297963532e556343063d3b29996b1cf327567ceb0ca726eebe1ed7fa568c89e&)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083266141032478/Screenshot_85.png?ex=685fb0c7&is=685e5f47&hm=e98cbd59ba49e366cd9ee03c10a19db6ecbae84dcc311d74ccfdbbcdc701e56a&=&format=webp&quality=lossless&width=1603&height=902)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083266460057650/Screenshot_2025-06-23_180225.png?ex=685fb0c8&is=685e5f48&hm=94cdb30f11ca1a35f10c6e6ad75decdae4ae5e0fcbf6694c5977afd64d7b320f&=&format=webp&quality=lossless)
-![ArcadeVault Screenshot](https://media.discordapp.net/attachments/1238915463321358607/1388083266757595216/Screenshot_2025-06-23_180338.png?ex=685fb0c8&is=685e5f48&hm=80b1b867ad08f57369af12c07adcf0e4fecfb9ccff9c48b3cb3e968e386370b0&=&format=webp&quality=lossless)
+<img src="./src/assets/Screenshot 1.png" width="500"/>
+<img src="./src/assets/Screenshot 2.png" width="500"/>
+<img src="./src/assets/Screenshot 3.png" width="500"/>
+<img src="./src/assets/Screenshot 4.png" width="500"/>
+<img src="./src/assets/Screenshot 5.png" width="500"/>
+<img src="./src/assets/Screenshot 6.png" width="500"/>
+<img src="./src/assets/Screenshot 7.png" width="500"/>
+<img src="./src/assets/Screenshot 8.png" width="500"/>
+<img src="./src/assets/Screenshot 9.png" width="500"/>
+<img src="./src/assets/Screenshot 10.png" width="500"/>
 
 ## 🧱 Tech Stack
 
