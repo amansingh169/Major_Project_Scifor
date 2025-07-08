@@ -20,16 +20,18 @@ ArcadeVault is a modern game discovery and library management web app built with
 
 > [🚀 Click here to view ArcadeVault Live](https://arcadevault.vercel.app)
 
-<img src="./src/assets/Screenshot 1.png" width="500"/>
-<img src="./src/assets/Screenshot 2.png" width="500"/>
-<img src="./src/assets/Screenshot 3.png" width="500"/>
-<img src="./src/assets/Screenshot 4.png" width="500"/>
-<img src="./src/assets/Screenshot 5.png" width="500"/>
-<img src="./src/assets/Screenshot 6.png" width="500"/>
-<img src="./src/assets/Screenshot 7.png" width="500"/>
-<img src="./src/assets/Screenshot 8.png" width="500"/>
-<img src="./src/assets/Screenshot 9.png" width="500"/>
-<img src="./src/assets/Screenshot 10.png" width="500"/>
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="./src/assets/Screenshot 1.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 2.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 3.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 4.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 5.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 6.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 7.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 8.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 9.png" style="max-width: 500px"/>
+  <img src="./src/assets/Screenshot 10.png" style="max-width: 500px"/>
+</div>
 
 ## 🧱 Tech Stack
 
