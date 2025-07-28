@@ -51,7 +51,7 @@ const TopGamesSlider = ({ sliderGames }) => {
                   </div>
                 </div>
 
-                <img className="splide-img" src={game?.screenshots[4].path_full} alt="Screenshot" />
+                <img className="splide-img" src={game?.screenshots[1].path_full} alt="Screenshot" />
               </div>
             </SplideSlide>
           ))}
