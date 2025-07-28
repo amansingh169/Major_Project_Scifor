@@ -23,9 +23,9 @@ const Discover = () => {
       } else {
         const data = await fetchGames();
         const discountedGames = data.filter((game) => game?.price_overview?.discount_percent > 0);
-        const top6Games = discountedGames.slice(-17, -8);
+        // const top6Games = discountedGames.slice(-17, -8);
         const enrichedTopGames = await Promise.all(
-          top6Games.map(async (g) => {
+          discountedGames.map(async (g) => {
             const fullGame = await fetchSteamGameData(g.steam_appid);
 
             return {
